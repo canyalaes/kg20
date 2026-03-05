@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Victoria's Sanctuary — Exposé | Kunigundenstraße 20, München-Schwabing</title>
   <meta name="description" content="Ein außergewöhnliches Apartment in München-Schwabing. 93 m², Interior von Villa Haller, Sky-Light-Atmosphäre im 2. OG. Ein Projekt von BC Living GmbH.">
   <meta name="keywords" content="Exposé Wohnung München Schwabing, Designwohnung München, Kunigundenstraße 20, 80802 München, BC Living, Villa Haller, Luxusapartment Schwabing">
@@ -148,7 +148,8 @@
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 600px;
+      height: 100svh; /* iOS Safari: excludes browser chrome */
+      min-height: 480px;
       overflow: hidden;
       cursor: grab;
     }
@@ -161,11 +162,16 @@
     }
     .hero-slide {
       min-width: 100%;
+      width: 100%;
       height: 100%;
       position: relative;
       flex-shrink: 0;
+      overflow: hidden;
     }
     .hero-slide img {
+      /* iOS Safari: object-fit:cover fails on % height inside flex — use absolute */
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -181,9 +187,9 @@
     }
     .hero-content {
       position: absolute;
-      bottom: 10%;
-      left: 3rem;
-      right: 3rem;
+      bottom: max(10%, calc(env(safe-area-inset-bottom, 0px) + 3rem));
+      left: max(3rem, env(safe-area-inset-left, 0px));
+      right: max(3rem, env(safe-area-inset-right, 0px));
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1s ease 0.5s forwards;
@@ -225,6 +231,7 @@
       width: 48px; height: 48px;
       background: rgba(255,255,255,0.13);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255,255,255,0.22);
       color: #fff;
       font-size: 1.1rem;
@@ -232,6 +239,8 @@
       cursor: pointer;
       transition: background 0.25s;
       user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
     .hero-btn:hover { background: rgba(255,255,255,0.25); }
     .hero-btn-prev { left: 1.5rem; }
@@ -897,12 +906,40 @@
     }
 
     @media (max-width: 600px) {
-      .hero-btn, .hero-dots { display: none; }
+      /* Hero: single static image, no scroll confusion */
+      .hero { height: 100svh; min-height: 420px; cursor: default; }
+      .hero:active { cursor: default; }
+      .hero-btn, .hero-dots, .scroll-hint { display: none; }
       .hero-track { transition: none !important; transform: translateX(0) !important; }
       .hero-slide:not(:first-child) { display: none; }
-    }
+      .hero-content {
+        bottom: max(8%, calc(env(safe-area-inset-bottom, 0px) + 1.5rem));
+        left: 1.25rem; right: 1.25rem;
+      }
+      .hero-eyebrow { font-size: 0.6rem; }
+      .hero-title { font-size: clamp(2.6rem, 11vw, 3.8rem); }
+      .hero-sub { display: none; }
+      /* Layout */
+      nav { padding: 1rem 1.25rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .gallery-section { padding: 3.5rem 0; }
+      footer {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+      }
+      /* Specs */
+      .specs-grid { grid-template-columns: 1fr; }
       .spec-item { border-right: none !important; }
+      /* Brands */
       .brands-list { flex-direction: column; }
+      /* About */
+      .about-collab { padding: 2rem 1.25rem; margin-top: 3rem; }
+      /* Lightbox */
+      .lightbox-close {
+        top: max(1rem, env(safe-area-inset-top, 1rem));
+        right: 1rem;
+      }
     }
   </style>
 </head>
