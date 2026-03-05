@@ -896,8 +896,11 @@
       .about-collab { padding: 2.5rem 1.5rem; }
     }
 
-    @media (max-width: 500px) {
-      .specs-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .hero-btn, .hero-dots { display: none; }
+      .hero-track { transition: none !important; transform: translateX(0) !important; }
+      .hero-slide:not(:first-child) { display: none; }
+    }
       .spec-item { border-right: none !important; }
       .brands-list { flex-direction: column; }
     }
