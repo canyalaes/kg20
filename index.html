@@ -7,6 +7,960 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F2EDE5;
+      --sand: #E0D5C5;
+      --taupe: #9A8872;
+      --dark: #1C1A18;
+      --mid: #5C5548;
+      --white: #FAFAF8;
+      --accent: #2E2C2A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 3rem;
+      mix-blend-mode: normal;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--white); }
+    nav.scrolled .nav-links a:hover { color: var(--dark); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.05);
+      animation: heroZoom 8s ease-out forwards;
+    }
+    @keyframes heroZoom {
+      to { transform: scale(1); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28,26,24,0.25) 0%,
+        rgba(28,26,24,0.1) 40%,
+        rgba(28,26,24,0.55) 100%
+      );
+    }
+    .hero-content {
+      position: absolute;
+      bottom: 10%;
+      left: 3rem;
+      right: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.4);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.4; } 50% { opacity: 1; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 3rem; }
+
+    /* ── INTRO ── */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .intro-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 1.5rem;
+    }
+    .intro-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--dark);
+    }
+    .intro-headline em { font-style: italic; }
+    .intro-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-top: 2rem;
+    }
+    .intro-text p + p { margin-top: 1rem; }
+    .intro-visual { position: relative; }
+    .intro-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .intro-badge {
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      background: var(--dark);
+      color: var(--cream);
+      padding: 2rem;
+      width: 160px;
+      text-align: center;
+    }
+    .badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      display: block;
+    }
+    .badge-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-section { background: var(--cream); padding: 7rem 3rem; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      max-width: 1300px;
+      margin: 0 auto 4rem;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--dark);
+    }
+    .section-title em { font-style: italic; }
+
+    .gallery-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 280px;
+      gap: 1rem;
+    }
+    .g1 { grid-column: span 7; grid-row: span 2; }
+    .g2 { grid-column: span 5; }
+    .g3 { grid-column: span 5; }
+    .g4 { grid-column: span 4; }
+    .g5 { grid-column: span 4; }
+    .g6 { grid-column: span 4; }
+    .g7 { grid-column: span 8; }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(28,26,24,0.6));
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .caption { opacity: 1; }
+
+    /* ── FEATURE SPLIT ── */
+    .feature-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 100%;
+    }
+    .feature-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-img-wrap img {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+    .feature-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5rem;
+      background: var(--dark);
+      color: var(--cream);
+    }
+    .feature-text .intro-label { color: var(--taupe); }
+    .feature-text .intro-headline { color: var(--cream); }
+    .feature-text .intro-text { color: rgba(255,255,255,0.55); }
+
+    /* ── SPECS TABLE ── */
+    .specs-section { background: var(--white); }
+    .specs-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--sand);
+      margin-top: 4rem;
+    }
+    .spec-item {
+      padding: 2.5rem;
+      border-right: 1px solid var(--sand);
+      border-bottom: 1px solid var(--sand);
+    }
+    .spec-item:nth-child(3n) { border-right: none; }
+    .spec-icon {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 0.8rem;
+    }
+    .spec-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .spec-label {
+      font-size: 0.72rem;
+      color: var(--mid);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* ── DESIGN BRANDS ── */
+    .brands-section { background: var(--cream); }
+    .brands-inner { max-width: 1300px; margin: 0 auto; }
+    .brands-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      background: var(--sand);
+      margin-top: 4rem;
+      border: 1px solid var(--sand);
+    }
+    .brand-item {
+      background: var(--cream);
+      flex: 1 1 200px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+    }
+    .brand-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-top: 0.4rem;
+    }
+
+    /* ── LOCATION ── */
+    .location-section { background: var(--white); }
+    .location-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .location-list { margin-top: 3rem; }
+    .location-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--sand);
+      align-items: baseline;
+    }
+    .location-item:first-child { border-top: 1px solid var(--sand); }
+    .location-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--dark);
+      min-width: 80px;
+      line-height: 1;
+    }
+    .location-dest { flex: 1; }
+    .location-name {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+    .location-note {
+      font-size: 0.72rem;
+      color: var(--taupe);
+      margin-top: 0.2rem;
+    }
+    .location-visual {
+      position: sticky;
+      top: 6rem;
+    }
+    .location-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .location-address {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 2rem;
+      margin-top: 0;
+    }
+    .address-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .address-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-top: 0.8rem;
+    }
+
+    /* ── FULL-BLEED QUOTE ── */
+    .quote-section {
+      position: relative;
+      height: 60vh;
+      min-height: 400px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .quote-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.45);
+    }
+    .quote-content {
+      position: relative;
+      padding: 3rem;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.3;
+      max-width: 800px;
+    }
+    .quote-attr {
+      margin-top: 1.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── CONTACT / CTA ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 8rem 3rem;
+      text-align: center;
+    }
+    .cta-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 1.5rem;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .cta-title em { font-style: italic; }
+    .cta-sub {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 1.1rem 3rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #141210;
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-copy {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,16,0.96);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.4rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      .gallery-section { padding: 5rem 1.5rem; }
+      .intro { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-badge { display: none; }
+      .feature-split { grid-template-columns: 1fr; }
+      .feature-img-wrap img { min-height: 50vw; }
+      .feature-text { padding: 3.5rem 1.5rem; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .spec-item:nth-child(3n) { border-right: 1px solid var(--sand); }
+      .spec-item:nth-child(2n) { border-right: none; }
+      .location-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .location-visual { position: static; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 220px;
+      }
+      .g1,.g2,.g3,.g4,.g5,.g6,.g7 { grid-column: span 1; grid-row: span 1; }
+      .g1 { grid-column: span 2; }
+      .g7 { grid-column: span 2; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-content { left: 1.5rem; right: 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .specs-grid { grid-template-columns: 1fr; }
+      .spec-item { border-right: none !important; }
+      .brands-list { flex-direction: column; }
+    }
+  </style>
 </head>
-<body><p>loading...</p></body>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">KG20</a>
+  <ul class="nav-links">
+    <li><a href="#about">Das Objekt</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#ausstattung">Ausstattung</a></li>
+    <li><a href="#location">Lage</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="images/1.jpeg" alt="KG20 Living Room">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kunigundenstraße 20 · München-Schwabing</p>
+    <h1 class="hero-title">KG20<br><em>The Sanctuary</em></h1>
+    <p class="hero-sub">Victoria Haller · Quiet Luxury · 93 m²</p>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Entdecken</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="about">
+  <div class="intro">
+    <div class="intro-text-col">
+      <p class="intro-label reveal">Das Objekt</p>
+      <h2 class="intro-headline reveal reveal-delay-1">Ein architekton­ischer<br><em>Solitär in Schwabing</em></h2>
+      <div class="intro-text reveal reveal-delay-2">
+        <p>Das KG20 in der Kunigundenstraße 20 ist ein seltenes Privileg im pulsierenden Herzen Schwabings. Gelegen im 2. Obergeschoss, genießt man hier ein ungestörtes Sky-Light-Gefühl — da sich baulich bedingt keine weiteren Balkone über der Wohnung befinden, durchflutet Licht die Räume wie sonst nur in obersten Etagen.</p>
+        <p>Das absolute Penthouse-Feeling, mitten in München.</p>
+      </div>
+    </div>
+    <div class="intro-visual reveal reveal-delay-2">
+      <img class="intro-img" src="images/4.jpeg" alt="Dining area with balcony view">
+      <div class="intro-badge">
+        <span class="badge-num">93</span>
+        <span class="badge-text">m² Luxus-Interior</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <span class="section-label reveal">Galerie</span>
+    <h2 class="section-title reveal reveal-delay-1"><em>Räume,</em> die berühren</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item g1" onclick="openLightbox('images/2.jpeg')">
+      <img src="images/2.jpeg" alt="Dining Room" loading="lazy">
+      <div class="caption">Dining · Poltrona Frau</div>
+    </div>
+    <div class="gallery-item g2" onclick="openLightbox('images/3.jpeg')">
+      <img src="images/3.jpeg" alt="Living Room detail" loading="lazy">
+      <div class="caption">Eames Lounge Chair · Vitra</div>
+    </div>
+    <div class="gallery-item g3" onclick="openLightbox('images/5.jpeg')">
+      <img src="images/5.jpeg" alt="Entrance hallway" loading="lazy">
+      <div class="caption">Eingang</div>
+    </div>
+    <div class="gallery-item g4" onclick="openLightbox('images/6.jpeg')">
+      <img src="images/6.jpeg" alt="Master Bedroom" loading="lazy">
+      <div class="caption">Schlafzimmer</div>
+    </div>
+    <div class="gallery-item g5" onclick="openLightbox('images/7.jpeg')">
+      <img src="images/7.jpeg" alt="Kitchen" loading="lazy">
+      <div class="caption">Küche · Siemens / Neff</div>
+    </div>
+    <div class="gallery-item g6" onclick="openLightbox('images/8.jpeg')">
+      <img src="images/8.jpeg" alt="Kitchen detail" loading="lazy">
+      <div class="caption">ECM Siebträger</div>
+    </div>
+    <div class="gallery-item g7" onclick="openLightbox('images/10.jpeg')">
+      <img src="images/10.jpeg" alt="Kitchen to living view" loading="lazy">
+      <div class="caption">Durchblick · Küche & Wohnen</div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN FEATURE: BEDROOM -->
+<div class="feature-split">
+  <div class="feature-img-wrap">
+    <img src="images/6.jpeg" alt="Bedroom sanctuary">
+  </div>
+  <div class="feature-text" id="ausstattung">
+    <p class="intro-label">Design-Philosophie</p>
+    <h2 class="intro-headline reveal">Victoria Hallers<br><em>Quiet Luxury</em></h2>
+    <div class="intro-text reveal reveal-delay-1">
+      <p>Das Interieur wurde von der renommierten Designerin <strong style="color: var(--cream); font-weight:300;">Victoria Haller (Villa Haller)</strong> entworfen. Ihr Konzept bricht mit der Sterilität moderner Apartments und setzt stattdessen auf eine warme, skandinavisch inspirierte Raffinesse.</p>
+      <p>Edler Fischgrätenparkett, ein Farbschema aus Sand, Beige und Taupe, akzentuiert durch markante schwarze Details — jeder Quadratmeter ein kuratiertes Statement.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SPECS -->
+<section class="specs-section">
+  <div class="specs-inner">
+    <div class="section-header">
+      <span class="section-label reveal">Ausstattung</span>
+      <h2 class="section-title reveal reveal-delay-1">Technische <em>Perfektion</em></h2>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-item reveal">
+        <div class="spec-icon">Entertainment</div>
+        <div class="spec-value">75"</div>
+        <div class="spec-label">Samsung QLED TV<br>+ Bowers & Wilkins Surround Sound</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-icon">Wellness</div>
+        <div class="spec-value">2 Bäder</div>
+        <div class="spec-label">Toto Washlets · Grohe Essence<br>Regendusche · Fußbodenheizung</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-icon">Klima</div>
+        <div class="spec-value">Daikin</div>
+        <div class="spec-label">Ururu System — Klimatisierung,<br>Belüftung & Luftfeuchtigkeit</div>
+      </div>
+      <div class="spec-item reveal">
+        <div class="spec-icon">Küche</div>
+        <div class="spec-value">2024</div>
+        <div class="spec-label">Vollerneuerte Designküche<br>Siemens · Neff · ECM Mechanika</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-icon">Smart Home</div>
+        <div class="spec-value">Shelly</div>
+        <div class="spec-label">Gen3 Vollvernetzung —<br>Licht, Heizung, Rollläden, Markisen</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-icon">Parken</div>
+        <div class="spec-value">2 PKW</div>
+        <div class="spec-label">Tiefgaragenstellplätze<br>Modernisierter Aufzug</div>
+      </div>
+      <div class="spec-item reveal">
+        <div class="spec-icon">Balkone</div>
+        <div class="spec-value">2×</div>
+        <div class="spec-label">Nordost & Südwest —<br>Sky-Light-Feeling, Penthouse-Atmosphäre</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-icon">Beleuchtung</div>
+        <div class="spec-value">Occhio</div>
+        <div class="spec-label">Maßgeschneidertes Lichtkonzept<br>Architektonische Akzente</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-icon">Wäsche</div>
+        <div class="spec-value">Miele</div>
+        <div class="spec-label">Waschmaschine & Trockner<br>Diskret integriert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="brands-inner">
+    <div class="section-header">
+      <span class="section-label reveal">Kurierte Marken</span>
+      <h2 class="section-title reveal reveal-delay-1">Design <em>ohne Kompromisse</em></h2>
+    </div>
+    <div class="brands-list reveal">
+      <div class="brand-item">
+        <div class="brand-name">Victoria Haller</div>
+        <div class="brand-cat">Interior Design</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-name">Poltrona Frau</div>
+        <div class="brand-cat">Premium Furniture</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-name">Vitra</div>
+        <div class="brand-cat">Design Classics</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-name">Occhio</div>
+        <div class="brand-cat">High-End Lighting</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-name">B&W</div>
+        <div class="brand-cat">Bowers & Wilkins Audio</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-name">ECM</div>
+        <div class="brand-cat">Espresso Culture</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<div class="quote-section">
+  <img class="quote-bg" src="images/9.jpeg" alt="Kitchen detail">
+  <div class="quote-content">
+    <p class="quote-text">"Nicht Luxus um des Luxus willen — sondern Qualität, die man jeden Tag spürt."</p>
+    <p class="quote-attr">Victoria Haller · Villa Haller · Interior Design</p>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="location-inner">
+    <div>
+      <p class="intro-label reveal">Lage</p>
+      <h2 class="intro-headline reveal reveal-delay-1">Die exzellenteste<br><em>Adresse Münchens</em></h2>
+      <div class="intro-text reveal reveal-delay-2">
+        <p>Die Kunigundenstraße 20 verbindet urbane Dynamik mit der Ruhe einer erstklassigen Wohnstraße. Münchner Freiheit, Englischer Garten, alle Ziele der Stadt — alles nah, und doch eine Welt für sich.</p>
+      </div>
+      <div class="location-list">
+        <div class="location-item reveal">
+          <span class="location-time">5'</span>
+          <div class="location-dest">
+            <div class="location-name">Münchner Freiheit</div>
+            <div class="location-note">Legendäre Cafés & Restaurants</div>
+          </div>
+        </div>
+        <div class="location-item reveal reveal-delay-1">
+          <span class="location-time">8'</span>
+          <div class="location-dest">
+            <div class="location-name">Englischer Garten</div>
+            <div class="location-note">Erholung im Grünen</div>
+          </div>
+        </div>
+        <div class="location-item reveal reveal-delay-2">
+          <span class="location-time">15'</span>
+          <div class="location-dest">
+            <div class="location-name">Allianz Arena</div>
+            <div class="location-note">FC Bayern München</div>
+          </div>
+        </div>
+        <div class="location-item reveal">
+          <span class="location-time">20'</span>
+          <div class="location-dest">
+            <div class="location-name">Hauptbahnhof</div>
+            <div class="location-note">Direktverbindung Zentrum</div>
+          </div>
+        </div>
+        <div class="location-item reveal reveal-delay-1">
+          <span class="location-time">25'</span>
+          <div class="location-dest">
+            <div class="location-name">Flughafen München MUC</div>
+            <div class="location-note">Internationale Anbindung</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="location-visual reveal">
+      <img class="location-img" src="images/5.jpeg" alt="Hallway view">
+      <div class="location-address">
+        <div class="address-line">Kunigundenstraße 20<br>80803 München-Schwabing</div>
+        <div class="address-sub">2. Obergeschoss · 93 m²</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="cta-eyebrow">Exklusiv verfügbar</p>
+  <h2 class="cta-title">Bereit für<br><em>Ihr Sanctuary?</em></h2>
+  <p class="cta-sub">Kunigundenstraße 20 · 80803 München-Schwabing · 93 m²</p>
+  <a href="mailto:info@canyala.es" class="cta-btn">Anfrage senden</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KG20</div>
+  <div class="footer-copy">© 2025 Can Yala · Kunigundenstraße 20 · München</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close">Schließen ✕</div>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
 </html>
