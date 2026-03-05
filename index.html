@@ -438,6 +438,49 @@
       .gallery-strip-item:first-child { width: 78vw; height: 56vw; min-height: 220px; }
       .gallery-nav { padding: 0 1.5rem; }
     }
+    @media (max-width: 600px) {
+      .gallery-strip { display: none; }
+      .gallery-nav  { display: none; }
+      .gallery-mobile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        padding: 0 1.5rem;
+      }
+      .gallery-mobile-hero {
+        grid-column: 1 / -1;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .gallery-mobile-item {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .gallery-mobile-hero img,
+      .gallery-mobile-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .gallery-mobile-item .caption,
+      .gallery-mobile-hero .caption {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 1rem;
+        background: linear-gradient(transparent, rgba(28,26,24,0.55));
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+      }
+    }
+    @media (min-width: 601px) {
+      .gallery-mobile { display: none; }
+    }
 
     /* ── FEATURE SPLIT ── */
     .feature-split {
@@ -1005,6 +1048,62 @@
     <div class="gallery-nav">
       <div class="gallery-nav-btn" id="galleryPrev">&#8592;</div>
       <div class="gallery-nav-btn" id="galleryNext">&#8594;</div>
+    </div>
+  </div>
+
+  <!-- MOBILE GALLERY (editorial grid, no carousel) -->
+  <div class="gallery-mobile">
+    <div class="gallery-mobile-hero" onclick="openLightbox('images/2.jpeg')">
+      <img src="images/2.jpeg" alt="Dining" loading="lazy">
+      <div class="caption">Dining · Poltrona Frau</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/1.jpeg')">
+      <img src="images/1.jpeg" alt="Wohnzimmer" loading="lazy">
+      <div class="caption">Wohnzimmer</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/6.jpeg')">
+      <img src="images/6.jpeg" alt="Schlafzimmer" loading="lazy">
+      <div class="caption">Schlafzimmer</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/4.jpeg')">
+      <img src="images/4.jpeg" alt="Balkon" loading="lazy">
+      <div class="caption">Balkon</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/3.jpeg')">
+      <img src="images/3.jpeg" alt="Eames Chair" loading="lazy">
+      <div class="caption">Eames · Vitra</div>
+    </div>
+    <div class="gallery-mobile-hero" onclick="openLightbox('images/7.jpeg')">
+      <img src="images/7.jpeg" alt="Küche" loading="lazy">
+      <div class="caption">Küche · Siemens / Neff</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/15.jpeg')">
+      <img src="images/15.jpeg" alt="Bad" loading="lazy">
+      <div class="caption">Bad · Toto</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/8.jpeg')">
+      <img src="images/8.jpeg" alt="ECM" loading="lazy">
+      <div class="caption">ECM Siebträger</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/11.jpeg')">
+      <img src="images/11.jpeg" alt="Flur" loading="lazy">
+      <div class="caption">Flur · Occhio</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/14.jpeg')">
+      <img src="images/14.jpeg" alt="Kunst" loading="lazy">
+      <div class="caption">Kuratierte Kunst</div>
+    </div>
+    <div class="gallery-mobile-hero" onclick="openLightbox('images/16.jpeg')">
+      <img src="images/16.jpeg" alt="Bad Übersicht" loading="lazy">
+      <div class="caption">Bad · Terrazzo & Holz</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/12.jpeg')">
+      <img src="images/12.jpeg" alt="Zimmer 2" loading="lazy">
+      <div class="caption">Zimmer 2</div>
+    </div>
+    <div class="gallery-mobile-item" onclick="openLightbox('images/13.jpeg')">
+      <img src="images/13.jpeg" alt="Garderobe" loading="lazy">
+      <div class="caption">Garderobe</div>
     </div>
   </div>
 </section>
