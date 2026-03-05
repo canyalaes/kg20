@@ -144,33 +144,40 @@
     .nav-links a:hover { color: var(--white); }
     nav.scrolled .nav-links a:hover { color: var(--dark); }
 
-    /* ── HERO ── */
+    /* ── HERO CAROUSEL ── */
     .hero {
       position: relative;
       height: 100vh;
       min-height: 600px;
       overflow: hidden;
+      cursor: grab;
     }
-    .hero-img {
+    .hero:active { cursor: grabbing; }
+    .hero-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.75s cubic-bezier(0.77,0,0.175,1);
+      will-change: transform;
+    }
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transform: scale(1.05);
-      animation: heroZoom 8s ease-out forwards;
-    }
-    @keyframes heroZoom {
-      to { transform: scale(1); }
+      display: block;
+      pointer-events: none;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(28,26,24,0.25) 0%,
-        rgba(28,26,24,0.1) 40%,
-        rgba(28,26,24,0.55) 100%
-      );
+      background: linear-gradient(to bottom, rgba(28,26,24,0.22) 0%, rgba(28,26,24,0.08) 40%, rgba(28,26,24,0.55) 100%);
+      pointer-events: none;
     }
     .hero-content {
       position: absolute;
@@ -180,10 +187,9 @@
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1s ease 0.5s forwards;
+      pointer-events: none;
     }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     .hero-eyebrow {
       font-family: 'Jost', sans-serif;
       font-weight: 200;
@@ -201,10 +207,7 @@
       color: var(--white);
       letter-spacing: -0.01em;
     }
-    .hero-title em {
-      font-style: italic;
-      font-weight: 300;
-    }
+    .hero-title em { font-style: italic; font-weight: 300; }
     .hero-sub {
       margin-top: 1.5rem;
       font-family: 'Jost', sans-serif;
@@ -214,6 +217,42 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.65);
     }
+    .hero-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.13);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s;
+      user-select: none;
+    }
+    .hero-btn:hover { background: rgba(255,255,255,0.25); }
+    .hero-btn-prev { left: 1.5rem; }
+    .hero-btn-next { right: 1.5rem; }
+    .hero-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .hero-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .hero-dot.active { background: #fff; transform: scale(1.5); }
     .scroll-hint {
       position: absolute;
       bottom: 2.5rem;
@@ -225,16 +264,14 @@
       font-size: 0.62rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
+      pointer-events: none;
     }
     .scroll-line {
-      width: 40px;
-      height: 1px;
+      width: 40px; height: 1px;
       background: rgba(255,255,255,0.4);
       animation: scrollPulse 2s ease-in-out infinite;
     }
-    @keyframes scrollPulse {
-      0%,100% { opacity: 0.4; } 50% { opacity: 1; }
-    }
+    @keyframes scrollPulse { 0%,100%{opacity:.4;} 50%{opacity:1;} }
 
     /* ── SECTIONS ── */
     section { padding: 7rem 3rem; }
@@ -326,36 +363,43 @@
     }
     .section-title em { font-style: italic; }
 
-    .gallery-grid {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 280px;
-      gap: 1rem;
+    /* ── GALLERY SCROLL STRIP ── */
+    .gallery-wrap {
+      position: relative;
+      max-width: 100%;
     }
-    .g1 { grid-column: span 7; grid-row: span 2; }
-    .g2 { grid-column: span 5; }
-    .g3 { grid-column: span 5; }
-    .g4 { grid-column: span 4; }
-    .g5 { grid-column: span 4; }
-    .g6 { grid-column: span 4; }
-    .g7 { grid-column: span 8; }
-
-    .gallery-item {
+    .gallery-strip {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+      padding: 0 3rem 1.5rem;
+    }
+    .gallery-strip:active { cursor: grabbing; }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gallery-strip-item {
+      flex-shrink: 0;
+      scroll-snap-align: start;
       overflow: hidden;
       position: relative;
       cursor: pointer;
     }
-    .gallery-item img {
+    .gallery-strip-item:nth-child(odd)  { width: 420px; height: 560px; }
+    .gallery-strip-item:nth-child(even) { width: 320px; height: 560px; }
+    .gallery-strip-item:first-child     { width: 620px; height: 560px; }
+    .gallery-strip-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+      pointer-events: none;
     }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-item .caption {
+    .gallery-strip-item:hover img { transform: scale(1.04); }
+    .gallery-strip-item .caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       padding: 1.5rem;
@@ -367,7 +411,33 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .gallery-item:hover .caption { opacity: 1; }
+    .gallery-strip-item:hover .caption { opacity: 1; }
+    .gallery-nav {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      padding: 0 3rem;
+      margin-top: 1.5rem;
+    }
+    .gallery-nav-btn {
+      width: 44px; height: 44px;
+      border: 1px solid var(--sand);
+      background: transparent;
+      color: var(--dark);
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .gallery-nav-btn:hover { background: var(--sand); }
+    @media (max-width: 900px) {
+      .gallery-strip { padding: 0 1.5rem 1.5rem; }
+      .gallery-strip-item,
+      .gallery-strip-item:nth-child(odd),
+      .gallery-strip-item:nth-child(even),
+      .gallery-strip-item:first-child { width: 78vw; height: 56vw; min-height: 220px; }
+      .gallery-nav { padding: 0 1.5rem; }
+    }
 
     /* ── FEATURE SPLIT ── */
     .feature-split {
@@ -693,7 +763,7 @@
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .nav-links { display: none; }
       section { padding: 5rem 1.5rem; }
-      .gallery-section { padding: 5rem 1.5rem; }
+      .gallery-section { padding: 5rem 0; }
       .intro { grid-template-columns: 1fr; gap: 3rem; }
       .intro-badge { display: none; }
       .feature-split { grid-template-columns: 1fr; }
@@ -704,13 +774,6 @@
       .spec-item:nth-child(2n) { border-right: none; }
       .location-inner { grid-template-columns: 1fr; gap: 3rem; }
       .location-visual { position: static; }
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 220px;
-      }
-      .g1,.g2,.g3,.g4,.g5,.g6,.g7 { grid-column: span 1; grid-row: span 1; }
-      .g1,.g7 { grid-column: span 2; }
-      .g1 { grid-column: span 2; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       .hero-content { left: 1.5rem; right: 1.5rem; }
     }
@@ -813,14 +876,24 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <img class="hero-img" src="images/1.jpeg" alt="Victoria's Sanctuary Living Room">
+<section class="hero" id="hero-carousel">
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-slide"><img src="images/1.jpeg" alt="Wohnzimmer"></div>
+    <div class="hero-slide"><img src="images/2.jpeg" alt="Dining"></div>
+    <div class="hero-slide"><img src="images/4.jpeg" alt="Balkon"></div>
+    <div class="hero-slide"><img src="images/6.jpeg" alt="Schlafzimmer"></div>
+    <div class="hero-slide"><img src="images/11.jpeg" alt="Flur"></div>
+    <div class="hero-slide"><img src="images/15.jpeg" alt="Bad"></div>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Kunigundenstraße 20 · München-Schwabing</p>
     <h1 class="hero-title">Victoria's<br><em>Sanctuary</em></h1>
     <p class="hero-sub">Kunigundenstraße 20 · München-Schwabing · 93 m²</p>
   </div>
+  <div class="hero-btn hero-btn-prev" id="heroPrev">&#8592;</div>
+  <div class="hero-btn hero-btn-next" id="heroNext">&#8594;</div>
+  <div class="hero-dots" id="heroDots"></div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     <span>Entdecken</span>
@@ -854,58 +927,84 @@
     <span class="section-label reveal">Galerie</span>
     <h2 class="section-title reveal reveal-delay-1"><em>Räume,</em> die berühren</h2>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item g1" onclick="openLightbox('images/2.jpeg')">
-      <img src="images/2.jpeg" alt="Dining Room" loading="lazy">
-      <div class="caption">Dining · Poltrona Frau</div>
+  <div class="gallery-wrap">
+    <div class="gallery-strip" id="galleryStrip">
+      <div class="gallery-strip-item" onclick="openLightbox('images/2.jpeg')">
+        <img src="images/2.jpeg" alt="Dining Room" loading="lazy">
+        <div class="caption">Dining · Poltrona Frau</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/1.jpeg')">
+        <img src="images/1.jpeg" alt="Wohnzimmer" loading="lazy">
+        <div class="caption">Wohnzimmer · Eames</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/3.jpeg')">
+        <img src="images/3.jpeg" alt="Living Room detail" loading="lazy">
+        <div class="caption">Eames Lounge Chair · Vitra</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/4.jpeg')">
+        <img src="images/4.jpeg" alt="Dining mit Balkon" loading="lazy">
+        <div class="caption">Dining & Balkon</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/5.jpeg')">
+        <img src="images/5.jpeg" alt="Eingang" loading="lazy">
+        <div class="caption">Eingang</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/6.jpeg')">
+        <img src="images/6.jpeg" alt="Schlafzimmer" loading="lazy">
+        <div class="caption">Schlafzimmer</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/7.jpeg')">
+        <img src="images/7.jpeg" alt="Küche" loading="lazy">
+        <div class="caption">Küche · Siemens / Neff</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/8.jpeg')">
+        <img src="images/8.jpeg" alt="Küche Detail" loading="lazy">
+        <div class="caption">ECM Siebträger</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/9.jpeg')">
+        <img src="images/9.jpeg" alt="Küche Spüle" loading="lazy">
+        <div class="caption">Küche · Schwarze Armaturen</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/10.jpeg')">
+        <img src="images/10.jpeg" alt="Küche zu Wohnen" loading="lazy">
+        <div class="caption">Durchblick · Küche & Wohnen</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/11.jpeg')">
+        <img src="images/11.jpeg" alt="Flur" loading="lazy">
+        <div class="caption">Flur · Occhio Lichtschiene</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/12.jpeg')">
+        <img src="images/12.jpeg" alt="Zimmer 2" loading="lazy">
+        <div class="caption">Zimmer 2 · Arbeit & Ruhe</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/13.jpeg')">
+        <img src="images/13.jpeg" alt="Eingang Garderobe" loading="lazy">
+        <div class="caption">Eingang · Garderobe</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/14.jpeg')">
+        <img src="images/14.jpeg" alt="Schlafzimmer Kunst" loading="lazy">
+        <div class="caption">Schlafzimmer · Kuratierte Kunst</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/15.jpeg')">
+        <img src="images/15.jpeg" alt="Bad" loading="lazy">
+        <div class="caption">Bad · Toto Washlet</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/16.jpeg')">
+        <img src="images/16.jpeg" alt="Bad Übersicht" loading="lazy">
+        <div class="caption">Bad · Terrazzo & Holz</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/17.jpeg')">
+        <img src="images/17.jpeg" alt="Bad Miele" loading="lazy">
+        <div class="caption">Miele · Waschturm</div>
+      </div>
+      <div class="gallery-strip-item" onclick="openLightbox('images/18.jpeg')">
+        <img src="images/18.jpeg" alt="Bad 2" loading="lazy">
+        <div class="caption">Bad 2</div>
+      </div>
     </div>
-    <div class="gallery-item g2" onclick="openLightbox('images/3.jpeg')">
-      <img src="images/3.jpeg" alt="Living Room detail" loading="lazy">
-      <div class="caption">Eames Lounge Chair · Vitra</div>
-    </div>
-    <div class="gallery-item g3" onclick="openLightbox('images/5.jpeg')">
-      <img src="images/5.jpeg" alt="Entrance hallway" loading="lazy">
-      <div class="caption">Eingang</div>
-    </div>
-    <div class="gallery-item g4" onclick="openLightbox('images/6.jpeg')">
-      <img src="images/6.jpeg" alt="Master Bedroom" loading="lazy">
-      <div class="caption">Schlafzimmer</div>
-    </div>
-    <div class="gallery-item g5" onclick="openLightbox('images/7.jpeg')">
-      <img src="images/7.jpeg" alt="Kitchen" loading="lazy">
-      <div class="caption">Küche · Siemens / Neff</div>
-    </div>
-    <div class="gallery-item g6" onclick="openLightbox('images/8.jpeg')">
-      <img src="images/8.jpeg" alt="Kitchen detail" loading="lazy">
-      <div class="caption">ECM Siebträger</div>
-    </div>
-    <div class="gallery-item g7" onclick="openLightbox('images/10.jpeg')">
-      <img src="images/10.jpeg" alt="Kitchen to living view" loading="lazy">
-      <div class="caption">Durchblick · Küche & Wohnen</div>
-    </div>
-    <div class="gallery-item g4" onclick="openLightbox('images/11.jpeg')">
-      <img src="images/11.jpeg" alt="Hallway with track lighting" loading="lazy">
-      <div class="caption">Flur · Occhio Lichtschiene</div>
-    </div>
-    <div class="gallery-item g4" onclick="openLightbox('images/12.jpeg')">
-      <img src="images/12.jpeg" alt="Second bedroom" loading="lazy">
-      <div class="caption">Zimmer 2 · Arbeit & Ruhe</div>
-    </div>
-    <div class="gallery-item g4" onclick="openLightbox('images/14.jpeg')">
-      <img src="images/14.jpeg" alt="Bedroom with art" loading="lazy">
-      <div class="caption">Schlafzimmer · Kuratierte Kunst</div>
-    </div>
-    <div class="gallery-item g6" onclick="openLightbox('images/15.jpeg')">
-      <img src="images/15.jpeg" alt="Bathroom with Toto washlet" loading="lazy">
-      <div class="caption">Bad · Toto Washlet</div>
-    </div>
-    <div class="gallery-item g6" onclick="openLightbox('images/16.jpeg')">
-      <img src="images/16.jpeg" alt="Bathroom overview" loading="lazy">
-      <div class="caption">Bad · Terrazzo & Holz</div>
-    </div>
-    <div class="gallery-item g3" onclick="openLightbox('images/13.jpeg')">
-      <img src="images/13.jpeg" alt="Entry with wardrobe" loading="lazy">
-      <div class="caption">Eingang · Garderobe</div>
+    <div class="gallery-nav">
+      <div class="gallery-nav-btn" id="galleryPrev">&#8592;</div>
+      <div class="gallery-nav-btn" id="galleryNext">&#8594;</div>
     </div>
   </div>
 </section>
@@ -1151,20 +1250,89 @@
 </div>
 
 <script>
-  // Sticky nav
+  // ── STICKY NAV ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Reveal on scroll
+  // ── REVEAL ON SCROLL ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
-  // Lightbox
+  // ── HERO CAROUSEL ──
+  (function() {
+    const track = document.getElementById('heroTrack');
+    const slides = track.querySelectorAll('.hero-slide');
+    const dotsEl = document.getElementById('heroDots');
+    let current = 0, total = slides.length, autoTimer, isDragging = false, dragStartX = 0, dragDelta = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(n) {
+      current = (n + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsEl.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    document.getElementById('heroPrev').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    document.getElementById('heroNext').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+    });
+
+    // Touch / drag
+    const hero = document.getElementById('hero-carousel');
+    hero.addEventListener('pointerdown', e => { isDragging = true; dragStartX = e.clientX; track.style.transition = 'none'; });
+    window.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      dragDelta = e.clientX - dragStartX;
+      track.style.transform = `translateX(calc(-${current * 100}% + ${dragDelta}px))`;
+    });
+    window.addEventListener('pointerup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = '';
+      if (dragDelta < -60) goTo(current + 1);
+      else if (dragDelta > 60) goTo(current - 1);
+      else goTo(current);
+      dragDelta = 0;
+      resetAuto();
+    });
+
+    // Auto-advance
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
+    resetAuto();
+  })();
+
+  // ── GALLERY SCROLL ──
+  (function() {
+    const strip = document.getElementById('galleryStrip');
+    const scrollAmt = () => Math.min(strip.clientWidth * 0.75, 500);
+    document.getElementById('galleryPrev').addEventListener('click', () => strip.scrollBy({ left: -scrollAmt(), behavior: 'smooth' }));
+    document.getElementById('galleryNext').addEventListener('click', () => strip.scrollBy({ left:  scrollAmt(), behavior: 'smooth' }));
+
+    // Drag to scroll
+    let isDown = false, startX, scrollLeft;
+    strip.addEventListener('pointerdown', e => { isDown = true; startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft; strip.setPointerCapture(e.pointerId); });
+    strip.addEventListener('pointermove', e => { if (!isDown) return; const x = e.pageX - strip.offsetLeft; strip.scrollLeft = scrollLeft - (x - startX); });
+    strip.addEventListener('pointerup', () => isDown = false);
+    strip.addEventListener('pointercancel', () => isDown = false);
+  })();
+
+  // ── LIGHTBOX ──
   function openLightbox(src) {
     document.getElementById('lightbox-img').src = src;
     document.getElementById('lightbox').classList.add('open');
