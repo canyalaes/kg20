@@ -104,6 +104,7 @@
       --cream: #F2EDE5;
       --sand: #E0D5C5;
       --taupe: #9A8872;
+    --text-muted: #7A6B5A;
       --dark: #1C1A18;
       --mid: #5C5548;
       --white: #FAFAF8;
@@ -225,7 +226,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 1rem;
     }
     .hero-title {
@@ -321,7 +322,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
     }
     .intro-headline {
@@ -385,7 +386,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
@@ -540,7 +541,7 @@
       background: var(--dark);
       color: var(--cream);
     }
-    .feature-text .intro-label { color: var(--taupe); }
+    .feature-text .intro-label { color: var(--text-muted); }
     .feature-text .intro-headline { color: var(--cream); }
     .feature-text .intro-text { color: rgba(255,255,255,0.55); }
 
@@ -567,7 +568,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-bottom: 0.8rem;
     }
     .spec-value {
@@ -612,7 +613,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-top: 0.4rem;
     }
 
@@ -712,7 +713,7 @@
     }
     .location-note {
       font-size: 0.72rem;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-top: 0.2rem;
     }
     .location-visual {
@@ -741,7 +742,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-top: 0.8rem;
     }
 
@@ -782,7 +783,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.8);
     }
 
     /* ── LANG TOGGLE ── */
@@ -805,7 +806,7 @@
     }
     .lang-toggle:hover { border-color: var(--cream); }
     .lang-sep { opacity: 0.3; }
-    .lang-opt { opacity: 0.4; transition: opacity 0.2s; }
+    .lang-opt { opacity: 0.65; transition: opacity 0.2s; }
     .lang-opt.active { opacity: 1; font-weight: 500; }
 
     /* ── CONTACT / CTA ── */
@@ -818,7 +819,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
     }
     .cta-title {
@@ -863,7 +864,7 @@
       font-size: 0.62rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.7);
       margin-bottom: 1.2rem;
     }
     .airbnb-strip-title {
@@ -915,7 +916,7 @@
     .footer-copy {
       font-size: 0.62rem;
       letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6);
     }
 
     /* ── REVEAL ANIMATIONS ── */
@@ -999,7 +1000,7 @@
       font-size: 0.62rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: var(--text-muted);
       margin-bottom: 1.2rem;
     }
     .about-card-name {
@@ -1110,6 +1111,7 @@
   <button class="lang-toggle" id="langToggle" aria-label="Switch language"><span class="lang-opt" id="langDE">DE</span><span class="lang-sep">|</span><span class="lang-opt" id="langEN">EN</span></button>
 </nav>
 
+<main id="main-content">
 <!-- HERO -->
 <section class="hero" id="hero-carousel">
   <div class="hero-track" id="heroTrack">
@@ -1144,8 +1146,8 @@
     <h1 class="hero-title">Victoria's<br><em>Sanctuary</em></h1>
     <p class="hero-sub" data-i18n="hero.sub">München-Schwabing · 93 m² · Adresse auf Anfrage</p>
   </div>
-  <div class="hero-btn hero-btn-prev" id="heroPrev">&#8592;</div>
-  <div class="hero-btn hero-btn-next" id="heroNext">&#8594;</div>
+  <button class="hero-btn hero-btn-prev" id="heroPrev" aria-label="Vorheriges Bild">&#8592;</button>
+  <button class="hero-btn hero-btn-next" id="heroNext" aria-label="Nächstes Bild">&#8594;</button>
   <div class="hero-dots" id="heroDots"></div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
@@ -1313,8 +1315,8 @@
       </div>
     </div>
     <div class="gallery-nav">
-      <div class="gallery-nav-btn" id="galleryPrev">&#8592;</div>
-      <div class="gallery-nav-btn" id="galleryNext">&#8594;</div>
+      <button class="gallery-nav-btn" id="galleryPrev" aria-label="Galerie zurück">&#8592;</button>
+      <button class="gallery-nav-btn" id="galleryNext" aria-label="Galerie weiter">&#8594;</button>
     </div>
   </div>
 
@@ -1726,6 +1728,8 @@
      class="airbnb-btn" data-i18n="airbnb.btn">Verfügbarkeit anfragen →</a>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Victoria's Sanctuary</div>
@@ -1733,8 +1737,8 @@
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" data-i18n="lightbox.close">Schließen ✕</div>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" data-i18n="lightbox.close" aria-label="Lightbox schließen" onclick="closeLightbox()">Schließen ✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
