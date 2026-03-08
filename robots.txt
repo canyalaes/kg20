@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kg20.netlify.app/sitemap.xml
