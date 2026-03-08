@@ -163,6 +163,10 @@
       text-decoration: none;
       color: rgba(255,255,255,0.85);
       transition: color 0.3s;
+      padding: 0.75rem 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
     nav.scrolled .nav-links a { color: var(--mid); }
     .nav-links a:hover { color: var(--white); }
@@ -285,7 +289,9 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
       border: none;
-      padding: 0;
+      padding: 10px;
+      margin: -10px;
+      box-sizing: content-box;
     }
     .hero-dot.active { background: #fff; transform: scale(1.5); }
     .scroll-hint {
@@ -1100,7 +1106,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Victoria's Sanctuary</a>
+  <a href="#" class="nav-logo" aria-label="Victoria's Sanctuary — zur Startseite">Victoria's Sanctuary</a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav.about">Das Objekt</a></li>
     <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
@@ -1119,27 +1125,27 @@
   <div class="hero-track" id="heroTrack">
     <div class="hero-slide"><picture>
           <source srcset="images/1-sm.webp 800w, images/1.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/1.jpeg" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" fetchpriority="high">
+          <img src="images/1.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" fetchpriority="high">
         </picture></div>
     <div class="hero-slide"><picture>
           <source srcset="images/2-sm.webp 800w, images/2.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/2.jpeg" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" >
+          <img src="images/2.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" >
         </picture></div>
     <div class="hero-slide"><picture>
           <source srcset="images/4-sm.webp 800w, images/4.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" >
+          <img src="images/4.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" >
         </picture></div>
     <div class="hero-slide"><picture>
           <source srcset="images/6-sm.webp 800w, images/6.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" >
+          <img src="images/6.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" >
         </picture></div>
     <div class="hero-slide"><picture>
           <source srcset="images/11-sm.webp 800w, images/11.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/11.jpeg" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" >
+          <img src="images/11.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" >
         </picture></div>
     <div class="hero-slide"><picture>
           <source srcset="images/15-sm.webp 800w, images/15.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/15.jpeg" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" >
+          <img src="images/15.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" >
         </picture></div>
   </div>
   <div class="hero-overlay"></div>
@@ -1151,7 +1157,7 @@
   <button class="hero-btn hero-btn-prev" id="heroPrev" aria-label="Vorheriges Bild">&#8592;</button>
   <button class="hero-btn hero-btn-next" id="heroNext" aria-label="Nächstes Bild">&#8594;</button>
   <div class="hero-dots" id="heroDots"></div>
-  <div class="scroll-hint">
+  <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
     <span data-i18n="hero.scroll">Entdecken</span>
   </div>
@@ -1171,7 +1177,7 @@
     <div class="intro-visual reveal reveal-delay-2">
       <picture>
           <source srcset="images/4-xs.webp 450w, images/4-sm.webp 800w, images/4.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" >
+          <img src="images/4.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" >
         </picture>
       <div class="intro-badge">
         <span class="badge-num">93</span>
@@ -1189,126 +1195,126 @@
   </div>
   <div class="gallery-wrap">
     <div class="gallery-strip" id="galleryStrip">
-      <div class="gallery-strip-item" onclick="openLightbox('images/2.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 2 vergrößern" onclick="openLightbox('images/2.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/2.jpeg')">
         <picture>
           <source srcset="images/2-sm.webp 800w, images/2.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/2.jpeg" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
+          <img src="images/2.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.dining">Dining · Poltrona Frau</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/1.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 1 vergrößern" onclick="openLightbox('images/1.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/1.jpeg')">
         <picture>
           <source srcset="images/1-xs.webp 450w, images/1-sm.webp 800w, images/1.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
-          <img src="images/1.jpeg" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
+          <img src="images/1.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.living">Wohnzimmer · Eames</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/3.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 3 vergrößern" onclick="openLightbox('images/3.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/3.jpeg')">
         <picture>
           <source srcset="images/3-xs.webp 450w, images/3-sm.webp 800w, images/3.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/3.jpeg" alt="Wohnzimmer Nahaufnahme Eames Chair Vitra — Quiet Luxury Interior München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.eames">Eames Lounge Chair · Vitra</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/4.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 4 vergrößern" onclick="openLightbox('images/4.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/4.jpeg')">
         <picture>
           <source srcset="images/4-xs.webp 450w, images/4-sm.webp 800w, images/4.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
+          <img src="images/4.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.dining_balkon">Dining & Balkon</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/5.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 5 vergrößern" onclick="openLightbox('images/5.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/5.jpeg')">
         <picture>
           <source srcset="images/5-xs.webp 450w, images/5-sm.webp 800w, images/5.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/5.jpeg" alt="Eingangsbereich mit Herringbone Parkett — Designwohnung München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.entrance">Eingang</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/6.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 6 vergrößern" onclick="openLightbox('images/6.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/6.jpeg')">
         <picture>
           <source srcset="images/6-xs.webp 450w, images/6-sm.webp 800w, images/6.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
+          <img src="images/6.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.bedroom">Schlafzimmer</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/7.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 7 vergrößern" onclick="openLightbox('images/7.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/7.jpeg')">
         <picture>
           <source srcset="images/7-xs.webp 450w, images/7-sm.webp 800w, images/7.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/7.jpeg" alt="Moderne Küche mit Siemens Neff — Vollausgestattete Küche München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.kitchen">Küche · Siemens / Neff</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/8.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 8 vergrößern" onclick="openLightbox('images/8.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/8.jpeg')">
         <picture>
           <source srcset="images/8-xs.webp 450w, images/8-sm.webp 800w, images/8.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/8.jpeg" alt="ECM Mechanika Siebträger Espressomaschine — Premium Küche München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.ecm">ECM Siebträger</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/9.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 9 vergrößern" onclick="openLightbox('images/9.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/9.jpeg')">
         <picture>
           <source srcset="images/9-xs.webp 450w, images/9-sm.webp 800w, images/9.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/9.jpeg" alt="Küche mit schwarzen Armaturen — Interior Design Villa Haller München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.kitchen_black">Küche · Schwarze Armaturen</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/10.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 10 vergrößern" onclick="openLightbox('images/10.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/10.jpeg')">
         <picture>
           <source srcset="images/10-xs.webp 450w, images/10-sm.webp 800w, images/10.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/10.jpeg" alt="Offener Durchblick Küche und Wohnzimmer — Designwohnung Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.open_plan">Durchblick · Küche & Wohnen</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/11.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 11 vergrößern" onclick="openLightbox('images/11.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/11.jpeg')">
         <picture>
           <source srcset="images/11-sm.webp 800w, images/11.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/11.jpeg" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
+          <img src="images/11.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.hallway">Flur · Occhio Lichtschiene</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/12.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 12 vergrößern" onclick="openLightbox('images/12.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/12.jpeg')">
         <picture>
           <source srcset="images/12-xs.webp 450w, images/12-sm.webp 800w, images/12.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/12.jpeg" alt="Zweites Schlafzimmer als Arbeitszimmer — Flexible Raumgestaltung München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.room2">Zimmer 2 · Arbeit & Ruhe</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/13.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 13 vergrößern" onclick="openLightbox('images/13.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/13.jpeg')">
         <picture>
           <source srcset="images/13-xs.webp 450w, images/13-sm.webp 800w, images/13.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/13.jpeg" alt="Eingangsbereich mit Garderobe — Designwohnung Kunigundenstraße München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.wardrobe">Eingang · Garderobe</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/14.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 14 vergrößern" onclick="openLightbox('images/14.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/14.jpeg')">
         <picture>
           <source srcset="images/14-xs.webp 450w, images/14-sm.webp 800w, images/14.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/14.jpeg" alt="Schlafzimmer mit kuratierten Kunstwerken — Luxury Interior München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.art">Schlafzimmer · Kuratierte Kunst</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/15.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 15 vergrößern" onclick="openLightbox('images/15.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/15.jpeg')">
         <picture>
           <source srcset="images/15-sm.webp 800w, images/15.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/15.jpeg" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
+          <img src="images/15.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.bath1">Bad · Toto Washlet</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/16.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 16 vergrößern" onclick="openLightbox('images/16.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/16.jpeg')">
         <picture>
           <source srcset="images/16-xs.webp 450w, images/16-sm.webp 800w, images/16.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/16.jpeg" alt="Badezimmer Übersicht mit Holz und Terrazzo — Designbad München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.bath2">Bad · Terrazzo & Holz</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/17.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 17 vergrößern" onclick="openLightbox('images/17.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/17.jpeg')">
         <picture>
           <source srcset="images/17-xs.webp 450w, images/17-sm.webp 800w, images/17.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/17.jpeg" alt="Miele Waschturm im Badezimmer — Vollausstattung Designwohnung München" loading="lazy">
         </picture>
         <div class="caption" data-i18n="cap.miele">Miele · Waschturm</div>
       </div>
-      <div class="gallery-strip-item" onclick="openLightbox('images/18.jpeg')">
+      <div class="gallery-strip-item" role="button" tabindex="0" aria-label="Bild 18 vergrößern" onclick="openLightbox('images/18.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/18.jpeg')">
         <picture>
           <source srcset="images/18-xs.webp 450w, images/18-sm.webp 800w, images/18.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/18.jpeg" alt="Zweites Badezimmer — Grohe Essence Armatur München Schwabing" loading="lazy">
@@ -1324,91 +1330,91 @@
 
   <!-- MOBILE GALLERY (editorial grid, no carousel) -->
   <div class="gallery-mobile">
-    <div class="gallery-mobile-hero" onclick="openLightbox('images/2.jpeg')">
+    <div class="gallery-mobile-hero" role="button" tabindex="0" aria-label="Bild 2 vergrößern" onclick="openLightbox('images/2.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/2.jpeg')">
       <picture>
           <source srcset="images/2-sm.webp 800w, images/2.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/2.jpeg" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
+          <img src="images/2.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.dining">Dining · Poltrona Frau</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/1.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 1 vergrößern" onclick="openLightbox('images/1.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/1.jpeg')">
       <picture>
           <source srcset="images/1-xs.webp 450w, images/1-sm.webp 800w, images/1.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
-          <img src="images/1.jpeg" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
+          <img src="images/1.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.living_short">Wohnzimmer</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/6.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 6 vergrößern" onclick="openLightbox('images/6.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/6.jpeg')">
       <picture>
           <source srcset="images/6-xs.webp 450w, images/6-sm.webp 800w, images/6.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
+          <img src="images/6.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.bedroom">Schlafzimmer</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/4.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 4 vergrößern" onclick="openLightbox('images/4.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/4.jpeg')">
       <picture>
           <source srcset="images/4-xs.webp 450w, images/4-sm.webp 800w, images/4.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
+          <img src="images/4.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.balkon">Balkon</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/3.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 3 vergrößern" onclick="openLightbox('images/3.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/3.jpeg')">
       <picture>
           <source srcset="images/3-xs.webp 450w, images/3-sm.webp 800w, images/3.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/3.jpeg" alt="Wohnzimmer Nahaufnahme Eames Chair Vitra — Quiet Luxury Interior München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.eames_short">Eames · Vitra</div>
     </div>
-    <div class="gallery-mobile-hero" onclick="openLightbox('images/7.jpeg')">
+    <div class="gallery-mobile-hero" role="button" tabindex="0" aria-label="Bild 7 vergrößern" onclick="openLightbox('images/7.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/7.jpeg')">
       <picture>
           <source srcset="images/7-xs.webp 450w, images/7-sm.webp 800w, images/7.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/7.jpeg" alt="Moderne Küche mit Siemens Neff — Vollausgestattete Küche München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.kitchen">Küche · Siemens / Neff</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/15.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 15 vergrößern" onclick="openLightbox('images/15.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/15.jpeg')">
       <picture>
           <source srcset="images/15-sm.webp 800w, images/15.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/15.jpeg" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
+          <img src="images/15.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.bath_toto">Bad · Toto</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/8.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 8 vergrößern" onclick="openLightbox('images/8.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/8.jpeg')">
       <picture>
           <source srcset="images/8-xs.webp 450w, images/8-sm.webp 800w, images/8.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/8.jpeg" alt="ECM Mechanika Siebträger Espressomaschine — Premium Küche München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.ecm">ECM Siebträger</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/11.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 11 vergrößern" onclick="openLightbox('images/11.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/11.jpeg')">
       <picture>
           <source srcset="images/11-sm.webp 800w, images/11.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="images/11.jpeg" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
+          <img src="images/11.jpeg" width="1440" height="1920" width="1440" height="1920" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.hallway_short">Flur · Occhio</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/14.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 14 vergrößern" onclick="openLightbox('images/14.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/14.jpeg')">
       <picture>
           <source srcset="images/14-xs.webp 450w, images/14-sm.webp 800w, images/14.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/14.jpeg" alt="Schlafzimmer mit kuratierten Kunstwerken — Luxury Interior München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.art_short">Kuratierte Kunst</div>
     </div>
-    <div class="gallery-mobile-hero" onclick="openLightbox('images/16.jpeg')">
+    <div class="gallery-mobile-hero" role="button" tabindex="0" aria-label="Bild 16 vergrößern" onclick="openLightbox('images/16.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/16.jpeg')">
       <picture>
           <source srcset="images/16-xs.webp 450w, images/16-sm.webp 800w, images/16.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/16.jpeg" alt="Badezimmer Übersicht mit Holz und Terrazzo — Designbad München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.bath2">Bad · Terrazzo & Holz</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/12.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 12 vergrößern" onclick="openLightbox('images/12.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/12.jpeg')">
       <picture>
           <source srcset="images/12-xs.webp 450w, images/12-sm.webp 800w, images/12.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/12.jpeg" alt="Zweites Schlafzimmer als Arbeitszimmer — Flexible Raumgestaltung München" loading="lazy">
         </picture>
       <div class="caption" data-i18n="cap.room2_short">Zimmer 2</div>
     </div>
-    <div class="gallery-mobile-item" onclick="openLightbox('images/13.jpeg')">
+    <div class="gallery-mobile-item" role="button" tabindex="0" aria-label="Bild 13 vergrößern" onclick="openLightbox('images/13.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('images/13.jpeg')">
       <picture>
           <source srcset="images/13-xs.webp 450w, images/13-sm.webp 800w, images/13.webp 1920w" sizes="(max-width:600px) 50vw, 400px" type="image/webp">
           <img src="images/13.jpeg" alt="Eingangsbereich mit Garderobe — Designwohnung Kunigundenstraße München" loading="lazy">
@@ -1423,7 +1429,7 @@
   <div class="feature-img-wrap">
     <picture>
           <source srcset="images/6-xs.webp 450w, images/6-sm.webp 800w, images/6.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" >
+          <img src="images/6.jpeg" width="1920" height="1440" width="1920" height="1440" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" >
         </picture>
   </div>
   <div class="feature-text" id="ausstattung">
@@ -1550,7 +1556,7 @@
     </div>
     <div class="floorplan-layout reveal reveal-delay-2">
       <div class="floorplan-img-wrap">
-        <img src="images/floorplan.png" alt="Grundriss Victoria's Sanctuary — Designwohnung Kunigundenstraße München Schwabing" >
+        <img src="images/floorplan.png" width="1948" height="2000" alt="Grundriss Victoria's Sanctuary — Designwohnung Kunigundenstraße München Schwabing" >
       </div>
       <div class="floorplan-legend">
         <div class="floorplan-legend-item">
