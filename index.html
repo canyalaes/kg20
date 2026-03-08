@@ -104,7 +104,7 @@
       --cream: #F2EDE5;
       --sand: #E0D5C5;
       --taupe: #9A8872;
-    --text-muted: #7A6B5A;
+    --text-muted: #685A48;
       --dark: #1C1A18;
       --mid: #5C5548;
       --white: #FAFAF8;
@@ -284,6 +284,8 @@
       background: rgba(255,255,255,0.35);
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
+      border: none;
+      padding: 0;
     }
     .hero-dot.active { background: #fff; transform: scale(1.5); }
     .scroll-hint {
@@ -1765,8 +1767,10 @@
 
     // Build dots
     slides.forEach((_, i) => {
-      const d = document.createElement('div');
+      const d = document.createElement('button');
       d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Bild ' + (i + 1) + ' von ' + total);
+      d.setAttribute('type', 'button');
       d.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(d);
     });
