@@ -773,6 +773,29 @@
       color: rgba(255,255,255,0.5);
     }
 
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      padding: 0.35rem 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: border-color 0.2s;
+      margin-left: 1.5rem;
+      flex-shrink: 0;
+    }
+    .lang-toggle:hover { border-color: var(--cream); }
+    .lang-sep { opacity: 0.3; }
+    .lang-opt { opacity: 0.4; transition: opacity 0.2s; }
+    .lang-opt.active { opacity: 1; font-weight: 500; }
+
     /* ── CONTACT / CTA ── */
     .cta-section {
       background: var(--dark);
@@ -1064,14 +1087,15 @@
 <nav id="nav">
   <a href="#" class="nav-logo">Victoria's Sanctuary</a>
   <ul class="nav-links">
-    <li><a href="#about">Das Objekt</a></li>
-    <li><a href="#gallery">Galerie</a></li>
-    <li><a href="#ausstattung">Ausstattung</a></li>
-    <li><a href="#grundriss">Grundriss</a></li>
-    <li><a href="#location">Lage</a></li>
-    <li><a href="#ueber-uns">Über uns</a></li>
-    <li><a href="#contact">Kontakt</a></li>
+    <li><a href="#about" data-i18n="nav.about">Das Objekt</a></li>
+    <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
+    <li><a href="#ausstattung" data-i18n="nav.specs">Ausstattung</a></li>
+    <li><a href="#grundriss" data-i18n="nav.floorplan">Grundriss</a></li>
+    <li><a href="#location" data-i18n="nav.location">Lage</a></li>
+    <li><a href="#ueber-uns" data-i18n="nav.about_us">Über uns</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
   </ul>
+  <button class="lang-toggle" id="langToggle" aria-label="Switch language"><span class="lang-opt" id="langDE">DE</span><span class="lang-sep">|</span><span class="lang-opt" id="langEN">EN</span></button>
 </nav>
 
 <!-- HERO -->
@@ -1106,14 +1130,14 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Kunigundenstraße · München-Schwabing</p>
     <h1 class="hero-title">Victoria's<br><em>Sanctuary</em></h1>
-    <p class="hero-sub">München-Schwabing · 93 m² · Adresse auf Anfrage</p>
+    <p class="hero-sub" data-i18n="hero.sub">München-Schwabing · 93 m² · Adresse auf Anfrage</p>
   </div>
   <div class="hero-btn hero-btn-prev" id="heroPrev">&#8592;</div>
   <div class="hero-btn hero-btn-next" id="heroNext">&#8594;</div>
   <div class="hero-dots" id="heroDots"></div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
-    <span>Entdecken</span>
+    <span data-i18n="hero.scroll">Entdecken</span>
   </div>
 </section>
 
@@ -1121,11 +1145,11 @@
 <section id="about">
   <div class="intro">
     <div class="intro-text-col">
-      <p class="intro-label reveal">Das Objekt</p>
-      <h2 class="intro-headline reveal reveal-delay-1">Ein Interieur,<br><em>das den Raum neu erfindet</em></h2>
+      <p class="intro-label reveal" data-i18n="intro.label">Das Objekt</p>
+      <h2 class="intro-headline reveal reveal-delay-1" data-i18n-html="intro.headline">Ein Interieur,<br><em>das den Raum neu erfindet</em></h2>
       <div class="intro-text reveal reveal-delay-2">
-        <p>Diese Wohnung in der Kunigundenstraße ist ein seltenes Privileg im pulsierenden Herzen Schwabings. Gelegen im 2. Obergeschoss, genießt man hier ein ungestörtes Sky-Light-Gefühl — da sich baulich bedingt keine weiteren Balkone über der Wohnung befinden, durchflutet Licht die Räume wie sonst nur in obersten Etagen.</p>
-        <p>Das absolute Penthouse-Feeling, mitten in München.</p>
+        <p data-i18n="intro.p1">Diese Wohnung in der Kunigundenstraße ist ein seltenes Privileg im pulsierenden Herzen Schwabings. Gelegen im 2. Obergeschoss, genießt man hier ein ungestörtes Sky-Light-Gefühl — da sich baulich bedingt keine weiteren Balkone über der Wohnung befinden, durchflutet Licht die Räume wie sonst nur in obersten Etagen.</p>
+        <p data-i18n="intro.p2">Das absolute Penthouse-Feeling, mitten in München.</p>
       </div>
     </div>
     <div class="intro-visual reveal reveal-delay-2">
@@ -1135,7 +1159,7 @@
         </picture>
       <div class="intro-badge">
         <span class="badge-num">93</span>
-        <span class="badge-text">m² Luxus-Interior</span>
+        <span class="badge-text" data-i18n="intro.badge">m² Luxus-Interior</span>
       </div>
     </div>
   </div>
@@ -1144,8 +1168,8 @@
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery">
   <div class="section-header">
-    <span class="section-label reveal">Galerie</span>
-    <h2 class="section-title reveal reveal-delay-1"><em>Räume,</em> die berühren</h2>
+    <span class="section-label reveal" data-i18n="gallery.label">Galerie</span>
+    <h2 class="section-title reveal reveal-delay-1" data-i18n-html="gallery.title"><em>Räume,</em> die berühren</h2>
   </div>
   <div class="gallery-wrap">
     <div class="gallery-strip" id="galleryStrip">
@@ -1154,126 +1178,126 @@
           <source srcset="images/2-sm.webp 800w, images/2.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/2.jpeg" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
         </picture>
-        <div class="caption">Dining · Poltrona Frau</div>
+        <div class="caption" data-i18n="cap.dining">Dining · Poltrona Frau</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/1.jpeg')">
         <picture>
           <source srcset="images/1-sm.webp 800w, images/1.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/1.jpeg" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Wohnzimmer · Eames</div>
+        <div class="caption" data-i18n="cap.living">Wohnzimmer · Eames</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/3.jpeg')">
         <picture>
           <source srcset="images/3-sm.webp 800w, images/3.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/3.jpeg" alt="Wohnzimmer Nahaufnahme Eames Chair Vitra — Quiet Luxury Interior München" loading="lazy">
         </picture>
-        <div class="caption">Eames Lounge Chair · Vitra</div>
+        <div class="caption" data-i18n="cap.eames">Eames Lounge Chair · Vitra</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/4.jpeg')">
         <picture>
           <source srcset="images/4-sm.webp 800w, images/4.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Dining & Balkon</div>
+        <div class="caption" data-i18n="cap.dining_balkon">Dining & Balkon</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/5.jpeg')">
         <picture>
           <source srcset="images/5-sm.webp 800w, images/5.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/5.jpeg" alt="Eingangsbereich mit Herringbone Parkett — Designwohnung München" loading="lazy">
         </picture>
-        <div class="caption">Eingang</div>
+        <div class="caption" data-i18n="cap.entrance">Eingang</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/6.jpeg')">
         <picture>
           <source srcset="images/6-sm.webp 800w, images/6.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Schlafzimmer</div>
+        <div class="caption" data-i18n="cap.bedroom">Schlafzimmer</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/7.jpeg')">
         <picture>
           <source srcset="images/7-sm.webp 800w, images/7.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/7.jpeg" alt="Moderne Küche mit Siemens Neff — Vollausgestattete Küche München" loading="lazy">
         </picture>
-        <div class="caption">Küche · Siemens / Neff</div>
+        <div class="caption" data-i18n="cap.kitchen">Küche · Siemens / Neff</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/8.jpeg')">
         <picture>
           <source srcset="images/8-sm.webp 800w, images/8.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/8.jpeg" alt="ECM Mechanika Siebträger Espressomaschine — Premium Küche München" loading="lazy">
         </picture>
-        <div class="caption">ECM Siebträger</div>
+        <div class="caption" data-i18n="cap.ecm">ECM Siebträger</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/9.jpeg')">
         <picture>
           <source srcset="images/9-sm.webp 800w, images/9.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/9.jpeg" alt="Küche mit schwarzen Armaturen — Interior Design Villa Haller München" loading="lazy">
         </picture>
-        <div class="caption">Küche · Schwarze Armaturen</div>
+        <div class="caption" data-i18n="cap.kitchen_black">Küche · Schwarze Armaturen</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/10.jpeg')">
         <picture>
           <source srcset="images/10-sm.webp 800w, images/10.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/10.jpeg" alt="Offener Durchblick Küche und Wohnzimmer — Designwohnung Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Durchblick · Küche & Wohnen</div>
+        <div class="caption" data-i18n="cap.open_plan">Durchblick · Küche & Wohnen</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/11.jpeg')">
         <picture>
           <source srcset="images/11-sm.webp 800w, images/11.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/11.jpeg" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Flur · Occhio Lichtschiene</div>
+        <div class="caption" data-i18n="cap.hallway">Flur · Occhio Lichtschiene</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/12.jpeg')">
         <picture>
           <source srcset="images/12-sm.webp 800w, images/12.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/12.jpeg" alt="Zweites Schlafzimmer als Arbeitszimmer — Flexible Raumgestaltung München" loading="lazy">
         </picture>
-        <div class="caption">Zimmer 2 · Arbeit & Ruhe</div>
+        <div class="caption" data-i18n="cap.room2">Zimmer 2 · Arbeit & Ruhe</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/13.jpeg')">
         <picture>
           <source srcset="images/13-sm.webp 800w, images/13.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/13.jpeg" alt="Eingangsbereich mit Garderobe — Designwohnung Kunigundenstraße München" loading="lazy">
         </picture>
-        <div class="caption">Eingang · Garderobe</div>
+        <div class="caption" data-i18n="cap.wardrobe">Eingang · Garderobe</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/14.jpeg')">
         <picture>
           <source srcset="images/14-sm.webp 800w, images/14.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/14.jpeg" alt="Schlafzimmer mit kuratierten Kunstwerken — Luxury Interior München" loading="lazy">
         </picture>
-        <div class="caption">Schlafzimmer · Kuratierte Kunst</div>
+        <div class="caption" data-i18n="cap.art">Schlafzimmer · Kuratierte Kunst</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/15.jpeg')">
         <picture>
           <source srcset="images/15-sm.webp 800w, images/15.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/15.jpeg" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Bad · Toto Washlet</div>
+        <div class="caption" data-i18n="cap.bath1">Bad · Toto Washlet</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/16.jpeg')">
         <picture>
           <source srcset="images/16-sm.webp 800w, images/16.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/16.jpeg" alt="Badezimmer Übersicht mit Holz und Terrazzo — Designbad München" loading="lazy">
         </picture>
-        <div class="caption">Bad · Terrazzo & Holz</div>
+        <div class="caption" data-i18n="cap.bath2">Bad · Terrazzo & Holz</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/17.jpeg')">
         <picture>
           <source srcset="images/17-sm.webp 800w, images/17.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/17.jpeg" alt="Miele Waschturm im Badezimmer — Vollausstattung Designwohnung München" loading="lazy">
         </picture>
-        <div class="caption">Miele · Waschturm</div>
+        <div class="caption" data-i18n="cap.miele">Miele · Waschturm</div>
       </div>
       <div class="gallery-strip-item" onclick="openLightbox('images/18.jpeg')">
         <picture>
           <source srcset="images/18-sm.webp 800w, images/18.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/18.jpeg" alt="Zweites Badezimmer — Grohe Essence Armatur München Schwabing" loading="lazy">
         </picture>
-        <div class="caption">Bad 2</div>
+        <div class="caption" data-i18n="cap.bath3">Bad 2</div>
       </div>
     </div>
     <div class="gallery-nav">
@@ -1289,91 +1313,91 @@
           <source srcset="images/2-sm.webp 800w, images/2.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/2.jpeg" alt="Esszimmer mit Poltrona Frau Stühlen — Luxury Apartment München" loading="lazy">
         </picture>
-      <div class="caption">Dining · Poltrona Frau</div>
+      <div class="caption" data-i18n="cap.dining">Dining · Poltrona Frau</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/1.jpeg')">
       <picture>
           <source srcset="images/1-sm.webp 800w, images/1.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/1.jpeg" alt="Helles Wohnzimmer mit Eames Lounge Chair — Designwohnung München Schwabing" loading="lazy">
         </picture>
-      <div class="caption">Wohnzimmer</div>
+      <div class="caption" data-i18n="cap.living_short">Wohnzimmer</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/6.jpeg')">
       <picture>
           <source srcset="images/6-sm.webp 800w, images/6.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/6.jpeg" alt="Schlafzimmer mit warmen Erdtönen — Luxury Bedroom München Schwabing" loading="lazy">
         </picture>
-      <div class="caption">Schlafzimmer</div>
+      <div class="caption" data-i18n="cap.bedroom">Schlafzimmer</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/4.jpeg')">
       <picture>
           <source srcset="images/4-sm.webp 800w, images/4.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/4.jpeg" alt="Esszimmer mit Blick auf den Balkon — Designapartment Schwabing" loading="lazy">
         </picture>
-      <div class="caption">Balkon</div>
+      <div class="caption" data-i18n="cap.balkon">Balkon</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/3.jpeg')">
       <picture>
           <source srcset="images/3-sm.webp 800w, images/3.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/3.jpeg" alt="Wohnzimmer Nahaufnahme Eames Chair Vitra — Quiet Luxury Interior München" loading="lazy">
         </picture>
-      <div class="caption">Eames · Vitra</div>
+      <div class="caption" data-i18n="cap.eames_short">Eames · Vitra</div>
     </div>
     <div class="gallery-mobile-hero" onclick="openLightbox('images/7.jpeg')">
       <picture>
           <source srcset="images/7-sm.webp 800w, images/7.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/7.jpeg" alt="Moderne Küche mit Siemens Neff — Vollausgestattete Küche München" loading="lazy">
         </picture>
-      <div class="caption">Küche · Siemens / Neff</div>
+      <div class="caption" data-i18n="cap.kitchen">Küche · Siemens / Neff</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/15.jpeg')">
       <picture>
           <source srcset="images/15-sm.webp 800w, images/15.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/15.jpeg" alt="Badezimmer mit Toto Washlet und Terrazzo — Premium Bad München Schwabing" loading="lazy">
         </picture>
-      <div class="caption">Bad · Toto</div>
+      <div class="caption" data-i18n="cap.bath_toto">Bad · Toto</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/8.jpeg')">
       <picture>
           <source srcset="images/8-sm.webp 800w, images/8.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/8.jpeg" alt="ECM Mechanika Siebträger Espressomaschine — Premium Küche München" loading="lazy">
         </picture>
-      <div class="caption">ECM Siebträger</div>
+      <div class="caption" data-i18n="cap.ecm">ECM Siebträger</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/11.jpeg')">
       <picture>
           <source srcset="images/11-sm.webp 800w, images/11.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/11.jpeg" alt="Langer Flur mit Occhio Lichtschiene und Herringbone Parkett — München Schwabing" loading="lazy">
         </picture>
-      <div class="caption">Flur · Occhio</div>
+      <div class="caption" data-i18n="cap.hallway_short">Flur · Occhio</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/14.jpeg')">
       <picture>
           <source srcset="images/14-sm.webp 800w, images/14.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/14.jpeg" alt="Schlafzimmer mit kuratierten Kunstwerken — Luxury Interior München" loading="lazy">
         </picture>
-      <div class="caption">Kuratierte Kunst</div>
+      <div class="caption" data-i18n="cap.art_short">Kuratierte Kunst</div>
     </div>
     <div class="gallery-mobile-hero" onclick="openLightbox('images/16.jpeg')">
       <picture>
           <source srcset="images/16-sm.webp 800w, images/16.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/16.jpeg" alt="Badezimmer Übersicht mit Holz und Terrazzo — Designbad München" loading="lazy">
         </picture>
-      <div class="caption">Bad · Terrazzo & Holz</div>
+      <div class="caption" data-i18n="cap.bath2">Bad · Terrazzo & Holz</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/12.jpeg')">
       <picture>
           <source srcset="images/12-sm.webp 800w, images/12.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/12.jpeg" alt="Zweites Schlafzimmer als Arbeitszimmer — Flexible Raumgestaltung München" loading="lazy">
         </picture>
-      <div class="caption">Zimmer 2</div>
+      <div class="caption" data-i18n="cap.room2_short">Zimmer 2</div>
     </div>
     <div class="gallery-mobile-item" onclick="openLightbox('images/13.jpeg')">
       <picture>
           <source srcset="images/13-sm.webp 800w, images/13.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
           <img src="images/13.jpeg" alt="Eingangsbereich mit Garderobe — Designwohnung Kunigundenstraße München" loading="lazy">
         </picture>
-      <div class="caption">Garderobe</div>
+      <div class="caption" data-i18n="cap.wardrobe_short">Garderobe</div>
     </div>
   </div>
 </section>
@@ -1387,11 +1411,11 @@
         </picture>
   </div>
   <div class="feature-text" id="ausstattung">
-    <p class="intro-label">Design-Philosophie</p>
-    <h2 class="intro-headline reveal">Victoria Hallers<br><em>Quiet Luxury</em></h2>
+    <p class="intro-label" data-i18n="design.label">Design-Philosophie</p>
+    <h2 class="intro-headline reveal" data-i18n-html="design.headline">Victoria Hallers<br><em>Quiet Luxury</em></h2>
     <div class="intro-text reveal reveal-delay-1">
-      <p>Das Interieur wurde von der renommierten Designerin <strong style="color: var(--cream); font-weight:300;">Victoria Haller (Villa Haller)</strong> entworfen. Ihr Konzept bricht mit der Sterilität moderner Apartments und setzt stattdessen auf eine warme, skandinavisch inspirierte Raffinesse.</p>
-      <p>Edler Fischgrätenparkett, ein Farbschema aus Sand, Beige und Taupe, akzentuiert durch markante schwarze Details — jeder Quadratmeter ein kuratiertes Statement.</p>
+      <p data-i18n-html="design.p1">Das Interieur wurde von der renommierten Designerin <strong style="color: var(--cream); font-weight:300;">Victoria Haller (Villa Haller)</strong> entworfen. Ihr Konzept bricht mit der Sterilität moderner Apartments und setzt stattdessen auf eine warme, skandinavisch inspirierte Raffinesse.</p>
+      <p data-i18n="design.p2">Edler Fischgrätenparkett, ein Farbschema aus Sand, Beige und Taupe, akzentuiert durch markante schwarze Details — jeder Quadratmeter ein kuratiertes Statement.</p>
     </div>
   </div>
 </div>
@@ -1400,52 +1424,52 @@
 <section class="specs-section">
   <div class="specs-inner">
     <div class="section-header">
-      <span class="section-label reveal">Ausstattung</span>
-      <h2 class="section-title reveal reveal-delay-1">Technische <em>Perfektion</em></h2>
+      <span class="section-label reveal" data-i18n="specs.label">Ausstattung</span>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n-html="specs.title">Technische <em>Perfektion</em></h2>
     </div>
     <div class="specs-grid">
       <div class="spec-item reveal">
-        <div class="spec-icon">Entertainment</div>
+        <div class="spec-icon" data-i18n="spec.entertainment">Entertainment</div>
         <div class="spec-value">75"</div>
         <div class="spec-label">Samsung QLED TV<br>+ Bowers & Wilkins Surround Sound</div>
       </div>
       <div class="spec-item reveal reveal-delay-1">
-        <div class="spec-icon">Wellness</div>
-        <div class="spec-value">2 Bäder</div>
-        <div class="spec-label">Toto Washlets · Grohe Essence<br>Regendusche · Fußbodenheizung</div>
+        <div class="spec-icon" data-i18n="spec.wellness">Wellness</div>
+        <div class="spec-value" data-i18n="spec.baths_val">2 Bäder</div>
+        <div class="spec-label" data-i18n-html="spec.baths_label">Toto Washlets · Grohe Essence<br>Regendusche · Fußbodenheizung</div>
       </div>
       <div class="spec-item reveal reveal-delay-2">
-        <div class="spec-icon">Klima</div>
+        <div class="spec-icon" data-i18n="spec.climate">Klima</div>
         <div class="spec-value">Daikin</div>
         <div class="spec-label">Ururu System — Klimatisierung,<br>Belüftung & Luftfeuchtigkeit</div>
       </div>
       <div class="spec-item reveal">
-        <div class="spec-icon">Küche</div>
+        <div class="spec-icon" data-i18n="spec.kitchen_icon">Küche</div>
         <div class="spec-value">2024</div>
-        <div class="spec-label">Vollerneuerte Designküche<br>Siemens · Neff · ECM Mechanika</div>
+        <div class="spec-label" data-i18n-html="spec.kitchen_label">Vollerneuerte Designküche<br>Siemens · Neff · ECM Mechanika</div>
       </div>
       <div class="spec-item reveal reveal-delay-1">
-        <div class="spec-icon">Smart Home</div>
+        <div class="spec-icon" data-i18n="spec.smarthome">Smart Home</div>
         <div class="spec-value">Shelly</div>
-        <div class="spec-label">Gen3 Vollvernetzung —<br>Licht, Heizung, Rollläden, Markisen</div>
+        <div class="spec-label" data-i18n-html="spec.smarthome_label">Gen3 Vollvernetzung —<br>Licht, Heizung, Rollläden, Markisen</div>
       </div>
       <div class="spec-item reveal reveal-delay-2">
-        <div class="spec-icon">Parken</div>
+        <div class="spec-icon" data-i18n="spec.parking">Parken</div>
         <div class="spec-value">2 PKW</div>
-        <div class="spec-label">Tiefgaragenstellplätze<br>Modernisierter Aufzug</div>
+        <div class="spec-label" data-i18n-html="spec.parking_label">Tiefgaragenstellplätze<br>Modernisierter Aufzug</div>
       </div>
       <div class="spec-item reveal">
-        <div class="spec-icon">Balkone</div>
+        <div class="spec-icon" data-i18n="spec.balconies">Balkone</div>
         <div class="spec-value">2×</div>
         <div class="spec-label">Nordost & Südwest —<br>Sky-Light-Feeling, Penthouse-Atmosphäre</div>
       </div>
       <div class="spec-item reveal reveal-delay-1">
-        <div class="spec-icon">Beleuchtung</div>
+        <div class="spec-icon" data-i18n="spec.lighting">Beleuchtung</div>
         <div class="spec-value">Occhio</div>
-        <div class="spec-label">Maßgeschneidertes Lichtkonzept<br>Architektonische Akzente</div>
+        <div class="spec-label" data-i18n-html="spec.lighting_label">Maßgeschneidertes Lichtkonzept<br>Architektonische Akzente</div>
       </div>
       <div class="spec-item reveal reveal-delay-2">
-        <div class="spec-icon">Wäsche</div>
+        <div class="spec-icon" data-i18n="spec.laundry">Wäsche</div>
         <div class="spec-value">Miele</div>
         <div class="spec-label">Waschmaschine & Trockner<br>Diskret integriert</div>
       </div>
@@ -1457,8 +1481,8 @@
 <section class="brands-section">
   <div class="brands-inner">
     <div class="section-header">
-      <span class="section-label reveal">Kurierte Marken</span>
-      <h2 class="section-title reveal reveal-delay-1">Design <em>ohne Kompromisse</em></h2>
+      <span class="section-label reveal" data-i18n="brands.label">Kurierte Marken</span>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n-html="brands.title">Design <em>ohne Kompromisse</em></h2>
     </div>
     <div class="brands-list reveal">
       <div class="brand-item">
@@ -1496,7 +1520,7 @@
     <img class="quote-bg" src="images/9.jpeg" alt="Küche mit schwarzen Armaturen — Interior Design Villa Haller München">
   </picture>
   <div class="quote-content">
-    <p class="quote-text">"Nicht Luxus um des Luxus willen — sondern Qualität, die man jeden Tag spürt."</p>
+    <p class="quote-text" data-i18n="quote.text">"Nicht Luxus um des Luxus willen — sondern Qualität, die man jeden Tag spürt."</p>
     <p class="quote-attr">Victoria Haller · Villa Haller · Interior Design</p>
   </div>
 </div>
@@ -1505,8 +1529,8 @@
 <section class="floorplan-section" id="grundriss">
   <div class="floorplan-inner">
     <div class="section-header">
-      <span class="section-label reveal">Grundriss</span>
-      <h2 class="section-title reveal reveal-delay-1">Die Aufteilung <em>auf einen Blick</em></h2>
+      <span class="section-label reveal" data-i18n="fp.label">Grundriss</span>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n-html="fp.title">Die Aufteilung <em>auf einen Blick</em></h2>
     </div>
     <div class="floorplan-layout reveal reveal-delay-2">
       <div class="floorplan-img-wrap">
@@ -1514,31 +1538,31 @@
       </div>
       <div class="floorplan-legend">
         <div class="floorplan-legend-item">
-          <span class="legend-label">Wohnzimmer</span>
-          <span class="legend-note">ca. 35 m² · SW-Ausrichtung · Terrasse 1</span>
+          <span class="legend-label" data-i18n="cap.living_short">Wohnzimmer</span>
+          <span class="legend-note" data-i18n="fp.living_note">ca. 35 m² · SW-Ausrichtung · Terrasse 1</span>
         </div>
         <div class="floorplan-legend-item">
-          <span class="legend-label">Schlafzimmer</span>
-          <span class="legend-note">Ruhige Lage · direkter Bad-Zugang</span>
+          <span class="legend-label" data-i18n="cap.bedroom">Schlafzimmer</span>
+          <span class="legend-note" data-i18n="fp.bedroom_note">Ruhige Lage · direkter Bad-Zugang</span>
         </div>
         <div class="floorplan-legend-item">
-          <span class="legend-label">Gästezimmer</span>
-          <span class="legend-note">Flexibel als Büro nutzbar</span>
+          <span class="legend-label" data-i18n="fp.guest">Gästezimmer</span>
+          <span class="legend-note" data-i18n="fp.guest_note">Flexibel als Büro nutzbar</span>
         </div>
         <div class="floorplan-legend-item">
-          <span class="legend-label">Bad & G-Bad</span>
-          <span class="legend-note">2 vollwertige Bäder · Toto Washlets</span>
+          <span class="legend-label" data-i18n="fp.bath">Bad & G-Bad</span>
+          <span class="legend-note" data-i18n="fp.bath_note">2 vollwertige Bäder · Toto Washlets</span>
         </div>
         <div class="floorplan-legend-item">
-          <span class="legend-label">Küche</span>
-          <span class="legend-note">Vollausgestattet · 2024 renoviert</span>
+          <span class="legend-label" data-i18n="fp.kitchen">Küche</span>
+          <span class="legend-note" data-i18n="fp.kitchen_note">Vollausgestattet · 2024 renoviert</span>
         </div>
         <div class="floorplan-legend-item">
-          <span class="legend-label">Terrasse 1 + 2</span>
-          <span class="legend-note">NE & SW · je ca. 10 m²</span>
+          <span class="legend-label" data-i18n="fp.terrace">Terrasse 1 + 2</span>
+          <span class="legend-note" data-i18n="fp.terrace_note">NE & SW · je ca. 10 m²</span>
         </div>
         <div class="floorplan-total">
-          <span>Gesamt</span>
+          <span data-i18n="fp.total">Gesamt</span>
           <span>93 m²</span>
         </div>
       </div>
@@ -1550,45 +1574,45 @@
 <section class="location-section" id="location">
   <div class="location-inner">
     <div>
-      <p class="intro-label reveal">Lage</p>
-      <h2 class="intro-headline reveal reveal-delay-1">Die exzellenteste<br><em>Adresse Münchens</em></h2>
+      <p class="intro-label reveal" data-i18n="loc.label">Lage</p>
+      <h2 class="intro-headline reveal reveal-delay-1" data-i18n-html="loc.headline">Die exzellenteste<br><em>Adresse Münchens</em></h2>
       <div class="intro-text reveal reveal-delay-2">
-        <p>Die Kunigundenstraße verbindet urbane Dynamik mit der Ruhe einer erstklassigen Wohnstraße. Münchner Freiheit, Englischer Garten, alle Ziele der Stadt — alles nah, und doch eine Welt für sich.</p>
+        <p data-i18n="loc.text">Die Kunigundenstraße verbindet urbane Dynamik mit der Ruhe einer erstklassigen Wohnstraße. Münchner Freiheit, Englischer Garten, alle Ziele der Stadt — alles nah, und doch eine Welt für sich.</p>
       </div>
       <div class="location-list">
         <div class="location-item reveal">
           <span class="location-time">5'</span>
           <div class="location-dest">
             <div class="location-name">Münchner Freiheit</div>
-            <div class="location-note">Legendäre Cafés & Restaurants</div>
+            <div class="location-note" data-i18n="loc.note1">Legendäre Cafés & Restaurants</div>
           </div>
         </div>
         <div class="location-item reveal reveal-delay-1">
           <span class="location-time">8'</span>
           <div class="location-dest">
             <div class="location-name">Englischer Garten</div>
-            <div class="location-note">Erholung im Grünen</div>
+            <div class="location-note" data-i18n="loc.note2">Erholung im Grünen</div>
           </div>
         </div>
         <div class="location-item reveal reveal-delay-2">
           <span class="location-time">15'</span>
           <div class="location-dest">
             <div class="location-name">Allianz Arena</div>
-            <div class="location-note">FC Bayern München</div>
+            <div class="location-note" data-i18n="loc.note3">FC Bayern München</div>
           </div>
         </div>
         <div class="location-item reveal">
           <span class="location-time">20'</span>
           <div class="location-dest">
             <div class="location-name">Hauptbahnhof</div>
-            <div class="location-note">Direktverbindung Zentrum</div>
+            <div class="location-note" data-i18n="loc.note4">Direktverbindung Zentrum</div>
           </div>
         </div>
         <div class="location-item reveal reveal-delay-1">
           <span class="location-time">25'</span>
           <div class="location-dest">
             <div class="location-name">Flughafen München MUC</div>
-            <div class="location-note">Internationale Anbindung</div>
+            <div class="location-note" data-i18n="loc.note5">Internationale Anbindung</div>
           </div>
         </div>
       </div>
@@ -1596,8 +1620,8 @@
     <div class="location-visual reveal">
       <div id="location-map" style="width:100%;aspect-ratio:4/5;display:block;"></div>
       <div class="location-address">
-        <div class="address-line">Kunigundenstraße · München-Schwabing<br><small style="font-size:0.75em;opacity:0.6;">Genaue Adresse auf Anfrage — aus Gründen der Privatsphäre.</small></div>
-        <div class="address-sub">2. Obergeschoss · 93 m²</div>
+        <div class="address-line">Kunigundenstraße · München-Schwabing<br><small style="font-size:0.75em;opacity:0.6;"><span data-i18n="loc.privacy">Genaue Adresse auf Anfrage — aus Gründen der Privatsphäre.</span></small></div>
+        <div class="address-sub" data-i18n="loc.floor">2. Obergeschoss · 93 m²</div>
       </div>
     </div>
   </div>
@@ -1607,16 +1631,16 @@
 <section class="about-section" id="ueber-uns">
   <div class="about-inner">
     <div class="section-header">
-      <span class="section-label reveal">Über uns</span>
-      <h2 class="section-title reveal reveal-delay-1">Das Team <em>hinter dem Projekt</em></h2>
+      <span class="section-label reveal" data-i18n="about.label">Über uns</span>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n-html="about.title">Das Team <em>hinter dem Projekt</em></h2>
     </div>
 
     <div class="about-grid" style="grid-template-columns: 1fr 1fr 1fr;">
       <div class="about-card reveal">
-        <div class="about-card-label">Der Eigentümer</div>
+        <div class="about-card-label" data-i18n="about.owner_label">Der Eigentümer</div>
         <div class="about-card-name">BC Living GmbH</div>
         <div class="about-card-text">
-          <p>Wir entwickeln und bewirtschaften Münchner Wohnraum mit langem Zeithorizont. Bei der Kunigundenstraße war klar: Ein Objekt mit diesem Licht und dieser Lage verdient ein Interieur auf demselben Niveau.</p>
+          <p data-i18n="about.owner_text">Wir entwickeln und bewirtschaften Münchner Wohnraum mit langem Zeithorizont. Bei der Kunigundenstraße war klar: Ein Objekt mit diesem Licht und dieser Lage verdient ein Interieur auf demselben Niveau.</p>
         </div>
         <a href="https://www.bcliving.de"
            target="_blank"
@@ -1627,10 +1651,10 @@
       </div>
 
       <div class="about-card reveal reveal-delay-1">
-        <div class="about-card-label">Die Gestalterin</div>
+        <div class="about-card-label" data-i18n="about.designer_label">Die Gestalterin</div>
         <div class="about-card-name">Victoria Haller<br><em>Villa Haller</em></div>
         <div class="about-card-text">
-          <p>Schwedin, Münchnerin, Interior-Designerin aus Leidenschaft. Victoria hört zuerst zu, dann gestaltet sie — keine Showroom-Konzepte, sondern Räume mit Persönlichkeit. Das Ergebnis spricht für sich.</p>
+          <p data-i18n="about.designer_text">Schwedin, Münchnerin, Interior-Designerin aus Leidenschaft. Victoria hört zuerst zu, dann gestaltet sie — keine Showroom-Konzepte, sondern Räume mit Persönlichkeit. Das Ergebnis spricht für sich.</p>
         </div>
         <a href="https://www.villahaller.com"
            target="_blank"
@@ -1641,10 +1665,10 @@
       </div>
 
       <div class="about-card reveal reveal-delay-2">
-        <div class="about-card-label">Die Baubetreuung</div>
-        <div class="about-card-name">Peter Schweikl<br><em>Der pragmatische Macher</em></div>
+        <div class="about-card-label" data-i18n="about.builder_label">Die Baubetreuung</div>
+        <div class="about-card-name">Peter Schweikl<br><em data-i18n="about.builder_sub">Der pragmatische Macher</em></div>
         <div class="about-card-text">
-          <p>Peter sorgt dafür, dass aus Konzepten Wirklichkeit wird. Zuverlässig, direkt, ohne Umwege. Die Baubetreuung Peter Schweikl GmbH hat das Projekt von der ersten Planung bis zur Schlüsselübergabe begleitet.</p>
+          <p data-i18n="about.builder_text">Peter sorgt dafür, dass aus Konzepten Wirklichkeit wird. Zuverlässig, direkt, ohne Umwege. Die Baubetreuung Peter Schweikl GmbH hat das Projekt von der ersten Planung bis zur Schlüsselübergabe begleitet.</p>
         </div>
         <a href="https://share.google/n7KICl6d1vog5N6AY"
            target="_blank"
@@ -1656,7 +1680,7 @@
     </div>
 
     <div class="about-collab reveal">
-      <div class="about-collab-label">Wie es war</div>
+      <div class="about-collab-label" data-i18n="about.collab_label">Wie es war</div>
       <p class="about-collab-text">
         Beim ersten gemeinsamen Rundgang durch die Wohnung blieb Victoria im Flur stehen: <em>„Das Licht hier ist ungewöhnlich."</em> Peter nickte und hatte schon den Stift in der Hand. So lief das gesamte Projekt — Vision trifft Umsetzung, Wort zu Wort, Wand für Wand. Das Ergebnis fühlt sich an, als hätte es nie anders ausgesehen.
       </p>
@@ -1666,28 +1690,28 @@
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <p class="cta-eyebrow">Exklusiv verfügbar</p>
-  <h2 class="cta-title">Bereit für<br><em>Ihr Sanctuary?</em></h2>
-  <p class="cta-sub">Kunigundenstraße · München-Schwabing · 93 m² · <em>Die genaue Adresse wird auf Anfrage mitgeteilt — aus Gründen der Privatsphäre.</em></p>
+  <p class="cta-eyebrow" data-i18n="cta.eyebrow">Exklusiv verfügbar</p>
+  <h2 class="cta-title" data-i18n-html="cta.title">Bereit für<br><em>Ihr Sanctuary?</em></h2>
+  <p class="cta-sub" data-i18n-html="cta.sub">Kunigundenstraße · München-Schwabing · 93 m² · <em>Die genaue Adresse wird auf Anfrage mitgeteilt — aus Gründen der Privatsphäre.</em></p>
   <a href="https://www.bcliving.de"
      target="_blank"
      rel="noopener noreferrer"
      aria-label="BC Living GmbH kontaktieren — Eigentümer von Victoria's Sanctuary"
      title="BC Living GmbH — Immobilien München"
-     class="cta-btn">BC Living GmbH kontaktieren</a>
+     class="cta-btn" data-i18n="cta.btn">BC Living GmbH kontaktieren</a>
 </section>
 
 <!-- AIRBNB -->
 <div class="airbnb-strip">
-  <p class="airbnb-strip-label">Gelegentlich verfügbar</p>
-  <h3 class="airbnb-strip-title">Manchmal verfügbar.<br><em>Für die Richtigen.</em></h3>
-  <p class="airbnb-strip-sub">Victoria's Sanctuary ist keine Ferienwohnung. Es ist ein privates Zuhause —<br>das wir selektiv und gelegentlich besonderen Gästen öffnen.</p>
+  <p class="airbnb-strip-label" data-i18n="airbnb.label">Gelegentlich verfügbar</p>
+  <h3 class="airbnb-strip-title" data-i18n-html="airbnb.title">Manchmal verfügbar.<br><em>Für die Richtigen.</em></h3>
+  <p class="airbnb-strip-sub" data-i18n-html="airbnb.sub">Victoria's Sanctuary ist keine Ferienwohnung. Es ist ein privates Zuhause —<br>das wir selektiv und gelegentlich besonderen Gästen öffnen.</p>
   <a href="https://www.airbnb.de/h/victoriassanctuary-com"
      target="_blank"
      rel="noopener noreferrer"
      aria-label="Verfügbarkeit von Victoria's Sanctuary auf Airbnb anfragen"
      title="Victoria's Sanctuary auf Airbnb — Designapartment München-Schwabing"
-     class="airbnb-btn">Verfügbarkeit anfragen →</a>
+     class="airbnb-btn" data-i18n="airbnb.btn">Verfügbarkeit anfragen →</a>
 </div>
 
 <!-- FOOTER -->
@@ -1698,7 +1722,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close">Schließen ✕</div>
+  <div class="lightbox-close" data-i18n="lightbox.close">Schließen ✕</div>
   <img id="lightbox-img" src="" alt="">
 </div>
 
@@ -1868,6 +1892,278 @@
       );
   });
 })();
+</script>
+
+<!-- I18N TRANSLATIONS -->
+<script>
+var currentLang = 'de';
+
+var t = {
+  de: {
+    'nav.about': 'Das Objekt',
+    'nav.gallery': 'Galerie',
+    'nav.specs': 'Ausstattung',
+    'nav.floorplan': 'Grundriss',
+    'nav.location': 'Lage',
+    'nav.about_us': 'Über uns',
+    'nav.contact': 'Kontakt',
+    'hero.sub': 'München-Schwabing · 93 m² · Adresse auf Anfrage',
+    'hero.scroll': 'Entdecken',
+    'intro.label': 'Das Objekt',
+    'intro.headline': 'Ein Interieur,<br><em>das den Raum neu erfindet</em>',
+    'intro.p1': 'Diese Wohnung in der Kunigundenstraße ist ein seltenes Privileg im pulsierenden Herzen Schwabings. Gelegen im 2. Obergeschoss, genießt man hier ein ungestörtes Sky-Light-Gefühl — da sich baulich bedingt keine weiteren Balkone über der Wohnung befinden, durchflutet Licht die Räume wie sonst nur in obersten Etagen.',
+    'intro.p2': 'Das absolute Penthouse-Feeling, mitten in München.',
+    'intro.badge': 'm² Luxus-Interior',
+    'gallery.label': 'Galerie',
+    'gallery.title': '<em>Räume,</em> die berühren',
+    'cap.dining': 'Dining · Poltrona Frau',
+    'cap.living': 'Wohnzimmer · Eames',
+    'cap.eames': 'Eames Lounge Chair · Vitra',
+    'cap.dining_balkon': 'Dining & Balkon',
+    'cap.entrance': 'Eingang',
+    'cap.bedroom': 'Schlafzimmer',
+    'cap.kitchen': 'Küche · Siemens / Neff',
+    'cap.ecm': 'ECM Siebträger',
+    'cap.kitchen_black': 'Küche · Schwarze Armaturen',
+    'cap.open_plan': 'Durchblick · Küche & Wohnen',
+    'cap.hallway': 'Flur · Occhio Lichtschiene',
+    'cap.room2': 'Zimmer 2 · Arbeit & Ruhe',
+    'cap.wardrobe': 'Eingang · Garderobe',
+    'cap.art': 'Schlafzimmer · Kuratierte Kunst',
+    'cap.bath1': 'Bad · Toto Washlet',
+    'cap.bath2': 'Bad · Terrazzo & Holz',
+    'cap.miele': 'Miele · Waschturm',
+    'cap.bath3': 'Bad 2',
+    'cap.living_short': 'Wohnzimmer',
+    'cap.balkon': 'Balkon',
+    'cap.eames_short': 'Eames · Vitra',
+    'cap.hallway_short': 'Flur · Occhio',
+    'cap.art_short': 'Kuratierte Kunst',
+    'cap.room2_short': 'Zimmer 2',
+    'cap.wardrobe_short': 'Garderobe',
+    'cap.bath_toto': 'Bad · Toto',
+    'design.label': 'Design-Philosophie',
+    'design.headline': 'Victoria Hallers<br><em>Quiet Luxury</em>',
+    'design.p1': 'Das Interieur wurde von der renommierten Designerin <strong style="color: var(--cream); font-weight:300;">Victoria Haller (Villa Haller)</strong> entworfen. Ihr Konzept bricht mit der Sterilität moderner Apartments und setzt stattdessen auf eine warme, skandinavisch inspirierte Raffinesse.',
+    'design.p2': 'Edler Fischgrätenparkett, ein Farbschema aus Sand, Beige und Taupe, akzentuiert durch markante schwarze Details — jeder Quadratmeter ein kuratiertes Statement.',
+    'specs.label': 'Ausstattung',
+    'specs.title': 'Technische <em>Perfektion</em>',
+    'spec.entertainment': 'Entertainment',
+    'spec.wellness': 'Wellness',
+    'spec.climate': 'Klima',
+    'spec.kitchen_icon': 'Küche',
+    'spec.smarthome': 'Smart Home',
+    'spec.parking': 'Parken',
+    'spec.balconies': 'Balkone',
+    'spec.lighting': 'Beleuchtung',
+    'spec.laundry': 'Wäsche',
+    'spec.baths_val': '2 Bäder',
+    'spec.baths_label': 'Toto Washlets · Grohe Essence<br>Regendusche · Fußbodenheizung',
+    'spec.climate_label': 'Ururu System — Klimatisierung,<br>Belüftung & Luftfeuchtigkeit',
+    'spec.kitchen_label': 'Vollerneuerte Designküche<br>Siemens · Neff · ECM Mechanika',
+    'spec.smarthome_label': 'Gen3 Vollvernetzung —<br>Licht, Heizung, Rollläden, Markisen',
+    'spec.parking_label': 'Tiefgaragenstellplätze<br>Modernisierter Aufzug',
+    'spec.balconies_label': 'Nordost & Südwest —<br>Sky-Light-Feeling, Penthouse-Atmosphäre',
+    'spec.lighting_label': 'Maßgeschneidertes Lichtkonzept<br>Architektonische Akzente',
+    'spec.laundry_label': 'Waschmaschine & Trockner<br>Diskret integriert',
+    'brands.label': 'Kurierte Marken',
+    'brands.title': 'Design <em>ohne Kompromisse</em>',
+    'quote.text': '„Nicht Luxus um des Luxus willen — sondern Qualität, die man jeden Tag spürt."',
+    'fp.label': 'Grundriss',
+    'fp.title': 'Die Aufteilung <em>auf einen Blick</em>',
+    'fp.living': 'Wohnzimmer',
+    'fp.living_note': 'ca. 35 m² · SW-Ausrichtung · Terrasse 1',
+    'fp.bedroom': 'Schlafzimmer',
+    'fp.bedroom_note': 'Ruhige Lage · direkter Bad-Zugang',
+    'fp.guest': 'Gästezimmer',
+    'fp.guest_note': 'Flexibel als Büro nutzbar',
+    'fp.bath': 'Bad & G-Bad',
+    'fp.bath_note': '2 vollwertige Bäder · Toto Washlets',
+    'fp.kitchen': 'Küche',
+    'fp.kitchen_note': 'Vollausgestattet · 2024 renoviert',
+    'fp.terrace': 'Terrasse 1 + 2',
+    'fp.terrace_note': 'NE & SW · je ca. 10 m²',
+    'fp.total': 'Gesamt',
+    'loc.label': 'Lage',
+    'loc.headline': 'Die exzellenteste<br><em>Adresse Münchens</em>',
+    'loc.text': 'Die Kunigundenstraße verbindet urbane Dynamik mit der Ruhe einer erstklassigen Wohnstraße. Münchner Freiheit, Englischer Garten, alle Ziele der Stadt — alles nah, und doch eine Welt für sich.',
+    'loc.note1': 'Legendäre Cafés & Restaurants',
+    'loc.note2': 'Erholung im Grünen',
+    'loc.note3': 'FC Bayern München',
+    'loc.note4': 'Direktverbindung Zentrum',
+    'loc.note5': 'Internationale Anbindung',
+    'loc.privacy': 'Genaue Adresse auf Anfrage — aus Gründen der Privatsphäre.',
+    'loc.floor': '2. Obergeschoss · 93 m²',
+    'about.label': 'Über uns',
+    'about.title': 'Das Team <em>hinter dem Projekt</em>',
+    'about.owner_label': 'Der Eigentümer',
+    'about.owner_text': 'Wir entwickeln und bewirtschaften Münchner Wohnraum mit langem Zeithorizont. Bei der Kunigundenstraße war klar: Ein Objekt mit diesem Licht und dieser Lage verdient ein Interieur auf demselben Niveau.',
+    'about.designer_label': 'Die Gestalterin',
+    'about.designer_text': 'Schwedin, Münchnerin, Interior-Designerin aus Leidenschaft. Victoria hört zuerst zu, dann gestaltet sie — keine Showroom-Konzepte, sondern Räume mit Persönlichkeit. Das Ergebnis spricht für sich.',
+    'about.builder_label': 'Die Baubetreuung',
+    'about.builder_sub': 'Der pragmatische Macher',
+    'about.builder_text': 'Peter sorgt dafür, dass aus Konzepten Wirklichkeit wird. Zuverlässig, direkt, ohne Umwege. Die Baubetreuung Peter Schweikl GmbH hat das Projekt von der ersten Planung bis zur Schlüsselübergabe begleitet.',
+    'about.collab_label': 'Wie es war',
+    'about.collab_text': 'Beim ersten gemeinsamen Rundgang durch die Wohnung blieb Victoria im Flur stehen: <em>„Das Licht hier ist ungewöhnlich."</em> Peter nickte und hatte schon den Stift in der Hand. So lief das gesamte Projekt — Vision trifft Umsetzung, Wort zu Wort, Wand für Wand. Das Ergebnis fühlt sich an, als hätte es nie anders ausgesehen.',
+    'cta.eyebrow': 'Exklusiv verfügbar',
+    'cta.title': 'Bereit für<br><em>Ihr Sanctuary?</em>',
+    'cta.sub': 'Kunigundenstraße · München-Schwabing · 93 m² · <em>Die genaue Adresse wird auf Anfrage mitgeteilt — aus Gründen der Privatsphäre.</em>',
+    'cta.btn': 'BC Living GmbH kontaktieren',
+    'airbnb.label': 'Gelegentlich verfügbar',
+    'airbnb.title': 'Manchmal verfügbar.<br><em>Für die Richtigen.</em>',
+    'airbnb.sub': 'Victoria\'s Sanctuary ist keine Ferienwohnung. Es ist ein privates Zuhause —<br>das wir selektiv und gelegentlich besonderen Gästen öffnen.',
+    'airbnb.btn': 'Verfügbarkeit anfragen →',
+    'lightbox.close': 'Schließen ✕'
+  },
+  en: {
+    'nav.about': 'The Property',
+    'nav.gallery': 'Gallery',
+    'nav.specs': 'Features',
+    'nav.floorplan': 'Floor Plan',
+    'nav.location': 'Location',
+    'nav.about_us': 'About',
+    'nav.contact': 'Contact',
+    'hero.sub': 'Munich-Schwabing · 93 m² · Address on Request',
+    'hero.scroll': 'Discover',
+    'intro.label': 'The Property',
+    'intro.headline': 'An interior,<br><em>that reinvents the space</em>',
+    'intro.p1': 'This apartment on Kunigundenstraße is a rare privilege in the vibrant heart of Schwabing. Set on the 2nd floor, it enjoys an unobstructed sky-light quality — as no additional balconies extend above the unit, light floods the rooms the way it usually only does in top-floor penthouses.',
+    'intro.p2': 'The ultimate penthouse feeling, right in the heart of Munich.',
+    'intro.badge': 'm² Luxury Interior',
+    'gallery.label': 'Gallery',
+    'gallery.title': '<em>Spaces</em> that move you',
+    'cap.dining': 'Dining · Poltrona Frau',
+    'cap.living': 'Living Room · Eames',
+    'cap.eames': 'Eames Lounge Chair · Vitra',
+    'cap.dining_balkon': 'Dining & Balcony',
+    'cap.entrance': 'Entrance',
+    'cap.bedroom': 'Bedroom',
+    'cap.kitchen': 'Kitchen · Siemens / Neff',
+    'cap.ecm': 'ECM Espresso',
+    'cap.kitchen_black': 'Kitchen · Black Fixtures',
+    'cap.open_plan': 'Open Plan · Kitchen & Living',
+    'cap.hallway': 'Hallway · Occhio Track',
+    'cap.room2': 'Room 2 · Work & Rest',
+    'cap.wardrobe': 'Entrance · Wardrobe',
+    'cap.art': 'Bedroom · Curated Art',
+    'cap.bath1': 'Bath · Toto Washlet',
+    'cap.bath2': 'Bath · Terrazzo & Wood',
+    'cap.miele': 'Miele · Laundry Tower',
+    'cap.bath3': 'Bath 2',
+    'cap.living_short': 'Living Room',
+    'cap.balkon': 'Balcony',
+    'cap.eames_short': 'Eames · Vitra',
+    'cap.hallway_short': 'Hallway · Occhio',
+    'cap.art_short': 'Curated Art',
+    'cap.room2_short': 'Room 2',
+    'cap.wardrobe_short': 'Wardrobe',
+    'cap.bath_toto': 'Bath · Toto',
+    'design.label': 'Design Philosophy',
+    'design.headline': 'Victoria Haller\'s<br><em>Quiet Luxury</em>',
+    'design.p1': 'The interior was designed by renowned designer <strong style="color: var(--cream); font-weight:300;">Victoria Haller (Villa Haller)</strong>. Her concept breaks with the sterility of modern apartments, opting instead for a warm, Scandinavian-inspired refinement.',
+    'design.p2': 'Elegant herringbone parquet, a palette of sand, beige and taupe accented by bold black details — every square metre a curated statement.',
+    'specs.label': 'Features',
+    'specs.title': 'Technical <em>Perfection</em>',
+    'spec.entertainment': 'Entertainment',
+    'spec.wellness': 'Wellness',
+    'spec.climate': 'Climate',
+    'spec.kitchen_icon': 'Kitchen',
+    'spec.smarthome': 'Smart Home',
+    'spec.parking': 'Parking',
+    'spec.balconies': 'Balconies',
+    'spec.lighting': 'Lighting',
+    'spec.laundry': 'Laundry',
+    'spec.baths_val': '2 Baths',
+    'spec.baths_label': 'Toto Washlets · Grohe Essence<br>Rain Shower · Underfloor Heating',
+    'spec.climate_label': 'Ururu System — Air Conditioning,<br>Ventilation & Humidity Control',
+    'spec.kitchen_label': 'Fully Renovated Design Kitchen<br>Siemens · Neff · ECM Mechanika',
+    'spec.smarthome_label': 'Gen3 Full Automation —<br>Lights, Heating, Blinds, Awnings',
+    'spec.parking_label': 'Underground Parking Spaces<br>Modernised Lift',
+    'spec.balconies_label': 'North-East & South-West —<br>Sky-Light Feeling, Penthouse Atmosphere',
+    'spec.lighting_label': 'Bespoke Lighting Concept<br>Architectural Accents',
+    'spec.laundry_label': 'Washer & Dryer<br>Discreetly Integrated',
+    'brands.label': 'Curated Brands',
+    'brands.title': 'Design <em>without Compromise</em>',
+    'quote.text': '"Not luxury for luxury\'s sake — but quality you feel every single day."',
+    'fp.label': 'Floor Plan',
+    'fp.title': 'The Layout <em>at a Glance</em>',
+    'fp.living': 'Living Room',
+    'fp.living_note': 'approx. 35 m² · SW orientation · Terrace 1',
+    'fp.bedroom': 'Bedroom',
+    'fp.bedroom_note': 'Quiet location · direct bathroom access',
+    'fp.guest': 'Guest Room',
+    'fp.guest_note': 'Flexible use as home office',
+    'fp.bath': 'Bath & Guest Bath',
+    'fp.bath_note': '2 full bathrooms · Toto Washlets',
+    'fp.kitchen': 'Kitchen',
+    'fp.kitchen_note': 'Fully equipped · renovated 2024',
+    'fp.terrace': 'Terrace 1 + 2',
+    'fp.terrace_note': 'NE & SW · approx. 10 m² each',
+    'fp.total': 'Total',
+    'loc.label': 'Location',
+    'loc.headline': 'The finest<br><em>address in Munich</em>',
+    'loc.text': 'Kunigundenstraße combines urban energy with the calm of a premier residential street. Münchner Freiheit, the English Garden, every destination in the city — all close by, yet a world apart.',
+    'loc.note1': 'Iconic Cafés & Restaurants',
+    'loc.note2': 'Nature & Recreation',
+    'loc.note3': 'FC Bayern München',
+    'loc.note4': 'Direct Connection to City Centre',
+    'loc.note5': 'International Connections',
+    'loc.privacy': 'Exact address available on request — for privacy reasons.',
+    'loc.floor': '2nd Floor · 93 m²',
+    'about.label': 'About Us',
+    'about.title': 'The Team <em>behind the Project</em>',
+    'about.owner_label': 'The Owner',
+    'about.owner_text': 'We develop and manage Munich residential properties with a long-term perspective. For Kunigundenstraße it was clear from the start: a property with this light and this location deserves an interior of the same calibre.',
+    'about.designer_label': 'The Designer',
+    'about.designer_text': 'Swedish, Munichan, interior designer by passion. Victoria listens first, then she creates — no showroom concepts, but spaces with personality. The result speaks for itself.',
+    'about.builder_label': 'Construction Management',
+    'about.builder_sub': 'The Pragmatic Doer',
+    'about.builder_text': 'Peter makes sure concepts become reality. Reliable, direct, no detours. Baubetreuung Peter Schweikl GmbH accompanied the project from the first planning stage to the handover of keys.',
+    'about.collab_label': 'How it happened',
+    'about.collab_text': 'On the first walkthrough, Victoria stopped in the hallway: <em>"The light here is unusual."</em> Peter nodded and already had his pen out. That\'s how the whole project went — vision meets execution, word by word, wall by wall. The result feels like it could never have been any other way.',
+    'cta.eyebrow': 'Exclusively Available',
+    'cta.title': 'Ready for<br><em>Your Sanctuary?</em>',
+    'cta.sub': 'Kunigundenstraße · Munich-Schwabing · 93 m² · <em>The exact address is provided on request — for privacy reasons.</em>',
+    'cta.btn': 'Contact BC Living GmbH',
+    'airbnb.label': 'Occasionally Available',
+    'airbnb.title': 'Sometimes available.<br><em>For the right guests.</em>',
+    'airbnb.sub': 'Victoria\'s Sanctuary is not a holiday rental. It is a private home —<br>that we selectively and occasionally open to special guests.',
+    'airbnb.btn': 'Check Availability →',
+    'lightbox.close': 'Close ✕'
+  }
+};
+
+function setLang(lang) {
+  currentLang = lang;
+  var dict = t[lang];
+
+  // text content
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  // innerHTML (for elements with <em>, <br>, <strong>)
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  // Toggle active state on DE/EN labels
+  document.getElementById('langDE').classList.toggle('active', lang === 'de');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+}
+
+// Init: mark DE as active
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('langDE').classList.add('active');
+  document.getElementById('langToggle').addEventListener('click', function() {
+    setLang(currentLang === 'de' ? 'en' : 'de');
+  });
+});
 </script>
 
 </body>
