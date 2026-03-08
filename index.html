@@ -81,6 +81,7 @@
     }
   }
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
@@ -1593,10 +1594,7 @@
       </div>
     </div>
     <div class="location-visual reveal">
-      <picture>
-          <source srcset="images/5-sm.webp 800w, images/5.webp 1920w" sizes="(max-width:600px) 100vw, 50vw" type="image/webp">
-          <img src="images/5.jpeg" alt="Eingangsbereich mit Herringbone Parkett — Designwohnung München" >
-        </picture>
+      <div id="location-map" style="width:100%;aspect-ratio:4/5;display:block;"></div>
       <div class="location-address">
         <div class="address-line">Kunigundenstraße · München-Schwabing<br><small style="font-size:0.75em;opacity:0.6;">Genaue Adresse auf Anfrage — aus Gründen der Privatsphäre.</small></div>
         <div class="address-sub">2. Obergeschoss · 93 m²</div>
@@ -1799,5 +1797,78 @@
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
+<!-- LEAFLET MAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function() {
+  var mapEl = document.getElementById('location-map');
+  if (!mapEl) return;
+
+  // Coordinates
+  var property = [48.15720, 11.58510]; // Kunigundenstraße 20, Schwabing
+  var destinations = [
+    { name: 'Münchner Freiheit',    note: 'Legendäre Cafés & Restaurants', time: "5'",  latlng: [48.16170, 11.58690] },
+    { name: 'Englischer Garten',    note: 'Erholung im Grünen',             time: "8'",  latlng: [48.16280, 11.59800] },
+    { name: 'Allianz Arena',        note: 'FC Bayern München',              time: "15'", latlng: [48.21880, 11.62470] },
+    { name: 'Hauptbahnhof',         note: 'Direktverbindung Zentrum',       time: "20'", latlng: [48.14020, 11.56000] },
+    { name: 'Flughafen MUC',        note: 'Internationale Anbindung',       time: "25'", latlng: [48.35370, 11.77490] }
+  ];
+
+  var map = L.map('location-map', {
+    center: [48.19, 11.63],
+    zoom: 10,
+    zoomControl: true,
+    scrollWheelZoom: false,
+    attributionControl: true
+  });
+
+  // Muted, elegant tile layer
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Custom SVG icons
+  var propertyIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:14px;height:14px;background:#1C1A18;border:2px solid #F2EDE5;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+  var destIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:10px;height:10px;background:#9A8872;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>',
+    iconSize: [10, 10],
+    iconAnchor: [5, 5]
+  });
+
+  // Property marker
+  L.marker(property, { icon: propertyIcon })
+    .addTo(map)
+    .bindPopup('<strong style="font-family:\'Cormorant Garamond\',serif;font-size:1rem;">Victoria\'s Sanctuary</strong><br><span style="font-size:0.75rem;color:#9A8872;">Kunigundenstraße · Schwabing</span>', { maxWidth: 200 });
+
+  // Lines + destination markers
+  destinations.forEach(function(d) {
+    // Dashed line from property to destination
+    L.polyline([property, d.latlng], {
+      color: '#9A8872',
+      weight: 1.5,
+      opacity: 0.7,
+      dashArray: '5, 7'
+    }).addTo(map);
+
+    // Destination marker
+    L.marker(d.latlng, { icon: destIcon })
+      .addTo(map)
+      .bindPopup(
+        '<strong style="font-family:\'Cormorant Garamond\',serif;font-size:1rem;">' + d.time + ' · ' + d.name + '</strong><br>' +
+        '<span style="font-size:0.75rem;color:#9A8872;">' + d.note + '</span>',
+        { maxWidth: 200 }
+      );
+  });
+})();
+</script>
+
 </body>
 </html>
