@@ -27,7 +27,6 @@
       --mid: #5C5548;
       --white: #FAFAF8;
       --accent: #2E2C2A;
-      --warn: #B8865A;
     }
 
     html { scroll-behavior: smooth; }
@@ -345,21 +344,6 @@
     }
     .secret:hover { border-color: var(--taupe); background: var(--white); }
     .secret.copied { background: var(--dark); color: var(--cream); border-color: var(--dark); }
-
-    /* Placeholder values that need to be filled in by owner */
-    .placeholder {
-      display: inline-block;
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: rgba(184,134,90,0.1);
-      color: var(--warn);
-      padding: 0.3rem 0.6rem;
-      border-radius: 2px;
-      border: 1px dashed var(--warn);
-    }
 
     /* Body text inside cards */
     .info-card-text {
@@ -736,7 +720,6 @@
 <!-- TABLE OF CONTENTS -->
 <nav class="welcome-toc reveal" aria-label="Inhaltsverzeichnis">
   <a href="#anreise"><span class="welcome-toc-num">i</span><span data-i18n="welcome.toc.arrival">Anreise</span></a>
-  <a href="#tiefgarage"><span class="welcome-toc-num">ii</span><span data-i18n="welcome.toc.garage">Tiefgarage</span></a>
   <a href="#wlan"><span class="welcome-toc-num">iii</span><span data-i18n="welcome.toc.wifi">WLAN</span></a>
   <a href="#klima"><span class="welcome-toc-num">iv</span><span data-i18n="welcome.toc.climate">Klima</span></a>
   <a href="#kueche"><span class="welcome-toc-num">v</span><span data-i18n="welcome.toc.kitchen">Küche</span></a>
@@ -745,7 +728,6 @@
   <a href="#muell"><span class="welcome-toc-num">viii</span><span data-i18n="welcome.toc.waste">Müll</span></a>
   <a href="#abreise"><span class="welcome-toc-num">ix</span><span data-i18n="welcome.toc.departure">Abreise</span></a>
   <a href="#notfall"><span class="welcome-toc-num">x</span><span data-i18n="welcome.toc.help">Notfall</span></a>
-  <a href="#empfehlungen"><span class="welcome-toc-num">xi</span><span data-i18n="welcome.toc.tips">Empfehlungen</span></a>
 </nav>
 
 <!-- INFO CARDS -->
@@ -881,28 +863,6 @@
               <p class="arrival-step-cap" data-i18n="welcome.s1.step9">Wohnungstür: unbeschriftet, mit Sicherheitsschloss.</p>
             </li>
           </ol>
-        </div>
-      </article>
-
-      <!-- 02 TIEFGARAGE -->
-      <article class="info-card reveal reveal-delay-1" id="tiefgarage">
-        <div class="info-card-head">
-          <span class="info-card-eyebrow" data-i18n="welcome.s2.eyebrow">02 · Parken</span>
-          <span class="info-card-num">ii</span>
-        </div>
-        <h3 class="info-card-title" data-i18n-html="welcome.s2.title">Tiefgarage &amp; <em>Stellplatz</em></h3>
-        <dl class="detail-list">
-          <dt data-i18n="welcome.s2.l1">Einfahrt</dt>
-          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
-          <dt data-i18n="welcome.s2.l2">Tor-Code</dt>
-          <dd><span class="secret" data-secret>0000</span></dd>
-          <dt data-i18n="welcome.s2.l3">Stellplatz Nr.</dt>
-          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
-          <dt data-i18n="welcome.s2.l4">Aufzug</dt>
-          <dd data-i18n="welcome.s2.v4">Direkt aus der Garage in den 2. Stock</dd>
-        </dl>
-        <div class="info-card-text">
-          <p data-i18n="welcome.s2.note">Zwei Tiefgaragenplätze stehen Ihnen exklusiv zur Verfügung. Bitte achten Sie auf die Markierung — andere Stellplätze sind privat vermietet.</p>
         </div>
       </article>
 
@@ -1061,26 +1021,6 @@
         </dl>
       </article>
 
-      <!-- 11 EMPFEHLUNGEN -->
-      <article class="info-card reveal reveal-delay-1 wide" id="empfehlungen">
-        <div class="info-card-head">
-          <span class="info-card-eyebrow" data-i18n="welcome.s11.eyebrow">11 · Schwabing</span>
-          <span class="info-card-num">xi</span>
-        </div>
-        <h3 class="info-card-title" data-i18n-html="welcome.s11.title">Empfehlungen <em>aus dem Viertel</em></h3>
-        <div class="info-card-text">
-          <p data-i18n="welcome.s11.p1">Eine kleine, persönliche Auswahl rund um die Münchner Freiheit und den Englischen Garten — alles fußläufig erreichbar.</p>
-          <ul>
-            <li data-i18n="welcome.s11.li1"><strong>Frühstück / Café:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
-            <li data-i18n="welcome.s11.li2"><strong>Mittagessen:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
-            <li data-i18n="welcome.s11.li3"><strong>Abendessen:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
-            <li data-i18n="welcome.s11.li4"><strong>Spaziergang:</strong> Englischer Garten · Eingang Veterinärstraße (8 Min.)</li>
-            <li data-i18n="welcome.s11.li5"><strong>Bäcker:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
-            <li data-i18n="welcome.s11.li6"><strong>Supermarkt:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
-          </ul>
-        </div>
-      </article>
-
     </div>
   </div>
 </section>
@@ -1211,7 +1151,6 @@ var t = {
     'welcome.intro.p2': 'Bei Fragen oder im Notfall finden Sie unten unsere Kontaktdaten. Wir wünschen Ihnen einen ruhigen, schönen Aufenthalt in München-Schwabing.',
     // toc
     'welcome.toc.arrival': 'Anreise',
-    'welcome.toc.garage': 'Tiefgarage',
     'welcome.toc.wifi': 'WLAN',
     'welcome.toc.climate': 'Klima',
     'welcome.toc.kitchen': 'Küche',
@@ -1220,9 +1159,6 @@ var t = {
     'welcome.toc.waste': 'Müll',
     'welcome.toc.departure': 'Abreise',
     'welcome.toc.help': 'Notfall',
-    'welcome.toc.tips': 'Empfehlungen',
-    // shared
-    'welcome.placeholder': 'bitte eintragen',
     // 01 anreise
     'welcome.s1.eyebrow': '01 · Eingang',
     'welcome.s1.title': 'Anreise &amp; <em>Eingang</em>',
@@ -1247,15 +1183,6 @@ var t = {
     'welcome.s1.step7': 'Falls jemand zuhause: Klingel „Binder/Christ Fino".',
     'welcome.s1.step8': '2. Stock · vom Aufzug rechts bis zur letzten Tür.',
     'welcome.s1.step9': 'Wohnungstür: unbeschriftet, mit Sicherheitsschloss.',
-    // 02 tiefgarage
-    'welcome.s2.eyebrow': '02 · Parken',
-    'welcome.s2.title': 'Tiefgarage &amp; <em>Stellplatz</em>',
-    'welcome.s2.l1': 'Einfahrt',
-    'welcome.s2.l2': 'Tor-Code',
-    'welcome.s2.l3': 'Stellplatz Nr.',
-    'welcome.s2.l4': 'Aufzug',
-    'welcome.s2.v4': 'Direkt aus der Garage in den 2. Stock',
-    'welcome.s2.note': 'Zwei Tiefgaragenplätze stehen Ihnen exklusiv zur Verfügung. Bitte achten Sie auf die Markierung — andere Stellplätze sind privat vermietet.',
     // 03 wlan
     'welcome.s3.eyebrow': '03 · Internet',
     'welcome.s3.title': 'WLAN &amp; <em>Verbindung</em>',
@@ -1328,16 +1255,6 @@ var t = {
     'welcome.s10.v4': 'Feuer / Rettung',
     'welcome.s10.v4b': 'Polizei',
     'welcome.s10.l5': 'Ärzt. Notdienst',
-    // 11 empfehlungen
-    'welcome.s11.eyebrow': '11 · Schwabing',
-    'welcome.s11.title': 'Empfehlungen <em>aus dem Viertel</em>',
-    'welcome.s11.p1': 'Eine kleine, persönliche Auswahl rund um die Münchner Freiheit und den Englischen Garten — alles fußläufig erreichbar.',
-    'welcome.s11.li1': '<strong>Frühstück / Café:</strong> ',
-    'welcome.s11.li2': '<strong>Mittagessen:</strong> ',
-    'welcome.s11.li3': '<strong>Abendessen:</strong> ',
-    'welcome.s11.li4': '<strong>Spaziergang:</strong> Englischer Garten · Eingang Veterinärstraße (8 Min.)',
-    'welcome.s11.li5': '<strong>Bäcker:</strong> ',
-    'welcome.s11.li6': '<strong>Supermarkt:</strong> ',
     // cta
     'welcome.cta.eyebrow': 'Wir sind erreichbar',
     'welcome.cta.title': 'Eine Frage, ein Wunsch,<br>oder einfach <em>ein Hallo?</em>',
@@ -1365,7 +1282,6 @@ var t = {
     'welcome.intro.p2': 'For questions or in case of emergency, our contact details are at the bottom. We wish you a calm, pleasant stay in Munich-Schwabing.',
     // toc
     'welcome.toc.arrival': 'Arrival',
-    'welcome.toc.garage': 'Garage',
     'welcome.toc.wifi': 'Wi-Fi',
     'welcome.toc.climate': 'Climate',
     'welcome.toc.kitchen': 'Kitchen',
@@ -1374,9 +1290,6 @@ var t = {
     'welcome.toc.waste': 'Waste',
     'welcome.toc.departure': 'Departure',
     'welcome.toc.help': 'Emergency',
-    'welcome.toc.tips': 'Local Tips',
-    // shared
-    'welcome.placeholder': 'to be filled in',
     // 01 arrival
     'welcome.s1.eyebrow': '01 · Entrance',
     'welcome.s1.title': 'Arrival &amp; <em>Entrance</em>',
@@ -1401,15 +1314,6 @@ var t = {
     'welcome.s1.step7': 'If someone is home: doorbell "Binder/Christ Fino".',
     'welcome.s1.step8': '2nd floor · from the elevator, right to the last door.',
     'welcome.s1.step9': 'Apartment door: unmarked, with a security lock.',
-    // 02 garage
-    'welcome.s2.eyebrow': '02 · Parking',
-    'welcome.s2.title': 'Garage &amp; <em>Parking</em>',
-    'welcome.s2.l1': 'Entrance',
-    'welcome.s2.l2': 'Gate Code',
-    'welcome.s2.l3': 'Spot No.',
-    'welcome.s2.l4': 'Elevator',
-    'welcome.s2.v4': 'Direct from garage to 2nd floor',
-    'welcome.s2.note': 'Two underground parking spots are exclusively yours. Please respect the markings — other spots are privately rented.',
     // 03 wi-fi
     'welcome.s3.eyebrow': '03 · Internet',
     'welcome.s3.title': 'Wi-Fi &amp; <em>Connection</em>',
@@ -1482,16 +1386,6 @@ var t = {
     'welcome.s10.v4': 'Fire / Ambulance',
     'welcome.s10.v4b': 'Police',
     'welcome.s10.l5': 'Medical Hotline',
-    // 11 recommendations
-    'welcome.s11.eyebrow': '11 · Schwabing',
-    'welcome.s11.title': 'Local <em>Recommendations</em>',
-    'welcome.s11.p1': 'A small personal selection around Münchner Freiheit and the Englischer Garten — all within walking distance.',
-    'welcome.s11.li1': '<strong>Breakfast / Café:</strong> ',
-    'welcome.s11.li2': '<strong>Lunch:</strong> ',
-    'welcome.s11.li3': '<strong>Dinner:</strong> ',
-    'welcome.s11.li4': '<strong>Walk:</strong> Englischer Garten · entrance Veterinärstraße (8 min)',
-    'welcome.s11.li5': '<strong>Bakery:</strong> ',
-    'welcome.s11.li6': '<strong>Supermarket:</strong> ',
     // cta
     'welcome.cta.eyebrow': 'We\'re available',
     'welcome.cta.title': 'A question, a wish,<br>or just <em>to say hi?</em>',
