@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Welcome — Victoria's Sanctuary | Gäste-Information</title>
+  <meta name="description" content="Anreise- und Aufenthaltsinformationen für Gäste von Victoria's Sanctuary, Kunigundenstraße 20, München-Schwabing.">
+  <!-- Unlisted page: keep out of search engines -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://victoriassanctuary.com/welcome/">
+
+  <!-- Google Fonts — non-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F2EDE5;
+      --sand: #E0D5C5;
+      --taupe: #9A8872;
+      --text-muted: #685A48;
+      --dark: #1C1A18;
+      --mid: #5C5548;
+      --white: #FAFAF8;
+      --accent: #2E2C2A;
+      --warn: #B8865A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV (matches main site) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 3rem;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+      padding: 0.75rem 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--white); }
+    nav.scrolled .nav-links a:hover { color: var(--dark); }
+
+    .lang-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      padding: 0.35rem 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: border-color 0.2s, color 0.2s;
+      margin-left: 1.5rem;
+      flex-shrink: 0;
+    }
+    nav.scrolled .lang-toggle { color: var(--dark); border-color: rgba(0,0,0,0.2); }
+    .lang-toggle:hover { border-color: var(--cream); }
+    nav.scrolled .lang-toggle:hover { border-color: var(--dark); }
+    .lang-sep { opacity: 0.3; }
+    .lang-opt { opacity: 0.65; transition: opacity 0.2s; }
+    .lang-opt.active { opacity: 1; font-weight: 500; }
+
+    /* ── WELCOME HERO (lighter than main site — single image, no carousel) ── */
+    .welcome-hero {
+      position: relative;
+      height: 70vh;
+      height: 70svh;
+      min-height: 460px;
+      overflow: hidden;
+    }
+    .welcome-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .welcome-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(28,26,24,0.35) 0%, rgba(28,26,24,0.15) 40%, rgba(28,26,24,0.65) 100%);
+    }
+    .welcome-hero-content {
+      position: absolute;
+      bottom: max(8%, calc(env(safe-area-inset-bottom, 0px) + 3rem));
+      left: max(3rem, env(safe-area-inset-left, 0px));
+      right: max(3rem, env(safe-area-inset-right, 0px));
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease 0.4s forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .welcome-hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1rem;
+    }
+    .welcome-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .welcome-hero-title em { font-style: italic; font-weight: 300; }
+    .welcome-hero-sub {
+      margin-top: 1.5rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+    }
+
+    /* ── INTRO LETTER ── */
+    .welcome-intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 6rem 3rem 3rem;
+      text-align: center;
+    }
+    .welcome-intro-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .welcome-intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .welcome-intro-title em { font-style: italic; }
+    .welcome-intro-text {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--mid);
+      margin-top: 2rem;
+    }
+    .welcome-intro-text p + p { margin-top: 1rem; }
+
+    /* ── TABLE OF CONTENTS ── */
+    .welcome-toc {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--sand);
+      border: 1px solid var(--sand);
+    }
+    .welcome-toc a {
+      background: var(--white);
+      padding: 1.4rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: background 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 88px;
+      justify-content: center;
+    }
+    .welcome-toc a:hover { background: var(--cream); }
+    .welcome-toc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--taupe);
+      letter-spacing: 0;
+    }
+
+    /* ── INFO CARD GRID ── */
+    .welcome-grid-section { background: var(--cream); padding: 6rem 3rem; }
+    .welcome-grid-inner { max-width: 1200px; margin: 0 auto; }
+    .welcome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .info-card {
+      background: var(--white);
+      padding: 2.5rem 2.25rem;
+      border: 1px solid var(--sand);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      scroll-margin-top: 100px;
+    }
+    .info-card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--sand);
+    }
+    .info-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: var(--taupe);
+      flex-shrink: 0;
+    }
+    .info-card-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .info-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    .info-card-title em { font-style: italic; font-weight: 300; }
+
+    /* Detail rows (Adresse: ..., Türcode: ...) */
+    .detail-list {
+      display: grid;
+      grid-template-columns: minmax(110px, 32%) 1fr;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.86rem;
+    }
+    .detail-list dt {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding-top: 0.15rem;
+    }
+    .detail-list dd {
+      color: var(--dark);
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    /* Highlighted secret values (codes, passwords) */
+    .secret {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      background: var(--cream);
+      color: var(--dark);
+      padding: 0.35rem 0.7rem;
+      border-radius: 2px;
+      border: 1px solid var(--sand);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: all;
+    }
+    .secret:hover { border-color: var(--taupe); background: var(--white); }
+    .secret.copied { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+
+    /* Placeholder values that need to be filled in by owner */
+    .placeholder {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(184,134,90,0.1);
+      color: var(--warn);
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+      border: 1px dashed var(--warn);
+    }
+
+    /* Body text inside cards */
+    .info-card-text {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+    .info-card-text p + p { margin-top: 0.6rem; }
+    .info-card-text strong { color: var(--dark); font-weight: 400; }
+    .info-card-text ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.1rem;
+    }
+    .info-card-text li { margin-bottom: 0.35rem; }
+    .info-card-text a { color: var(--taupe); text-decoration: underline; text-underline-offset: 3px; }
+    .info-card-text a:hover { color: var(--dark); }
+
+    /* Span the full row */
+    .info-card.wide { grid-column: 1 / -1; }
+
+    /* ── ARRIVAL PHOTO STEPS (Anreise card) ── */
+    .arrival-steps {
+      margin-top: 0.5rem;
+      border-top: 1px solid var(--sand);
+      padding-top: 1.75rem;
+    }
+    .arrival-steps-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .arrival-track {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 1rem;
+      display: flex;
+      gap: 0.85rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      cursor: grab;
+    }
+    .arrival-track:active { cursor: grabbing; }
+    .arrival-track::-webkit-scrollbar { height: 6px; }
+    .arrival-track::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 3px; }
+    .arrival-step {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      position: relative;
+    }
+    .arrival-step-img {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--cream);
+      cursor: zoom-in;
+      border: none;
+      padding: 0;
+      width: 100%;
+      display: block;
+    }
+    .arrival-step-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+      pointer-events: none;
+    }
+    .arrival-step-img:hover img { transform: scale(1.04); }
+    .arrival-step-num {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.6rem;
+      background: rgba(20,18,16,0.78);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.95rem;
+      min-width: 28px; height: 28px;
+      padding: 0 0.45rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 14px;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+    }
+    .arrival-step-cap {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--mid);
+    }
+    .arrival-step-cap a { color: var(--taupe); text-decoration: underline; text-underline-offset: 3px; }
+    .arrival-step-cap a:hover { color: var(--dark); }
+    @media (max-width: 600px) {
+      .arrival-step { flex: 0 0 72vw; }
+    }
+
+    /* ── LIGHTBOX (for arrival photos) ── */
+    .al-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,16,0.96);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .al-lightbox.open { display: flex; }
+    .al-lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      display: block;
+    }
+    .al-lightbox-close {
+      position: absolute;
+      top: max(1rem, env(safe-area-inset-top, 1rem));
+      right: 1rem;
+      color: rgba(255,255,255,0.7);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .al-lightbox-close:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+
+    /* ── FINAL CTA / EMERGENCY ── */
+    .welcome-cta {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+    .welcome-cta-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .welcome-cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .welcome-cta-title em { font-style: italic; }
+    .welcome-cta-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .welcome-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .welcome-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .welcome-cta-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+    .welcome-cta-btn.primary {
+      background: var(--cream);
+      color: var(--dark);
+      border-color: var(--cream);
+    }
+    .welcome-cta-btn.primary:hover { background: var(--white); border-color: var(--white); }
+
+    /* ── FOOTER (matches main) ── */
+    footer {
+      background: #141210;
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-copy {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── REVEAL ANIMATIONS (matches main) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.4rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+      .welcome-intro { padding: 4rem 1.5rem 2rem; }
+      .welcome-toc { padding: 1.5rem 1.5rem 4rem; grid-template-columns: repeat(3, 1fr); }
+      .welcome-grid-section { padding: 4rem 1.5rem; }
+      .welcome-grid { grid-template-columns: 1fr; }
+      .welcome-cta { padding: 4.5rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .welcome-hero { min-height: 380px; }
+      .welcome-hero-content {
+        bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+        left: 1.25rem; right: 1.25rem;
+      }
+      .welcome-toc { grid-template-columns: repeat(2, 1fr); }
+      .welcome-intro { padding: 3rem 1.25rem 1.5rem; }
+      .welcome-grid-section { padding: 3rem 1.25rem; }
+      .info-card { padding: 2rem 1.5rem; }
+      .detail-list { grid-template-columns: 1fr; gap: 0.2rem 0; }
+      .detail-list dt { padding-top: 0.8rem; }
+      .detail-list dt:first-of-type { padding-top: 0; }
+      .welcome-cta { padding: 3.5rem 1.25rem; }
+      footer {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Victoria's Sanctuary — zur Startseite">Victoria's Sanctuary</a>
+  <ul class="nav-links">
+    <li><a href="#anreise" data-i18n="welcome.nav.arrival">Anreise</a></li>
+    <li><a href="#wlan" data-i18n="welcome.nav.wifi">WLAN</a></li>
+    <li><a href="#smarthome" data-i18n="welcome.nav.smart">Smart Home</a></li>
+    <li><a href="#abreise" data-i18n="welcome.nav.departure">Abreise</a></li>
+    <li><a href="#notfall" data-i18n="welcome.nav.help">Hilfe</a></li>
+  </ul>
+  <button class="lang-toggle" id="langToggle" aria-label="Switch language"><span class="lang-opt" id="langDE">DE</span><span class="lang-sep">|</span><span class="lang-opt" id="langEN">EN</span></button>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="welcome-hero">
+  <picture>
+    <source srcset="/images/11-sm.webp 800w, /images/11.webp 1920w" sizes="100vw" type="image/webp">
+    <img src="/images/11.jpeg" width="1440" height="1920" alt="Eingang und Flur — Victoria's Sanctuary, Kunigundenstraße 20" fetchpriority="high">
+  </picture>
+  <div class="welcome-hero-content">
+    <p class="welcome-hero-eyebrow" data-i18n="welcome.hero.eyebrow">Willkommen · Welcome</p>
+    <h1 class="welcome-hero-title" data-i18n-html="welcome.hero.title">Schön, dass<br>Sie <em>angekommen</em> sind.</h1>
+    <p class="welcome-hero-sub" data-i18n="welcome.hero.sub">Alle Informationen zu Ihrem Aufenthalt in Victoria's Sanctuary — Anreise, Codes, Smart Home, Abreise.</p>
+  </div>
+</section>
+
+<!-- INTRO LETTER -->
+<section class="welcome-intro">
+  <p class="welcome-intro-eyebrow reveal" data-i18n="welcome.intro.eyebrow">Ein paar Worte vorab</p>
+  <h2 class="welcome-intro-title reveal reveal-delay-1" data-i18n-html="welcome.intro.title">Wir freuen uns,<br>Sie hier <em>begrüßen</em> zu dürfen.</h2>
+  <div class="welcome-intro-text reveal reveal-delay-2">
+    <p data-i18n="welcome.intro.p1">Diese Seite enthält alle praktischen Informationen für Ihren Aufenthalt: Adresse, Tür- und Garagencodes, WLAN-Zugang, Bedienung der Klimaanlage und des Smart Homes, sowie Hinweise zur Abreise. Bitte speichern Sie sich den Link, damit Sie jederzeit nachschlagen können.</p>
+    <p data-i18n="welcome.intro.p2">Bei Fragen oder im Notfall finden Sie unten unsere Kontaktdaten. Wir wünschen Ihnen einen ruhigen, schönen Aufenthalt in München-Schwabing.</p>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="welcome-toc reveal" aria-label="Inhaltsverzeichnis">
+  <a href="#anreise"><span class="welcome-toc-num">i</span><span data-i18n="welcome.toc.arrival">Anreise</span></a>
+  <a href="#tiefgarage"><span class="welcome-toc-num">ii</span><span data-i18n="welcome.toc.garage">Tiefgarage</span></a>
+  <a href="#wlan"><span class="welcome-toc-num">iii</span><span data-i18n="welcome.toc.wifi">WLAN</span></a>
+  <a href="#klima"><span class="welcome-toc-num">iv</span><span data-i18n="welcome.toc.climate">Klima</span></a>
+  <a href="#kueche"><span class="welcome-toc-num">v</span><span data-i18n="welcome.toc.kitchen">Küche</span></a>
+  <a href="#baeder"><span class="welcome-toc-num">vi</span><span data-i18n="welcome.toc.bath">Bäder</span></a>
+  <a href="#smarthome"><span class="welcome-toc-num">vii</span><span data-i18n="welcome.toc.smart">Smart Home</span></a>
+  <a href="#muell"><span class="welcome-toc-num">viii</span><span data-i18n="welcome.toc.waste">Müll</span></a>
+  <a href="#abreise"><span class="welcome-toc-num">ix</span><span data-i18n="welcome.toc.departure">Abreise</span></a>
+  <a href="#notfall"><span class="welcome-toc-num">x</span><span data-i18n="welcome.toc.help">Notfall</span></a>
+  <a href="#empfehlungen"><span class="welcome-toc-num">xi</span><span data-i18n="welcome.toc.tips">Empfehlungen</span></a>
+</nav>
+
+<!-- INFO CARDS -->
+<section class="welcome-grid-section">
+  <div class="welcome-grid-inner">
+    <div class="welcome-grid">
+
+      <!-- 01 ANREISE -->
+      <article class="info-card reveal wide" id="anreise">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s1.eyebrow">01 · Eingang</span>
+          <span class="info-card-num">i</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s1.title">Anreise &amp; <em>Eingang</em></h3>
+        <dl class="detail-list">
+          <dt data-i18n="welcome.s1.l1">Adresse</dt>
+          <dd>Kunigundenstraße 20<br>80802 München-Schwabing</dd>
+          <dt data-i18n="welcome.s1.l2">Stockwerk</dt>
+          <dd data-i18n="welcome.s1.v2">2. Obergeschoss · Aufzug vorhanden</dd>
+          <dt data-i18n="welcome.s1.l3">Klingel</dt>
+          <dd data-i18n="welcome.s1.v3">Binder/Christ Fino</dd>
+          <dt data-i18n="welcome.s1.l4">Schlüssel</dt>
+          <dd data-i18n="welcome.s1.v4">Igloohome Keybox 3 · 2 Schlüssel am Ring (Hauseingang + Wohnung)</dd>
+          <dt data-i18n="welcome.s1.l5">Wohnungstür</dt>
+          <dd data-i18n="welcome.s1.v5">Letzte Tür rechts (unbeschriftet, Sicherheitsschloss)</dd>
+        </dl>
+        <div class="info-card-text">
+          <p data-i18n="welcome.s1.note">Schlüsselübergabe erfolgt kontaktlos über die Igloohome Keybox am Holzzaun am Ende des Privatwegs. Die Box ist mit Airbnb verknüpft — den 6-stelligen PIN erhalten Sie automatisch ca. 1 Stunde vor Anreise per Airbnb-Nachricht. Im Inneren befinden sich 2 Schlüssel an einem Ring: einer für den Hauseingang und Gemeinschaftsbereich, einer (Sicherheitsschlüssel) für die Wohnungstür. Bei Anreise nach 22 Uhr bitten wir um eine kurze Nachricht.</p>
+        </div>
+
+        <!-- Visual step-by-step arrival guide -->
+        <div class="arrival-steps">
+          <p class="arrival-steps-label" data-i18n="welcome.s1.steps_label">Schritt für Schritt zur Wohnung</p>
+          <ol class="arrival-track" id="arrivalTrack">
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-1.jpeg" aria-label="Schritt 1 vergrößern">
+                <span class="arrival-step-num">1</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-1-xs.webp 450w, /images/arrival/arrival-1-sm.webp 800w, /images/arrival/arrival-1.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-1.jpeg" width="2048" height="1536" alt="Privatweg-Eingang an der Kunigundenstraße mit Hausnummern-Schild 16-20" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step1">Privatweg entlang Kunigundenstr. 16–20 folgen.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-2.jpeg" aria-label="Schritt 2 vergrößern">
+                <span class="arrival-step-num">2</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-2-xs.webp 450w, /images/arrival/arrival-2-sm.webp 800w, /images/arrival/arrival-2.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-2.jpeg" width="1536" height="2048" alt="Privatweg weiter folgen, Schranke mit Privatweg-Schild" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step2">Privatweg bis zum Ende laufen.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-3.jpeg" aria-label="Schritt 3 vergrößern">
+                <span class="arrival-step-num">3</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-3-xs.webp 450w, /images/arrival/arrival-3-sm.webp 800w, /images/arrival/arrival-3.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-3.jpeg" width="1536" height="2048" alt="Am Ende des Privatwegs links abbiegen zum Holzzaun" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step3">Am Ende links abbiegen — Keybox am Holzzaun.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-4.jpeg" aria-label="Schritt 4 vergrößern">
+                <span class="arrival-step-num">4</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-4-xs.webp 450w, /images/arrival/arrival-4-sm.webp 800w, /images/arrival/arrival-4.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-4.jpeg" width="2048" height="1536" alt="Holzzaun mit Markierung — hier hängt die Igloohome Keybox" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n-html="welcome.s1.step4">Am Zaun: <a href="https://www.igloohome.co/products/keybox-3" target="_blank" rel="noopener">Igloohome Keybox 3</a>.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-5.jpeg" aria-label="Schritt 5 vergrößern">
+                <span class="arrival-step-num">5</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-5-xs.webp 450w, /images/arrival/arrival-5-sm.webp 800w, /images/arrival/arrival-5.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-5.jpeg" width="1536" height="2048" alt="Nahaufnahme der Igloohome Keybox am Holzzaun" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step5">Keybox mit PIN öffnen — 2 Schlüssel am Ring entnehmen.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-6.jpeg" aria-label="Schritt 6 vergrößern">
+                <span class="arrival-step-num">6</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-6-xs.webp 450w, /images/arrival/arrival-6-sm.webp 800w, /images/arrival/arrival-6.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-6.jpeg" width="1536" height="2048" alt="Hauseingang Nummer 20 — Glastür mit Hausnummer 20" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step6">Hauseingang Nr. 20 mit dem Schlüssel öffnen.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-7.jpeg" aria-label="Schritt 7 vergrößern">
+                <span class="arrival-step-num">7</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-7-xs.webp 450w, /images/arrival/arrival-7-sm.webp 800w, /images/arrival/arrival-7.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-7.jpeg" width="1536" height="2048" alt="Klingelpaneel des Hauses Nr. 20 — Klingel Binder/Christ Fino markiert" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step7">Falls jemand zuhause: Klingel „Binder/Christ Fino".</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-8.jpeg" aria-label="Schritt 8 vergrößern">
+                <span class="arrival-step-num">8</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-8-xs.webp 450w, /images/arrival/arrival-8-sm.webp 800w, /images/arrival/arrival-8.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-8.jpeg" width="1536" height="2048" alt="Flur im 2. Stock — letzte Tür rechts vom Aufzug" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step8">2. Stock · vom Aufzug rechts bis zur letzten Tür.</p>
+            </li>
+            <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-9.jpeg" aria-label="Schritt 9 vergrößern">
+                <span class="arrival-step-num">9</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-9-xs.webp 450w, /images/arrival/arrival-9-sm.webp 800w, /images/arrival/arrival-9.webp 1920w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-9.jpeg" width="1536" height="2048" alt="Wohnungstür — Holztür unbeschriftet mit Sicherheitsschloss" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step9">Wohnungstür: unbeschriftet, mit Sicherheitsschloss.</p>
+            </li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- 02 TIEFGARAGE -->
+      <article class="info-card reveal reveal-delay-1" id="tiefgarage">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s2.eyebrow">02 · Parken</span>
+          <span class="info-card-num">ii</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s2.title">Tiefgarage &amp; <em>Stellplatz</em></h3>
+        <dl class="detail-list">
+          <dt data-i18n="welcome.s2.l1">Einfahrt</dt>
+          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
+          <dt data-i18n="welcome.s2.l2">Tor-Code</dt>
+          <dd><span class="secret" data-secret>0000</span></dd>
+          <dt data-i18n="welcome.s2.l3">Stellplatz Nr.</dt>
+          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
+          <dt data-i18n="welcome.s2.l4">Aufzug</dt>
+          <dd data-i18n="welcome.s2.v4">Direkt aus der Garage in den 2. Stock</dd>
+        </dl>
+        <div class="info-card-text">
+          <p data-i18n="welcome.s2.note">Zwei Tiefgaragenplätze stehen Ihnen exklusiv zur Verfügung. Bitte achten Sie auf die Markierung — andere Stellplätze sind privat vermietet.</p>
+        </div>
+      </article>
+
+      <!-- 03 WLAN -->
+      <article class="info-card reveal" id="wlan">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s3.eyebrow">03 · Internet</span>
+          <span class="info-card-num">iii</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s3.title">WLAN &amp; <em>Verbindung</em></h3>
+        <dl class="detail-list">
+          <dt data-i18n="welcome.s3.l1">Netzwerk</dt>
+          <dd><span class="secret" data-secret>VictoriasSanctuary</span></dd>
+          <dt data-i18n="welcome.s3.l2">Passwort</dt>
+          <dd><span class="secret" data-secret>bitte-eintragen</span></dd>
+          <dt data-i18n="welcome.s3.l3">Geschwindigkeit</dt>
+          <dd data-i18n="welcome.s3.v3">Glasfaser · symmetrisch</dd>
+        </dl>
+        <div class="info-card-text">
+          <p data-i18n="welcome.s3.note">Tippen Sie auf einen Wert, um ihn zu kopieren. Das Netzwerk ist im gesamten Apartment und auf dem Balkon verfügbar.</p>
+        </div>
+      </article>
+
+      <!-- 04 KLIMA -->
+      <article class="info-card reveal reveal-delay-1" id="klima">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s4.eyebrow">04 · Komfort</span>
+          <span class="info-card-num">iv</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s4.title">Klima &amp; <em>Lüftung</em></h3>
+        <div class="info-card-text">
+          <p data-i18n-html="welcome.s4.p1">Das Apartment ist mit einem <strong>Daikin Ururu Sarara</strong>-System ausgestattet — kühlt, heizt, be- und entfeuchtet die Räume. Bedienung über die Fernbedienungen in jedem Raum.</p>
+          <ul>
+            <li data-i18n="welcome.s4.li1"><strong>Kühlen:</strong> Modus „Cool" · 22–24°C empfohlen</li>
+            <li data-i18n="welcome.s4.li2"><strong>Heizen:</strong> Modus „Heat" · 21–22°C empfohlen</li>
+            <li data-i18n="welcome.s4.li3"><strong>Lüften:</strong> Fenster bei laufender Anlage geschlossen halten</li>
+          </ul>
+          <p data-i18n="welcome.s4.note">Bei Fragen zur Bedienung schreiben Sie uns gerne — wir helfen schnell.</p>
+        </div>
+      </article>
+
+      <!-- 05 KÜCHE -->
+      <article class="info-card reveal" id="kueche">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s5.eyebrow">05 · Küche</span>
+          <span class="info-card-num">v</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s5.title">Küche &amp; <em>Espresso</em></h3>
+        <div class="info-card-text">
+          <p data-i18n-html="welcome.s5.p1">Die Küche ist mit allem Notwendigen ausgestattet — inkl. <strong>ECM Espressomaschine</strong> und Mühle. Eine Kurzanleitung finden Sie auf der Arbeitsfläche neben der Maschine.</p>
+          <ul>
+            <li data-i18n="welcome.s5.li1"><strong>Geschirrspüler:</strong> Tabs unter der Spüle</li>
+            <li data-i18n="welcome.s5.li2"><strong>Kaffee &amp; Tee:</strong> Vorrat im linken Hochschrank</li>
+            <li data-i18n="welcome.s5.li3"><strong>Gewürze &amp; Olivenöl:</strong> bitte gerne nutzen</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 06 BÄDER -->
+      <article class="info-card reveal reveal-delay-1" id="baeder">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s6.eyebrow">06 · Bäder</span>
+          <span class="info-card-num">vi</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s6.title">Bäder &amp; <em>Toto Washlet</em></h3>
+        <div class="info-card-text">
+          <p data-i18n-html="welcome.s6.p1">Beide Bäder sind mit <strong>Toto Washlets</strong> ausgestattet. Die Funktionen werden über die seitliche Fernbedienung gesteuert.</p>
+          <ul>
+            <li data-i18n="welcome.s6.li1">Sitzheizung: dauerhaft aktiv</li>
+            <li data-i18n="welcome.s6.li2">Bidet-Funktion: Knopf „Rear" / „Front"</li>
+            <li data-i18n="welcome.s6.li3">Trocknen: Knopf „Dry" nach Bidet-Nutzung</li>
+            <li data-i18n="welcome.s6.li4">Handtücher &amp; Bademäntel: im Schrank</li>
+          </ul>
+          <p data-i18n="welcome.s6.note">Föhn und Kosmetikspiegel sind in beiden Bädern vorhanden.</p>
+        </div>
+      </article>
+
+      <!-- 07 SMART HOME -->
+      <article class="info-card reveal wide" id="smarthome">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s7.eyebrow">07 · Steuerung</span>
+          <span class="info-card-num">vii</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s7.title">Smart Home · <em>Shelly Gen3</em></h3>
+        <div class="info-card-text">
+          <p data-i18n-html="welcome.s7.p1">Sämtliche Beleuchtung im Apartment lässt sich klassisch über die Wandschalter bedienen — alternativ gesteuert per <strong>Shelly Smart Control</strong> App. Voreingestellte Szenen für Morgen, Abend und Kino sind aktiv.</p>
+          <ul>
+            <li data-i18n="welcome.s7.li1"><strong>Wandschalter:</strong> kurzes Tippen schaltet, langes Drücken dimmt</li>
+            <li data-i18n="welcome.s7.li2"><strong>Szene „Abend":</strong> Wandtaster im Wohnzimmer · doppelt klicken</li>
+            <li data-i18n="welcome.s7.li3"><strong>TV (75&quot; Samsung QLED):</strong> Fernbedienung auf dem Couchtisch · Apple TV &amp; Netflix vorinstalliert</li>
+            <li data-i18n="welcome.s7.li4"><strong>Sonos:</strong> Mit dem WLAN verbinden, dann über die Sonos-App steuern</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 08 MÜLL -->
+      <article class="info-card reveal" id="muell">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s8.eyebrow">08 · Trennung</span>
+          <span class="info-card-num">viii</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s8.title">Müll &amp; <em>Recycling</em></h3>
+        <div class="info-card-text">
+          <p data-i18n="welcome.s8.p1">In München wird streng nach Sorten getrennt. Behälter finden Sie im Müllraum im Erdgeschoss (Schlüssel auf dem Schlüsselbrett).</p>
+          <ul>
+            <li data-i18n="welcome.s8.li1"><strong>Restmüll</strong> (grauer Deckel)</li>
+            <li data-i18n="welcome.s8.li2"><strong>Papier</strong> (blau)</li>
+            <li data-i18n="welcome.s8.li3"><strong>Bio</strong> (braun)</li>
+            <li data-i18n="welcome.s8.li4"><strong>Glas</strong> &amp; Verpackungen: Container an der Münchner Freiheit</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 09 ABREISE -->
+      <article class="info-card reveal reveal-delay-1" id="abreise">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s9.eyebrow">09 · Check-out</span>
+          <span class="info-card-num">ix</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s9.title">Abreise &amp; <em>Check-out</em></h3>
+        <dl class="detail-list">
+          <dt data-i18n="welcome.s9.l1">Check-out</dt>
+          <dd data-i18n="welcome.s9.v1">bis 11:00 Uhr</dd>
+          <dt data-i18n="welcome.s9.l2">Schlüssel</dt>
+          <dd data-i18n="welcome.s9.v2">zurück in die Schlüsselbox am Eingang</dd>
+        </dl>
+        <div class="info-card-text">
+          <ul>
+            <li data-i18n="welcome.s9.li1">Geschirrspüler bitte starten</li>
+            <li data-i18n="welcome.s9.li2">Heizung / Klima auf Standby (20°C)</li>
+            <li data-i18n="welcome.s9.li3">Fenster geschlossen, Licht aus</li>
+            <li data-i18n="welcome.s9.li4">Müll in die Tonnen im Erdgeschoss</li>
+          </ul>
+          <p data-i18n="welcome.s9.note">Sie müssen nichts putzen — unsere Reinigungskraft übernimmt den Rest. Vielen Dank!</p>
+        </div>
+      </article>
+
+      <!-- 10 NOTFALL / KONTAKT -->
+      <article class="info-card reveal" id="notfall">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s10.eyebrow">10 · Hilfe</span>
+          <span class="info-card-num">x</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s10.title">Notfall &amp; <em>Kontakt</em></h3>
+        <dl class="detail-list">
+          <dt data-i18n="welcome.s10.l1">Gastgeber</dt>
+          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
+          <dt data-i18n="welcome.s10.l2">BC Living</dt>
+          <dd><a href="https://www.bcliving.de" target="_blank" rel="noopener">bcliving.de</a></dd>
+          <dt data-i18n="welcome.s10.l3">Hausverwaltung</dt>
+          <dd><span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></dd>
+          <dt data-i18n="welcome.s10.l4">Notruf</dt>
+          <dd><strong>112</strong> · <span data-i18n="welcome.s10.v4">Feuer / Rettung</span><br><strong>110</strong> · <span data-i18n="welcome.s10.v4b">Polizei</span></dd>
+          <dt data-i18n="welcome.s10.l5">Ärzt. Notdienst</dt>
+          <dd><strong>116 117</strong></dd>
+        </dl>
+      </article>
+
+      <!-- 11 EMPFEHLUNGEN -->
+      <article class="info-card reveal reveal-delay-1 wide" id="empfehlungen">
+        <div class="info-card-head">
+          <span class="info-card-eyebrow" data-i18n="welcome.s11.eyebrow">11 · Schwabing</span>
+          <span class="info-card-num">xi</span>
+        </div>
+        <h3 class="info-card-title" data-i18n-html="welcome.s11.title">Empfehlungen <em>aus dem Viertel</em></h3>
+        <div class="info-card-text">
+          <p data-i18n="welcome.s11.p1">Eine kleine, persönliche Auswahl rund um die Münchner Freiheit und den Englischen Garten — alles fußläufig erreichbar.</p>
+          <ul>
+            <li data-i18n="welcome.s11.li1"><strong>Frühstück / Café:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
+            <li data-i18n="welcome.s11.li2"><strong>Mittagessen:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
+            <li data-i18n="welcome.s11.li3"><strong>Abendessen:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
+            <li data-i18n="welcome.s11.li4"><strong>Spaziergang:</strong> Englischer Garten · Eingang Veterinärstraße (8 Min.)</li>
+            <li data-i18n="welcome.s11.li5"><strong>Bäcker:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
+            <li data-i18n="welcome.s11.li6"><strong>Supermarkt:</strong> <span class="placeholder" data-i18n="welcome.placeholder">bitte eintragen</span></li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="welcome-cta">
+  <p class="welcome-cta-eyebrow" data-i18n="welcome.cta.eyebrow">Wir sind erreichbar</p>
+  <h2 class="welcome-cta-title" data-i18n-html="welcome.cta.title">Eine Frage, ein Wunsch,<br>oder einfach <em>ein Hallo?</em></h2>
+  <p class="welcome-cta-sub" data-i18n="welcome.cta.sub">Schreiben Sie uns oder rufen Sie an — wir antworten so schnell wie möglich. Bei Notfällen wählen Sie bitte direkt die unten genannten Nummern.</p>
+  <div class="welcome-cta-row">
+    <a href="#notfall" class="welcome-cta-btn primary" data-i18n="welcome.cta.btn1">Kontakt anzeigen</a>
+    <a href="/" class="welcome-cta-btn" data-i18n="welcome.cta.btn2">Zurück zur Startseite</a>
+  </div>
+</section>
+
+</main>
+
+<!-- LIGHTBOX (arrival photos) -->
+<div class="al-lightbox" id="alLightbox" role="dialog" aria-modal="true" aria-label="Foto-Vergrößerung">
+  <button class="al-lightbox-close" id="alLightboxClose" data-i18n="welcome.lightbox.close" aria-label="Schließen">Schließen ✕</button>
+  <img id="alLightboxImg" src="" alt="">
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Victoria's Sanctuary</div>
+  <div class="footer-copy">© 2026 <a href="https://www.bcliving.de" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">BC Living GmbH</a> · Kunigundenstraße · München</div>
+</footer>
+
+<script>
+  // ── STICKY NAV ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── REVEAL ON SCROLL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── ARRIVAL PHOTO LIGHTBOX ──
+  (function() {
+    const lb = document.getElementById('alLightbox');
+    const lbImg = document.getElementById('alLightboxImg');
+    const lbClose = document.getElementById('alLightboxClose');
+    function open(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      // Defer src clear so the close transition is visual-only
+      setTimeout(() => { lbImg.src = ''; }, 200);
+    }
+    document.querySelectorAll('[data-arrival-zoom]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-arrival-zoom');
+        const img = btn.querySelector('img');
+        open(src, img ? img.alt : '');
+      });
+    });
+    lbClose.addEventListener('click', close);
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
+
+    // Drag-to-scroll for arrival track
+    const track = document.getElementById('arrivalTrack');
+    if (track) {
+      let down = false, startX = 0, startScroll = 0;
+      track.addEventListener('pointerdown', e => {
+        // Don't hijack clicks on the actual buttons
+        if (e.target.closest('[data-arrival-zoom]')) return;
+        down = true; startX = e.pageX; startScroll = track.scrollLeft;
+        track.setPointerCapture(e.pointerId);
+      });
+      track.addEventListener('pointermove', e => {
+        if (!down) return;
+        track.scrollLeft = startScroll - (e.pageX - startX);
+      });
+      track.addEventListener('pointerup',     () => down = false);
+      track.addEventListener('pointercancel', () => down = false);
+    }
+  })();
+
+  // ── COPY-TO-CLIPBOARD on .secret values ──
+  document.querySelectorAll('[data-secret]').forEach(el => {
+    el.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(el.textContent.trim());
+        const original = el.textContent;
+        el.classList.add('copied');
+        el.textContent = currentLang === 'de' ? 'Kopiert ✓' : 'Copied ✓';
+        setTimeout(() => {
+          el.classList.remove('copied');
+          el.textContent = original;
+        }, 1400);
+      } catch (e) { /* clipboard blocked — ignore */ }
+    });
+  });
+</script>
+
+<!-- I18N TRANSLATIONS -->
+<script>
+var currentLang = 'de';
+
+var t = {
+  de: {
+    // nav
+    'welcome.nav.arrival': 'Anreise',
+    'welcome.nav.wifi': 'WLAN',
+    'welcome.nav.smart': 'Smart Home',
+    'welcome.nav.departure': 'Abreise',
+    'welcome.nav.help': 'Hilfe',
+    // hero
+    'welcome.hero.eyebrow': 'Willkommen · Welcome',
+    'welcome.hero.title': 'Schön, dass<br>Sie <em>angekommen</em> sind.',
+    'welcome.hero.sub': 'Alle Informationen zu Ihrem Aufenthalt in Victoria\'s Sanctuary — Anreise, Codes, Smart Home, Abreise.',
+    // intro
+    'welcome.intro.eyebrow': 'Ein paar Worte vorab',
+    'welcome.intro.title': 'Wir freuen uns,<br>Sie hier <em>begrüßen</em> zu dürfen.',
+    'welcome.intro.p1': 'Diese Seite enthält alle praktischen Informationen für Ihren Aufenthalt: Adresse, Tür- und Garagencodes, WLAN-Zugang, Bedienung der Klimaanlage und des Smart Homes, sowie Hinweise zur Abreise. Bitte speichern Sie sich den Link, damit Sie jederzeit nachschlagen können.',
+    'welcome.intro.p2': 'Bei Fragen oder im Notfall finden Sie unten unsere Kontaktdaten. Wir wünschen Ihnen einen ruhigen, schönen Aufenthalt in München-Schwabing.',
+    // toc
+    'welcome.toc.arrival': 'Anreise',
+    'welcome.toc.garage': 'Tiefgarage',
+    'welcome.toc.wifi': 'WLAN',
+    'welcome.toc.climate': 'Klima',
+    'welcome.toc.kitchen': 'Küche',
+    'welcome.toc.bath': 'Bäder',
+    'welcome.toc.smart': 'Smart Home',
+    'welcome.toc.waste': 'Müll',
+    'welcome.toc.departure': 'Abreise',
+    'welcome.toc.help': 'Notfall',
+    'welcome.toc.tips': 'Empfehlungen',
+    // shared
+    'welcome.placeholder': 'bitte eintragen',
+    // 01 anreise
+    'welcome.s1.eyebrow': '01 · Eingang',
+    'welcome.s1.title': 'Anreise &amp; <em>Eingang</em>',
+    'welcome.s1.l1': 'Adresse',
+    'welcome.s1.l2': 'Stockwerk',
+    'welcome.s1.v2': '2. Obergeschoss · Aufzug vorhanden',
+    'welcome.s1.l3': 'Klingel',
+    'welcome.s1.v3': 'Binder/Christ Fino',
+    'welcome.s1.l4': 'Schlüssel',
+    'welcome.s1.v4': 'Igloohome Keybox 3 · 2 Schlüssel am Ring (Hauseingang + Wohnung)',
+    'welcome.s1.l5': 'Wohnungstür',
+    'welcome.s1.v5': 'Letzte Tür rechts (unbeschriftet, Sicherheitsschloss)',
+    'welcome.s1.note': 'Schlüsselübergabe erfolgt kontaktlos über die Igloohome Keybox am Holzzaun am Ende des Privatwegs. Die Box ist mit Airbnb verknüpft — den 6-stelligen PIN erhalten Sie automatisch ca. 1 Stunde vor Anreise per Airbnb-Nachricht. Im Inneren befinden sich 2 Schlüssel an einem Ring: einer für den Hauseingang und Gemeinschaftsbereich, einer (Sicherheitsschlüssel) für die Wohnungstür. Bei Anreise nach 22 Uhr bitten wir um eine kurze Nachricht.',
+    'welcome.s1.steps_label': 'Schritt für Schritt zur Wohnung',
+    'welcome.s1.step1': 'Privatweg entlang Kunigundenstr. 16–20 folgen.',
+    'welcome.s1.step2': 'Privatweg bis zum Ende laufen.',
+    'welcome.s1.step3': 'Am Ende links abbiegen — Keybox am Holzzaun.',
+    'welcome.s1.step4': 'Am Zaun: <a href="https://www.igloohome.co/products/keybox-3" target="_blank" rel="noopener">Igloohome Keybox 3</a>.',
+    'welcome.s1.step5': 'Keybox mit PIN öffnen — 2 Schlüssel am Ring entnehmen.',
+    'welcome.s1.step6': 'Hauseingang Nr. 20 mit dem Schlüssel öffnen.',
+    'welcome.s1.step7': 'Falls jemand zuhause: Klingel „Binder/Christ Fino".',
+    'welcome.s1.step8': '2. Stock · vom Aufzug rechts bis zur letzten Tür.',
+    'welcome.s1.step9': 'Wohnungstür: unbeschriftet, mit Sicherheitsschloss.',
+    // 02 tiefgarage
+    'welcome.s2.eyebrow': '02 · Parken',
+    'welcome.s2.title': 'Tiefgarage &amp; <em>Stellplatz</em>',
+    'welcome.s2.l1': 'Einfahrt',
+    'welcome.s2.l2': 'Tor-Code',
+    'welcome.s2.l3': 'Stellplatz Nr.',
+    'welcome.s2.l4': 'Aufzug',
+    'welcome.s2.v4': 'Direkt aus der Garage in den 2. Stock',
+    'welcome.s2.note': 'Zwei Tiefgaragenplätze stehen Ihnen exklusiv zur Verfügung. Bitte achten Sie auf die Markierung — andere Stellplätze sind privat vermietet.',
+    // 03 wlan
+    'welcome.s3.eyebrow': '03 · Internet',
+    'welcome.s3.title': 'WLAN &amp; <em>Verbindung</em>',
+    'welcome.s3.l1': 'Netzwerk',
+    'welcome.s3.l2': 'Passwort',
+    'welcome.s3.l3': 'Geschwindigkeit',
+    'welcome.s3.v3': 'Glasfaser · symmetrisch',
+    'welcome.s3.note': 'Tippen Sie auf einen Wert, um ihn zu kopieren. Das Netzwerk ist im gesamten Apartment und auf dem Balkon verfügbar.',
+    // 04 klima
+    'welcome.s4.eyebrow': '04 · Komfort',
+    'welcome.s4.title': 'Klima &amp; <em>Lüftung</em>',
+    'welcome.s4.p1': 'Das Apartment ist mit einem <strong>Daikin Ururu Sarara</strong>-System ausgestattet — kühlt, heizt, be- und entfeuchtet die Räume. Bedienung über die Fernbedienungen in jedem Raum.',
+    'welcome.s4.li1': '<strong>Kühlen:</strong> Modus „Cool" · 22–24°C empfohlen',
+    'welcome.s4.li2': '<strong>Heizen:</strong> Modus „Heat" · 21–22°C empfohlen',
+    'welcome.s4.li3': '<strong>Lüften:</strong> Fenster bei laufender Anlage geschlossen halten',
+    'welcome.s4.note': 'Bei Fragen zur Bedienung schreiben Sie uns gerne — wir helfen schnell.',
+    // 05 küche
+    'welcome.s5.eyebrow': '05 · Küche',
+    'welcome.s5.title': 'Küche &amp; <em>Espresso</em>',
+    'welcome.s5.p1': 'Die Küche ist mit allem Notwendigen ausgestattet — inkl. <strong>ECM Espressomaschine</strong> und Mühle. Eine Kurzanleitung finden Sie auf der Arbeitsfläche neben der Maschine.',
+    'welcome.s5.li1': '<strong>Geschirrspüler:</strong> Tabs unter der Spüle',
+    'welcome.s5.li2': '<strong>Kaffee &amp; Tee:</strong> Vorrat im linken Hochschrank',
+    'welcome.s5.li3': '<strong>Gewürze &amp; Olivenöl:</strong> bitte gerne nutzen',
+    // 06 bäder
+    'welcome.s6.eyebrow': '06 · Bäder',
+    'welcome.s6.title': 'Bäder &amp; <em>Toto Washlet</em>',
+    'welcome.s6.p1': 'Beide Bäder sind mit <strong>Toto Washlets</strong> ausgestattet. Die Funktionen werden über die seitliche Fernbedienung gesteuert.',
+    'welcome.s6.li1': 'Sitzheizung: dauerhaft aktiv',
+    'welcome.s6.li2': 'Bidet-Funktion: Knopf „Rear" / „Front"',
+    'welcome.s6.li3': 'Trocknen: Knopf „Dry" nach Bidet-Nutzung',
+    'welcome.s6.li4': 'Handtücher &amp; Bademäntel: im Schrank',
+    'welcome.s6.note': 'Föhn und Kosmetikspiegel sind in beiden Bädern vorhanden.',
+    // 07 smart home
+    'welcome.s7.eyebrow': '07 · Steuerung',
+    'welcome.s7.title': 'Smart Home · <em>Shelly Gen3</em>',
+    'welcome.s7.p1': 'Sämtliche Beleuchtung im Apartment lässt sich klassisch über die Wandschalter bedienen — alternativ gesteuert per <strong>Shelly Smart Control</strong> App. Voreingestellte Szenen für Morgen, Abend und Kino sind aktiv.',
+    'welcome.s7.li1': '<strong>Wandschalter:</strong> kurzes Tippen schaltet, langes Drücken dimmt',
+    'welcome.s7.li2': '<strong>Szene „Abend":</strong> Wandtaster im Wohnzimmer · doppelt klicken',
+    'welcome.s7.li3': '<strong>TV (75&quot; Samsung QLED):</strong> Fernbedienung auf dem Couchtisch · Apple TV &amp; Netflix vorinstalliert',
+    'welcome.s7.li4': '<strong>Sonos:</strong> Mit dem WLAN verbinden, dann über die Sonos-App steuern',
+    // 08 müll
+    'welcome.s8.eyebrow': '08 · Trennung',
+    'welcome.s8.title': 'Müll &amp; <em>Recycling</em>',
+    'welcome.s8.p1': 'In München wird streng nach Sorten getrennt. Behälter finden Sie im Müllraum im Erdgeschoss (Schlüssel auf dem Schlüsselbrett).',
+    'welcome.s8.li1': '<strong>Restmüll</strong> (grauer Deckel)',
+    'welcome.s8.li2': '<strong>Papier</strong> (blau)',
+    'welcome.s8.li3': '<strong>Bio</strong> (braun)',
+    'welcome.s8.li4': '<strong>Glas</strong> &amp; Verpackungen: Container an der Münchner Freiheit',
+    // 09 abreise
+    'welcome.s9.eyebrow': '09 · Check-out',
+    'welcome.s9.title': 'Abreise &amp; <em>Check-out</em>',
+    'welcome.s9.l1': 'Check-out',
+    'welcome.s9.v1': 'bis 11:00 Uhr',
+    'welcome.s9.l2': 'Schlüssel',
+    'welcome.s9.v2': 'zurück in die Schlüsselbox am Eingang',
+    'welcome.s9.li1': 'Geschirrspüler bitte starten',
+    'welcome.s9.li2': 'Heizung / Klima auf Standby (20°C)',
+    'welcome.s9.li3': 'Fenster geschlossen, Licht aus',
+    'welcome.s9.li4': 'Müll in die Tonnen im Erdgeschoss',
+    'welcome.s9.note': 'Sie müssen nichts putzen — unsere Reinigungskraft übernimmt den Rest. Vielen Dank!',
+    // 10 notfall
+    'welcome.s10.eyebrow': '10 · Hilfe',
+    'welcome.s10.title': 'Notfall &amp; <em>Kontakt</em>',
+    'welcome.s10.l1': 'Gastgeber',
+    'welcome.s10.l2': 'BC Living',
+    'welcome.s10.l3': 'Hausverwaltung',
+    'welcome.s10.l4': 'Notruf',
+    'welcome.s10.v4': 'Feuer / Rettung',
+    'welcome.s10.v4b': 'Polizei',
+    'welcome.s10.l5': 'Ärzt. Notdienst',
+    // 11 empfehlungen
+    'welcome.s11.eyebrow': '11 · Schwabing',
+    'welcome.s11.title': 'Empfehlungen <em>aus dem Viertel</em>',
+    'welcome.s11.p1': 'Eine kleine, persönliche Auswahl rund um die Münchner Freiheit und den Englischen Garten — alles fußläufig erreichbar.',
+    'welcome.s11.li1': '<strong>Frühstück / Café:</strong> ',
+    'welcome.s11.li2': '<strong>Mittagessen:</strong> ',
+    'welcome.s11.li3': '<strong>Abendessen:</strong> ',
+    'welcome.s11.li4': '<strong>Spaziergang:</strong> Englischer Garten · Eingang Veterinärstraße (8 Min.)',
+    'welcome.s11.li5': '<strong>Bäcker:</strong> ',
+    'welcome.s11.li6': '<strong>Supermarkt:</strong> ',
+    // cta
+    'welcome.cta.eyebrow': 'Wir sind erreichbar',
+    'welcome.cta.title': 'Eine Frage, ein Wunsch,<br>oder einfach <em>ein Hallo?</em>',
+    'welcome.cta.sub': 'Schreiben Sie uns oder rufen Sie an — wir antworten so schnell wie möglich. Bei Notfällen wählen Sie bitte direkt die unten genannten Nummern.',
+    'welcome.cta.btn1': 'Kontakt anzeigen',
+    'welcome.cta.btn2': 'Zurück zur Startseite',
+    // lightbox
+    'welcome.lightbox.close': 'Schließen ✕'
+  },
+  en: {
+    // nav
+    'welcome.nav.arrival': 'Arrival',
+    'welcome.nav.wifi': 'Wi-Fi',
+    'welcome.nav.smart': 'Smart Home',
+    'welcome.nav.departure': 'Departure',
+    'welcome.nav.help': 'Help',
+    // hero
+    'welcome.hero.eyebrow': 'Welcome · Willkommen',
+    'welcome.hero.title': 'We\'re glad<br>you\'ve <em>arrived</em>.',
+    'welcome.hero.sub': 'Everything you need for your stay at Victoria\'s Sanctuary — arrival, codes, smart home, departure.',
+    // intro
+    'welcome.intro.eyebrow': 'A few words upfront',
+    'welcome.intro.title': 'A warm <em>welcome</em><br>to your stay.',
+    'welcome.intro.p1': 'This page contains all the practical information for your stay: the address, door and garage codes, Wi-Fi access, instructions for the climate system and smart home, plus check-out details. Bookmark the link so you can come back any time.',
+    'welcome.intro.p2': 'For questions or in case of emergency, our contact details are at the bottom. We wish you a calm, pleasant stay in Munich-Schwabing.',
+    // toc
+    'welcome.toc.arrival': 'Arrival',
+    'welcome.toc.garage': 'Garage',
+    'welcome.toc.wifi': 'Wi-Fi',
+    'welcome.toc.climate': 'Climate',
+    'welcome.toc.kitchen': 'Kitchen',
+    'welcome.toc.bath': 'Baths',
+    'welcome.toc.smart': 'Smart Home',
+    'welcome.toc.waste': 'Waste',
+    'welcome.toc.departure': 'Departure',
+    'welcome.toc.help': 'Emergency',
+    'welcome.toc.tips': 'Local Tips',
+    // shared
+    'welcome.placeholder': 'to be filled in',
+    // 01 arrival
+    'welcome.s1.eyebrow': '01 · Entrance',
+    'welcome.s1.title': 'Arrival &amp; <em>Entrance</em>',
+    'welcome.s1.l1': 'Address',
+    'welcome.s1.l2': 'Floor',
+    'welcome.s1.v2': '2nd floor · elevator available',
+    'welcome.s1.l3': 'Doorbell',
+    'welcome.s1.v3': 'Binder/Christ Fino',
+    'welcome.s1.l4': 'Key',
+    'welcome.s1.v4': 'Igloohome Keybox 3 · 2 keys on a ring (building + apartment)',
+    'welcome.s1.l5': 'Apartment Door',
+    'welcome.s1.v5': 'Last door on the right (unmarked, security lock)',
+    'welcome.s1.note': 'Key handover is contactless via the Igloohome Keybox on the wooden fence at the end of the private path. The box is linked to Airbnb — you\'ll receive the 6-digit PIN automatically about 1 hour before arrival via Airbnb message. Inside are 2 keys on a ring: one for the building entrance and communal areas, one (security key) for the apartment door. If you arrive after 10 pm, please send us a quick note.',
+    'welcome.s1.steps_label': 'Step by step to the apartment',
+    'welcome.s1.step1': 'Follow the private path along Kunigundenstr. 16–20.',
+    'welcome.s1.step2': 'Walk to the end of the private path.',
+    'welcome.s1.step3': 'At the end, turn left — keybox on the wooden fence.',
+    'welcome.s1.step4': 'On the fence: <a href="https://www.igloohome.co/products/keybox-3" target="_blank" rel="noopener">Igloohome Keybox 3</a>.',
+    'welcome.s1.step5': 'Open the keybox with your PIN — take the 2 keys on the ring.',
+    'welcome.s1.step6': 'Open building entrance no. 20 with the key.',
+    'welcome.s1.step7': 'If someone is home: doorbell "Binder/Christ Fino".',
+    'welcome.s1.step8': '2nd floor · from the elevator, right to the last door.',
+    'welcome.s1.step9': 'Apartment door: unmarked, with a security lock.',
+    // 02 garage
+    'welcome.s2.eyebrow': '02 · Parking',
+    'welcome.s2.title': 'Garage &amp; <em>Parking</em>',
+    'welcome.s2.l1': 'Entrance',
+    'welcome.s2.l2': 'Gate Code',
+    'welcome.s2.l3': 'Spot No.',
+    'welcome.s2.l4': 'Elevator',
+    'welcome.s2.v4': 'Direct from garage to 2nd floor',
+    'welcome.s2.note': 'Two underground parking spots are exclusively yours. Please respect the markings — other spots are privately rented.',
+    // 03 wi-fi
+    'welcome.s3.eyebrow': '03 · Internet',
+    'welcome.s3.title': 'Wi-Fi &amp; <em>Connection</em>',
+    'welcome.s3.l1': 'Network',
+    'welcome.s3.l2': 'Password',
+    'welcome.s3.l3': 'Speed',
+    'welcome.s3.v3': 'Fibre · symmetrical',
+    'welcome.s3.note': 'Tap a value to copy it. The network covers the entire apartment and the balcony.',
+    // 04 climate
+    'welcome.s4.eyebrow': '04 · Comfort',
+    'welcome.s4.title': 'Climate &amp; <em>Ventilation</em>',
+    'welcome.s4.p1': 'The apartment is equipped with a <strong>Daikin Ururu Sarara</strong> system — cools, heats, humidifies and dehumidifies. Operate via the remotes in each room.',
+    'welcome.s4.li1': '<strong>Cooling:</strong> mode "Cool" · 22–24°C recommended',
+    'welcome.s4.li2': '<strong>Heating:</strong> mode "Heat" · 21–22°C recommended',
+    'welcome.s4.li3': '<strong>Ventilation:</strong> keep windows closed while the system runs',
+    'welcome.s4.note': 'If you have questions, just message us — we\'ll help quickly.',
+    // 05 kitchen
+    'welcome.s5.eyebrow': '05 · Kitchen',
+    'welcome.s5.title': 'Kitchen &amp; <em>Espresso</em>',
+    'welcome.s5.p1': 'The kitchen is fully equipped — including an <strong>ECM espresso machine</strong> and grinder. A short guide is on the counter next to it.',
+    'welcome.s5.li1': '<strong>Dishwasher:</strong> tabs under the sink',
+    'welcome.s5.li2': '<strong>Coffee &amp; tea:</strong> in the left tall cabinet',
+    'welcome.s5.li3': '<strong>Spices &amp; olive oil:</strong> please help yourself',
+    // 06 baths
+    'welcome.s6.eyebrow': '06 · Baths',
+    'welcome.s6.title': 'Baths &amp; <em>Toto Washlet</em>',
+    'welcome.s6.p1': 'Both bathrooms have <strong>Toto Washlets</strong>. Functions are operated via the side remote.',
+    'welcome.s6.li1': 'Heated seat: always on',
+    'welcome.s6.li2': 'Bidet: button "Rear" / "Front"',
+    'welcome.s6.li3': 'Drying: button "Dry" after bidet',
+    'welcome.s6.li4': 'Towels &amp; bathrobes: in the closet',
+    'welcome.s6.note': 'Hairdryer and vanity mirror are available in both bathrooms.',
+    // 07 smart home
+    'welcome.s7.eyebrow': '07 · Control',
+    'welcome.s7.title': 'Smart Home · <em>Shelly Gen3</em>',
+    'welcome.s7.p1': 'All lighting can be operated via the wall switches — alternatively via the <strong>Shelly Smart Control</strong> app. Preset scenes for morning, evening and cinema are active.',
+    'welcome.s7.li1': '<strong>Wall switches:</strong> short tap toggles, long press dims',
+    'welcome.s7.li2': '<strong>"Evening" scene:</strong> wall button in the living room · double-tap',
+    'welcome.s7.li3': '<strong>TV (75&quot; Samsung QLED):</strong> remote on the coffee table · Apple TV &amp; Netflix preinstalled',
+    'welcome.s7.li4': '<strong>Sonos:</strong> connect to Wi-Fi, then control via the Sonos app',
+    // 08 waste
+    'welcome.s8.eyebrow': '08 · Sorting',
+    'welcome.s8.title': 'Waste &amp; <em>Recycling</em>',
+    'welcome.s8.p1': 'Munich sorts waste strictly by type. Bins are in the waste room on the ground floor (key on the key board).',
+    'welcome.s8.li1': '<strong>Residual</strong> (grey lid)',
+    'welcome.s8.li2': '<strong>Paper</strong> (blue)',
+    'welcome.s8.li3': '<strong>Organic</strong> (brown)',
+    'welcome.s8.li4': '<strong>Glass</strong> &amp; packaging: containers at Münchner Freiheit',
+    // 09 departure
+    'welcome.s9.eyebrow': '09 · Check-out',
+    'welcome.s9.title': 'Departure &amp; <em>Check-out</em>',
+    'welcome.s9.l1': 'Check-out',
+    'welcome.s9.v1': 'by 11:00 am',
+    'welcome.s9.l2': 'Keys',
+    'welcome.s9.v2': 'back into the key box at the entrance',
+    'welcome.s9.li1': 'Please start the dishwasher',
+    'welcome.s9.li2': 'Heating / climate to standby (20°C)',
+    'welcome.s9.li3': 'Windows closed, lights off',
+    'welcome.s9.li4': 'Waste to the bins on the ground floor',
+    'welcome.s9.note': 'You don\'t need to clean — our housekeeper takes care of the rest. Thank you!',
+    // 10 emergency
+    'welcome.s10.eyebrow': '10 · Help',
+    'welcome.s10.title': 'Emergency &amp; <em>Contact</em>',
+    'welcome.s10.l1': 'Host',
+    'welcome.s10.l2': 'BC Living',
+    'welcome.s10.l3': 'Building Mgmt.',
+    'welcome.s10.l4': 'Emergency',
+    'welcome.s10.v4': 'Fire / Ambulance',
+    'welcome.s10.v4b': 'Police',
+    'welcome.s10.l5': 'Medical Hotline',
+    // 11 recommendations
+    'welcome.s11.eyebrow': '11 · Schwabing',
+    'welcome.s11.title': 'Local <em>Recommendations</em>',
+    'welcome.s11.p1': 'A small personal selection around Münchner Freiheit and the Englischer Garten — all within walking distance.',
+    'welcome.s11.li1': '<strong>Breakfast / Café:</strong> ',
+    'welcome.s11.li2': '<strong>Lunch:</strong> ',
+    'welcome.s11.li3': '<strong>Dinner:</strong> ',
+    'welcome.s11.li4': '<strong>Walk:</strong> Englischer Garten · entrance Veterinärstraße (8 min)',
+    'welcome.s11.li5': '<strong>Bakery:</strong> ',
+    'welcome.s11.li6': '<strong>Supermarket:</strong> ',
+    // cta
+    'welcome.cta.eyebrow': 'We\'re available',
+    'welcome.cta.title': 'A question, a wish,<br>or just <em>to say hi?</em>',
+    'welcome.cta.sub': 'Send us a message or give us a call — we reply as fast as we can. For emergencies, please dial the numbers shown above.',
+    'welcome.cta.btn1': 'Show contacts',
+    'welcome.cta.btn2': 'Back to home',
+    // lightbox
+    'welcome.lightbox.close': 'Close ✕'
+  }
+};
+
+function setLang(lang) {
+  currentLang = lang;
+  var dict = t[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.getElementById('langDE').classList.toggle('active', lang === 'de');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('langDE').classList.add('active');
+  document.getElementById('langToggle').addEventListener('click', function() {
+    setLang(currentLang === 'de' ? 'en' : 'de');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /welcome/
 
-Sitemap: https://kg20.netlify.app/sitemap.xml
+Sitemap: https://victoriassanctuary.com/sitemap.xml
