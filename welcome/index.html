@@ -31,13 +31,16 @@
     }
 
     html { scroll-behavior: smooth; }
+    html, body { max-width: 100vw; }
     body {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       background: var(--white);
       color: var(--dark);
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%; /* iOS: don't auto-inflate text in landscape */
     }
+    img, picture, svg { max-width: 100%; }
 
     /* ── NAV (matches main site) ── */
     nav {
@@ -315,18 +318,23 @@
     /* Highlighted secret values (codes, passwords) */
     .secret {
       display: inline-block;
+      max-width: 100%;
       font-family: 'Jost', sans-serif;
       font-weight: 500;
       font-size: 1rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       background: var(--cream);
       color: var(--dark);
-      padding: 0.35rem 0.7rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 2px;
       border: 1px solid var(--sand);
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       user-select: all;
+      word-break: break-all;        /* allow long passwords to wrap */
+      overflow-wrap: anywhere;
+      line-height: 1.4;
+      min-height: 40px;              /* touch target */
     }
     .secret:hover { border-color: var(--taupe); background: var(--white); }
     .secret.copied { background: var(--dark); color: var(--cream); border-color: var(--dark); }
@@ -582,6 +590,7 @@
       nav { padding: 1.4rem 1.5rem; }
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .nav-links { display: none; }
+      .lang-toggle { margin-left: auto; }
       .welcome-intro { padding: 4rem 1.5rem 2rem; }
       .welcome-toc { padding: 1.5rem 1.5rem 4rem; grid-template-columns: repeat(3, 1fr); }
       .welcome-grid-section { padding: 4rem 1.5rem; }
@@ -590,25 +599,55 @@
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
     @media (max-width: 600px) {
-      nav { padding: 1rem 1.25rem; }
+      nav { padding: 1rem 1.1rem; }
+      nav.scrolled { padding: 0.75rem 1.1rem; }
+      .nav-logo { font-size: 1.15rem; letter-spacing: 0.08em; }
+      .lang-toggle { margin-left: 0.75rem; padding: 0.3rem 0.55rem; font-size: 0.56rem; gap: 0.3rem; }
       .welcome-hero { min-height: 380px; }
       .welcome-hero-content {
         bottom: max(2rem, env(safe-area-inset-bottom, 0px));
         left: 1.25rem; right: 1.25rem;
       }
-      .welcome-toc { grid-template-columns: repeat(2, 1fr); }
+      .welcome-hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+      .welcome-hero-sub { font-size: 0.72rem; letter-spacing: 0.14em; }
+      .welcome-toc { grid-template-columns: repeat(2, 1fr); padding: 1.25rem 1.25rem 3rem; }
+      .welcome-toc a { min-height: 72px; padding: 1.1rem 0.75rem; font-size: 0.62rem; letter-spacing: 0.18em; }
       .welcome-intro { padding: 3rem 1.25rem 1.5rem; }
-      .welcome-grid-section { padding: 3rem 1.25rem; }
-      .info-card { padding: 2rem 1.5rem; }
+      .welcome-grid-section { padding: 3rem 1.1rem; }
+      .welcome-grid { gap: 1.1rem; }
+      .info-card { padding: 1.75rem 1.25rem; gap: 1rem; }
+      .info-card-head { gap: 0.75rem; }
+      .info-card-title { font-size: clamp(1.35rem, 5.5vw, 1.7rem); }
       .detail-list { grid-template-columns: 1fr; gap: 0.2rem 0; }
-      .detail-list dt { padding-top: 0.8rem; }
+      .detail-list dt { padding-top: 0.9rem; }
       .detail-list dt:first-of-type { padding-top: 0; }
+      .detail-list dd { margin: 0; padding-bottom: 0.1rem; }
+      .secret { font-size: 0.92rem; letter-spacing: 0.04em; padding: 0.5rem 0.7rem; }
+      .arrival-step { flex: 0 0 76vw; }
+      .arrival-steps { padding-top: 1.25rem; margin-top: 0.25rem; }
       .welcome-cta { padding: 3.5rem 1.25rem; }
+      .welcome-cta-row { flex-direction: column; gap: 0.6rem; align-items: stretch; }
+      .welcome-cta-btn { padding: 0.95rem 1.5rem; font-size: 0.65rem; letter-spacing: 0.2em; justify-content: center; }
+      .al-lightbox { padding: 0.75rem; }
+      .al-lightbox-close { top: max(0.75rem, env(safe-area-inset-top, 0.75rem)); right: 0.75rem; padding: 0.55rem 0.9rem; font-size: 0.58rem; }
       footer {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
         padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
       }
+    }
+    @media (max-width: 380px) {
+      /* iPhone SE / very narrow */
+      nav { padding: 0.9rem 0.95rem; }
+      .nav-logo { font-size: 1rem; }
+      .welcome-hero-title { font-size: clamp(2.1rem, 11vw, 3rem); }
+      .welcome-toc a { font-size: 0.58rem; letter-spacing: 0.14em; }
+      .welcome-toc-num { font-size: 1.05rem; }
+      .info-card { padding: 1.5rem 1rem; }
+      .info-card-title { font-size: 1.25rem; }
+      .welcome-grid-section { padding: 2.5rem 0.9rem; }
+      .secret { font-size: 0.85rem; padding: 0.45rem 0.6rem; }
+      .arrival-step { flex: 0 0 80vw; }
     }
   </style>
 </head>
@@ -750,6 +789,16 @@
               <p class="arrival-step-cap" data-i18n="welcome.s1.step5">Keybox mit PIN öffnen — 2 Schlüssel am Ring entnehmen.</p>
             </li>
             <li class="arrival-step">
+              <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-5b.jpeg" aria-label="Schlüssel vergrößern">
+                <span class="arrival-step-num">5b</span>
+                <picture>
+                  <source srcset="/images/arrival/arrival-5b-xs.webp 450w, /images/arrival/arrival-5b-sm.webp 800w, /images/arrival/arrival-5b.webp 960w" sizes="(max-width:600px) 72vw, 220px" type="image/webp">
+                  <img src="/images/arrival/arrival-5b.jpeg" width="960" height="1280" alt="Die 2 Schlüssel am Ring — silber: Hauseingang, dunkel: Wohnungstür" loading="lazy">
+                </picture>
+              </button>
+              <p class="arrival-step-cap" data-i18n="welcome.s1.step5b">2 Schlüssel am Ring: silber = Hauseingang, dunkel = Wohnung.</p>
+            </li>
+            <li class="arrival-step">
               <button class="arrival-step-img" type="button" data-arrival-zoom="/images/arrival/arrival-6.jpeg" aria-label="Schritt 6 vergrößern">
                 <span class="arrival-step-num">6</span>
                 <picture>
@@ -824,9 +873,9 @@
         <h3 class="info-card-title" data-i18n-html="welcome.s3.title">WLAN &amp; <em>Verbindung</em></h3>
         <dl class="detail-list">
           <dt data-i18n="welcome.s3.l1">Netzwerk</dt>
-          <dd><span class="secret" data-secret>VictoriasSanctuary</span></dd>
+          <dd><span class="secret" data-secret>KG20_5G</span></dd>
           <dt data-i18n="welcome.s3.l2">Passwort</dt>
-          <dd><span class="secret" data-secret>bitte-eintragen</span></dd>
+          <dd><span class="secret" data-secret>VVjxbU7xfko_mcLwVk*k</span></dd>
           <dt data-i18n="welcome.s3.l3">Geschwindigkeit</dt>
           <dd data-i18n="welcome.s3.v3">Glasfaser · symmetrisch</dd>
         </dl>
@@ -1151,6 +1200,7 @@ var t = {
     'welcome.s1.step3': 'Am Ende links abbiegen — Keybox am Holzzaun.',
     'welcome.s1.step4': 'Am Zaun: <a href="https://www.igloohome.co/products/keybox-3" target="_blank" rel="noopener">Igloohome Keybox 3</a>.',
     'welcome.s1.step5': 'Keybox mit PIN öffnen — 2 Schlüssel am Ring entnehmen.',
+    'welcome.s1.step5b': '2 Schlüssel am Ring: silber = Hauseingang, dunkel = Wohnung.',
     'welcome.s1.step6': 'Hauseingang Nr. 20 mit dem Schlüssel öffnen.',
     'welcome.s1.step7': 'Falls jemand zuhause: Klingel „Binder/Christ Fino".',
     'welcome.s1.step8': '2. Stock · vom Aufzug rechts bis zur letzten Tür.',
@@ -1302,6 +1352,7 @@ var t = {
     'welcome.s1.step3': 'At the end, turn left — keybox on the wooden fence.',
     'welcome.s1.step4': 'On the fence: <a href="https://www.igloohome.co/products/keybox-3" target="_blank" rel="noopener">Igloohome Keybox 3</a>.',
     'welcome.s1.step5': 'Open the keybox with your PIN — take the 2 keys on the ring.',
+    'welcome.s1.step5b': '2 keys on the ring: silver = building, dark = apartment.',
     'welcome.s1.step6': 'Open building entrance no. 20 with the key.',
     'welcome.s1.step7': 'If someone is home: doorbell "Binder/Christ Fino".',
     'welcome.s1.step8': '2nd floor · from the elevator, right to the last door.',
