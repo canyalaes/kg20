@@ -41,7 +41,7 @@
     }
     img, picture, svg { max-width: 100%; }
 
-    /* ── NAV (matches main site) ── */
+    /* ── NAV (identical to main site index.html) ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -50,6 +50,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.6rem 3rem;
+      mix-blend-mode: normal;
       transition: background 0.4s, padding 0.4s;
     }
     nav.scrolled {
@@ -70,7 +71,7 @@
     nav.scrolled .nav-logo { color: var(--dark); }
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
     }
     .nav-links a {
@@ -104,13 +105,11 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s;
       margin-left: 1.5rem;
       flex-shrink: 0;
     }
-    nav.scrolled .lang-toggle { color: var(--dark); border-color: rgba(0,0,0,0.2); }
     .lang-toggle:hover { border-color: var(--cream); }
-    nav.scrolled .lang-toggle:hover { border-color: var(--dark); }
     .lang-sep { opacity: 0.3; }
     .lang-opt { opacity: 0.65; transition: opacity 0.2s; }
     .lang-opt.active { opacity: 1; font-weight: 500; }
@@ -581,7 +580,6 @@
       nav { padding: 1.4rem 1.5rem; }
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .nav-links { display: none; }
-      .lang-toggle { margin-left: auto; }
       .welcome-intro { padding: 4rem 1.5rem 2rem; }
       .welcome-toc { padding: 1.5rem 1.5rem 4rem; grid-template-columns: repeat(3, 1fr); }
       .welcome-grid-section { padding: 4rem 1.5rem; }
@@ -590,10 +588,7 @@
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
     @media (max-width: 600px) {
-      nav { padding: 0.75rem 1rem; }
-      nav.scrolled { padding: 0.55rem 1rem; }
-      .nav-logo { font-size: 1.05rem; letter-spacing: 0.06em; }
-      .lang-toggle { margin-left: 0.6rem; padding: 0.28rem 0.55rem; font-size: 0.54rem; gap: 0.3rem; letter-spacing: 0.15em; }
+      nav { padding: 1rem 1.25rem; }
       .welcome-hero { min-height: 380px; }
       .welcome-hero-content {
         bottom: max(2rem, env(safe-area-inset-bottom, 0px));
@@ -647,7 +642,22 @@
       .detail-list dt:first-of-type { padding-top: 0; }
       .detail-list dd { margin: 0; padding-bottom: 0.1rem; }
       .secret { font-size: 0.92rem; letter-spacing: 0.04em; padding: 0.5rem 0.7rem; }
-      .arrival-step { flex: 0 0 76vw; }
+      /* Arrival steps: vertical stack on mobile for natural scroll-through */
+      .arrival-track {
+        flex-direction: column;
+        overflow-x: visible;
+        gap: 1.8rem;
+        scroll-snap-type: none;
+        padding: 0;
+        cursor: auto;
+      }
+      .arrival-track:active { cursor: auto; }
+      .arrival-step {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+      .arrival-step-img { aspect-ratio: 4/3; }
+      .arrival-step-cap { font-size: 0.88rem; }
       .arrival-steps { padding-top: 1.25rem; margin-top: 0.25rem; }
       .welcome-cta { padding: 3.5rem 1.25rem; }
       .welcome-cta-row { flex-direction: column; gap: 0.6rem; align-items: stretch; }
@@ -662,9 +672,6 @@
     }
     @media (max-width: 380px) {
       /* iPhone SE / very narrow */
-      nav { padding: 0.65rem 0.85rem; }
-      .nav-logo { font-size: 0.95rem; letter-spacing: 0.05em; }
-      .lang-toggle { padding: 0.25rem 0.5rem; font-size: 0.52rem; }
       .welcome-hero-title { font-size: clamp(2.1rem, 11vw, 3rem); }
       .welcome-toc { padding: 0.35rem 1rem 2rem; gap: 0.4rem; }
       .welcome-toc a { font-size: 0.54rem; letter-spacing: 0.16em; padding: 0.5rem 0.85rem; }
@@ -673,7 +680,6 @@
       .info-card-title { font-size: 1.25rem; }
       .welcome-grid-section { padding: 2.5rem 0.9rem; }
       .secret { font-size: 0.85rem; padding: 0.45rem 0.6rem; }
-      .arrival-step { flex: 0 0 80vw; }
     }
   </style>
 </head>
@@ -896,9 +902,9 @@
         <div class="info-card-text">
           <p data-i18n-html="welcome.s4.p1">Das Apartment ist mit einem <strong>Daikin Ururu Sarara</strong>-System ausgestattet — kühlt, heizt, be- und entfeuchtet die Räume. Bedienung über die Fernbedienungen in jedem Raum.</p>
           <ul>
-            <li data-i18n="welcome.s4.li1"><strong>Kühlen:</strong> Modus „Cool" · 22–24°C empfohlen</li>
-            <li data-i18n="welcome.s4.li2"><strong>Heizen:</strong> Modus „Heat" · 21–22°C empfohlen</li>
-            <li data-i18n="welcome.s4.li3"><strong>Lüften:</strong> Fenster bei laufender Anlage geschlossen halten</li>
+            <li data-i18n-html="welcome.s4.li1"><strong>Kühlen:</strong> Modus „Cool" · 22–24°C empfohlen</li>
+            <li data-i18n-html="welcome.s4.li2"><strong>Heizen:</strong> Modus „Heat" · 21–22°C empfohlen</li>
+            <li data-i18n-html="welcome.s4.li3"><strong>Lüften:</strong> Fenster bei laufender Anlage geschlossen halten</li>
           </ul>
           <p data-i18n="welcome.s4.note">Bei Fragen zur Bedienung schreiben Sie uns gerne — wir helfen schnell.</p>
         </div>
@@ -914,9 +920,10 @@
         <div class="info-card-text">
           <p data-i18n-html="welcome.s5.p1">Die Küche ist mit allem Notwendigen ausgestattet — inkl. <strong>ECM Espressomaschine</strong> und Mühle. Eine Kurzanleitung finden Sie auf der Arbeitsfläche neben der Maschine.</p>
           <ul>
-            <li data-i18n="welcome.s5.li1"><strong>Geschirrspüler:</strong> Tabs unter der Spüle</li>
-            <li data-i18n="welcome.s5.li2"><strong>Kaffee &amp; Tee:</strong> Vorrat im linken Hochschrank</li>
-            <li data-i18n="welcome.s5.li3"><strong>Gewürze &amp; Olivenöl:</strong> bitte gerne nutzen</li>
+            <li data-i18n-html="welcome.s5.li1"><strong>Geschirrspüler:</strong> Tabs unter der Spüle</li>
+            <li data-i18n-html="welcome.s5.li2"><strong>Kaffee &amp; Tee:</strong> Vorrat im linken Hochschrank</li>
+            <li data-i18n-html="welcome.s5.li3"><strong>Gewürze &amp; Olivenöl:</strong> bitte gerne nutzen</li>
+            <li data-i18n-html="welcome.s5.li4"><strong>Wichtig — ECM Espressomaschine:</strong> Bitte ausschließlich <strong>Plose</strong> (oder ähnliches stilles Mineralwasser) verwenden. Kein Leitungswasser — der hohe Kalkgehalt in München beschädigt die Maschine.</li>
           </ul>
         </div>
       </article>
@@ -950,10 +957,10 @@
         <div class="info-card-text">
           <p data-i18n-html="welcome.s7.p1">Sämtliche Beleuchtung im Apartment lässt sich klassisch über die Wandschalter bedienen — alternativ gesteuert per <strong>Shelly Smart Control</strong> App. Voreingestellte Szenen für Morgen, Abend und Kino sind aktiv.</p>
           <ul>
-            <li data-i18n="welcome.s7.li1"><strong>Wandschalter:</strong> kurzes Tippen schaltet, langes Drücken dimmt</li>
-            <li data-i18n="welcome.s7.li2"><strong>Szene „Abend":</strong> Wandtaster im Wohnzimmer · doppelt klicken</li>
-            <li data-i18n="welcome.s7.li3"><strong>TV (75&quot; Samsung QLED):</strong> Fernbedienung auf dem Couchtisch · Apple TV &amp; Netflix vorinstalliert</li>
-            <li data-i18n="welcome.s7.li4"><strong>Sonos:</strong> Mit dem WLAN verbinden, dann über die Sonos-App steuern</li>
+            <li data-i18n-html="welcome.s7.li1"><strong>Wandschalter:</strong> kurzes Tippen schaltet, langes Drücken dimmt</li>
+            <li data-i18n-html="welcome.s7.li2"><strong>Szene „Abend":</strong> Wandtaster im Wohnzimmer · doppelt klicken</li>
+            <li data-i18n-html="welcome.s7.li3"><strong>TV (75&quot; Samsung QLED):</strong> Fernbedienung auf dem Couchtisch · Apple TV &amp; Netflix vorinstalliert</li>
+            <li data-i18n-html="welcome.s7.li4"><strong>Sonos:</strong> Mit dem WLAN verbinden, dann über die Sonos-App steuern</li>
           </ul>
         </div>
       </article>
@@ -968,10 +975,10 @@
         <div class="info-card-text">
           <p data-i18n="welcome.s8.p1">In München wird streng nach Sorten getrennt. Behälter finden Sie im Müllraum im Erdgeschoss (Schlüssel auf dem Schlüsselbrett).</p>
           <ul>
-            <li data-i18n="welcome.s8.li1"><strong>Restmüll</strong> (grauer Deckel)</li>
-            <li data-i18n="welcome.s8.li2"><strong>Papier</strong> (blau)</li>
-            <li data-i18n="welcome.s8.li3"><strong>Bio</strong> (braun)</li>
-            <li data-i18n="welcome.s8.li4"><strong>Glas</strong> &amp; Verpackungen: Container an der Münchner Freiheit</li>
+            <li data-i18n-html="welcome.s8.li1"><strong>Restmüll</strong> (grauer Deckel)</li>
+            <li data-i18n-html="welcome.s8.li2"><strong>Papier</strong> (blau)</li>
+            <li data-i18n-html="welcome.s8.li3"><strong>Bio</strong> (braun)</li>
+            <li data-i18n-html="welcome.s8.li4"><strong>Glas</strong> &amp; Verpackungen: Container an der Münchner Freiheit</li>
           </ul>
         </div>
       </article>
@@ -1206,6 +1213,7 @@ var t = {
     'welcome.s5.li1': '<strong>Geschirrspüler:</strong> Tabs unter der Spüle',
     'welcome.s5.li2': '<strong>Kaffee &amp; Tee:</strong> Vorrat im linken Hochschrank',
     'welcome.s5.li3': '<strong>Gewürze &amp; Olivenöl:</strong> bitte gerne nutzen',
+    'welcome.s5.li4': '<strong>Wichtig — ECM Espressomaschine:</strong> Bitte ausschließlich <strong>Plose</strong> (oder ähnliches stilles Mineralwasser) verwenden. Kein Leitungswasser — der hohe Kalkgehalt in München beschädigt die Maschine.',
     // 06 bäder
     'welcome.s6.eyebrow': '06 · Bäder',
     'welcome.s6.title': 'Bäder &amp; <em>Toto Washlet</em>',
@@ -1337,6 +1345,7 @@ var t = {
     'welcome.s5.li1': '<strong>Dishwasher:</strong> tabs under the sink',
     'welcome.s5.li2': '<strong>Coffee &amp; tea:</strong> in the left tall cabinet',
     'welcome.s5.li3': '<strong>Spices &amp; olive oil:</strong> please help yourself',
+    'welcome.s5.li4': '<strong>Important — ECM espresso machine:</strong> Please use <strong>Plose</strong> (or similar still mineral water) only. No tap water — Munich\'s high limescale content damages the machine.',
     // 06 baths
     'welcome.s6.eyebrow': '06 · Baths',
     'welcome.s6.title': 'Baths &amp; <em>Toto Washlet</em>',
