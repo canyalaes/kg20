@@ -206,43 +206,7 @@
     }
     .welcome-intro-text p + p { margin-top: 1rem; }
 
-    /* ── TABLE OF CONTENTS ── */
-    .welcome-toc {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 3rem 5rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1px;
-      background: var(--sand);
-      border: 1px solid var(--sand);
-    }
-    .welcome-toc a {
-      background: var(--white);
-      padding: 1.4rem 1rem;
-      text-align: center;
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 0.66rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      transition: background 0.25s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      min-height: 88px;
-      justify-content: center;
-    }
-    .welcome-toc a:hover { background: var(--cream); }
-    .welcome-toc-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--taupe);
-      letter-spacing: 0;
-    }
+
 
     /* ── INFO CARD GRID ── */
     .welcome-grid-section { background: var(--cream); padding: 6rem 3rem; }
@@ -581,7 +545,6 @@
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .nav-links { display: none; }
       .welcome-intro { padding: 4rem 1.5rem 2rem; }
-      .welcome-toc { padding: 1.5rem 1.5rem 4rem; grid-template-columns: repeat(3, 1fr); }
       .welcome-grid-section { padding: 4rem 1.5rem; }
       .welcome-grid { grid-template-columns: 1fr; }
       .welcome-cta { padding: 4.5rem 1.5rem; }
@@ -596,41 +559,6 @@
       }
       .welcome-hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
       .welcome-hero-sub { font-size: 0.72rem; letter-spacing: 0.14em; }
-      /* TOC becomes horizontal scrolling pill strip on mobile (saves ~440px vertical space) */
-      .welcome-toc {
-        display: flex;
-        grid-template-columns: none;
-        gap: 0.5rem;
-        padding: 0.5rem 1.25rem 2.5rem;
-        background: transparent;
-        border: none;
-        overflow-x: auto;
-        scroll-snap-type: x proximity;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .welcome-toc::-webkit-scrollbar { display: none; }
-      .welcome-toc a {
-        flex: 0 0 auto;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.45rem;
-        min-height: 40px;
-        padding: 0.55rem 0.95rem;
-        font-size: 0.58rem;
-        letter-spacing: 0.2em;
-        background: var(--cream);
-        border: 1px solid var(--sand);
-        border-radius: 999px;
-        white-space: nowrap;
-        scroll-snap-align: start;
-      }
-      .welcome-toc a:hover,
-      .welcome-toc a:focus { background: var(--sand); }
-      .welcome-toc-num {
-        font-size: 0.72rem;
-        line-height: 1;
-      }
       .welcome-intro { padding: 3rem 1.25rem 1.5rem; }
       .welcome-grid-section { padding: 3rem 1.1rem; }
       .welcome-grid { gap: 1.1rem; }
@@ -673,9 +601,6 @@
     @media (max-width: 380px) {
       /* iPhone SE / very narrow */
       .welcome-hero-title { font-size: clamp(2.1rem, 11vw, 3rem); }
-      .welcome-toc { padding: 0.35rem 1rem 2rem; gap: 0.4rem; }
-      .welcome-toc a { font-size: 0.54rem; letter-spacing: 0.16em; padding: 0.5rem 0.85rem; }
-      .welcome-toc-num { font-size: 0.68rem; }
       .info-card { padding: 1.5rem 1rem; }
       .info-card-title { font-size: 1.25rem; }
       .welcome-grid-section { padding: 2.5rem 0.9rem; }
@@ -691,9 +616,13 @@
   <ul class="nav-links">
     <li><a href="#anreise" data-i18n="welcome.nav.arrival">Anreise</a></li>
     <li><a href="#wlan" data-i18n="welcome.nav.wifi">WLAN</a></li>
+    <li><a href="#klima" data-i18n="welcome.nav.climate">Klima</a></li>
+    <li><a href="#kueche" data-i18n="welcome.nav.kitchen">Küche</a></li>
+    <li><a href="#baeder" data-i18n="welcome.nav.bath">Bäder</a></li>
     <li><a href="#smarthome" data-i18n="welcome.nav.smart">Smart Home</a></li>
+    <li><a href="#muell" data-i18n="welcome.nav.waste">Müll</a></li>
     <li><a href="#abreise" data-i18n="welcome.nav.departure">Abreise</a></li>
-    <li><a href="#notfall" data-i18n="welcome.nav.help">Hilfe</a></li>
+    <li><a href="#notfall" data-i18n="welcome.nav.help">Notfall</a></li>
   </ul>
   <button class="lang-toggle" id="langToggle" aria-label="Switch language"><span class="lang-opt" id="langDE">DE</span><span class="lang-sep">|</span><span class="lang-opt" id="langEN">EN</span></button>
 </nav>
@@ -722,19 +651,6 @@
     <p data-i18n="welcome.intro.p2">Bei Fragen oder im Notfall finden Sie unten unsere Kontaktdaten. Wir wünschen Ihnen einen ruhigen, schönen Aufenthalt in München-Schwabing.</p>
   </div>
 </section>
-
-<!-- TABLE OF CONTENTS -->
-<nav class="welcome-toc reveal" aria-label="Inhaltsverzeichnis">
-  <a href="#anreise"><span class="welcome-toc-num">i</span><span data-i18n="welcome.toc.arrival">Anreise</span></a>
-  <a href="#wlan"><span class="welcome-toc-num">iii</span><span data-i18n="welcome.toc.wifi">WLAN</span></a>
-  <a href="#klima"><span class="welcome-toc-num">iv</span><span data-i18n="welcome.toc.climate">Klima</span></a>
-  <a href="#kueche"><span class="welcome-toc-num">v</span><span data-i18n="welcome.toc.kitchen">Küche</span></a>
-  <a href="#baeder"><span class="welcome-toc-num">vi</span><span data-i18n="welcome.toc.bath">Bäder</span></a>
-  <a href="#smarthome"><span class="welcome-toc-num">vii</span><span data-i18n="welcome.toc.smart">Smart Home</span></a>
-  <a href="#muell"><span class="welcome-toc-num">viii</span><span data-i18n="welcome.toc.waste">Müll</span></a>
-  <a href="#abreise"><span class="welcome-toc-num">ix</span><span data-i18n="welcome.toc.departure">Abreise</span></a>
-  <a href="#notfall"><span class="welcome-toc-num">x</span><span data-i18n="welcome.toc.help">Notfall</span></a>
-</nav>
 
 <!-- INFO CARDS -->
 <section class="welcome-grid-section">
@@ -1144,9 +1060,13 @@ var t = {
     // nav
     'welcome.nav.arrival': 'Anreise',
     'welcome.nav.wifi': 'WLAN',
+    'welcome.nav.climate': 'Klima',
+    'welcome.nav.kitchen': 'Küche',
+    'welcome.nav.bath': 'Bäder',
     'welcome.nav.smart': 'Smart Home',
+    'welcome.nav.waste': 'Müll',
     'welcome.nav.departure': 'Abreise',
-    'welcome.nav.help': 'Hilfe',
+    'welcome.nav.help': 'Notfall',
     // hero
     'welcome.hero.eyebrow': 'Willkommen · Welcome',
     'welcome.hero.title': 'Schön, dass<br>Sie <em>angekommen</em> sind.',
@@ -1156,16 +1076,6 @@ var t = {
     'welcome.intro.title': 'Wir freuen uns,<br>Sie hier <em>begrüßen</em> zu dürfen.',
     'welcome.intro.p1': 'Diese Seite enthält alle praktischen Informationen für Ihren Aufenthalt: Adresse, Tür- und Garagencodes, WLAN-Zugang, Bedienung der Klimaanlage und des Smart Homes, sowie Hinweise zur Abreise. Bitte speichern Sie sich den Link, damit Sie jederzeit nachschlagen können.',
     'welcome.intro.p2': 'Bei Fragen oder im Notfall finden Sie unten unsere Kontaktdaten. Wir wünschen Ihnen einen ruhigen, schönen Aufenthalt in München-Schwabing.',
-    // toc
-    'welcome.toc.arrival': 'Anreise',
-    'welcome.toc.wifi': 'WLAN',
-    'welcome.toc.climate': 'Klima',
-    'welcome.toc.kitchen': 'Küche',
-    'welcome.toc.bath': 'Bäder',
-    'welcome.toc.smart': 'Smart Home',
-    'welcome.toc.waste': 'Müll',
-    'welcome.toc.departure': 'Abreise',
-    'welcome.toc.help': 'Notfall',
     // 01 anreise
     'welcome.s1.eyebrow': '01 · Eingang',
     'welcome.s1.title': 'Anreise &amp; <em>Eingang</em>',
@@ -1276,9 +1186,13 @@ var t = {
     // nav
     'welcome.nav.arrival': 'Arrival',
     'welcome.nav.wifi': 'Wi-Fi',
+    'welcome.nav.climate': 'Climate',
+    'welcome.nav.kitchen': 'Kitchen',
+    'welcome.nav.bath': 'Baths',
     'welcome.nav.smart': 'Smart Home',
+    'welcome.nav.waste': 'Waste',
     'welcome.nav.departure': 'Departure',
-    'welcome.nav.help': 'Help',
+    'welcome.nav.help': 'Emergency',
     // hero
     'welcome.hero.eyebrow': 'Welcome · Willkommen',
     'welcome.hero.title': 'We\'re glad<br>you\'ve <em>arrived</em>.',
@@ -1288,16 +1202,6 @@ var t = {
     'welcome.intro.title': 'A warm <em>welcome</em><br>to your stay.',
     'welcome.intro.p1': 'This page contains all the practical information for your stay: the address, door and garage codes, Wi-Fi access, instructions for the climate system and smart home, plus check-out details. Bookmark the link so you can come back any time.',
     'welcome.intro.p2': 'For questions or in case of emergency, our contact details are at the bottom. We wish you a calm, pleasant stay in Munich-Schwabing.',
-    // toc
-    'welcome.toc.arrival': 'Arrival',
-    'welcome.toc.wifi': 'Wi-Fi',
-    'welcome.toc.climate': 'Climate',
-    'welcome.toc.kitchen': 'Kitchen',
-    'welcome.toc.bath': 'Baths',
-    'welcome.toc.smart': 'Smart Home',
-    'welcome.toc.waste': 'Waste',
-    'welcome.toc.departure': 'Departure',
-    'welcome.toc.help': 'Emergency',
     // 01 arrival
     'welcome.s1.eyebrow': '01 · Entrance',
     'welcome.s1.title': 'Arrival &amp; <em>Entrance</em>',
